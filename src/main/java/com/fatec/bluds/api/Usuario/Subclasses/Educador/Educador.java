@@ -1,6 +1,7 @@
 package com.fatec.bluds.api.Usuario.Subclasses.Educador;
 
 import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
+import com.fatec.bluds.api.Usuario.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Educador {
+public class Educador extends Usuario {
     @Column
     private String matricula;
 
