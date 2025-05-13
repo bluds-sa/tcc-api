@@ -1,11 +1,14 @@
 package com.fatec.bluds.api.Instituicao;
 
 import com.fatec.bluds.api.Instituicao.Endereco.Endereco;
+import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Estudante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity(name = "Instituicao")
 @Table(name = "Instituicao")
@@ -31,4 +34,7 @@ public class InstituicaoEnsino {
 
     @Embedded
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "instituicaoEnsino")
+    private List<Estudante> estudantes;
 }
