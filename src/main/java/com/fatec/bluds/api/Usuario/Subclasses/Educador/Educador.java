@@ -1,12 +1,13 @@
 package com.fatec.bluds.api.Usuario.Subclasses.Educador;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Entity(name = "Educador")
 @Table(name = "Educador")
@@ -19,4 +20,11 @@ public class Educador {
 
     @Column
     private String titulo;
+
+    @ManyToMany
+    @JoinTable(
+            name = "educador_instituicao",
+            joinColumns = @JoinColumn(name = "educador_id"), inverseJoinColumns = @JoinColumn(name = "instituicao_id")
+    )
+    private Set<InstituicaoEnsino> instituicoes;
 }
