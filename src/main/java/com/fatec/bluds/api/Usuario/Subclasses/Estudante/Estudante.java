@@ -1,11 +1,10 @@
 package com.fatec.bluds.api.Usuario.Subclasses.Estudante;
 
+import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
 import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Enums.AnoEscolar;
 import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Enums.Periodo;
 import com.fatec.bluds.api.Usuario.Usuario;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,4 +27,8 @@ public class Estudante extends Usuario {
     @Column
     @NotNull
     private AnoEscolar anoEscolar;
+
+    @ManyToOne
+    @JoinColumn(name = "instituicao_id")
+    private InstituicaoEnsino instituicaoEnsino;
 }
