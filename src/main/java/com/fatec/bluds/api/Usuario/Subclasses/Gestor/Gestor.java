@@ -1,8 +1,8 @@
 package com.fatec.bluds.api.Usuario.Subclasses.Gestor;
 
+import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
 import com.fatec.bluds.api.Usuario.Usuario;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Gestor extends Usuario {
+    @Column
     private String matricula;
+
+    @Column
     private String cargo;
+
+    @OneToOne
+    @JoinColumn(name = "instituicao_id", unique = true)
+    private InstituicaoEnsino instituicao;
 }
