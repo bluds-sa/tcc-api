@@ -1,10 +1,16 @@
 package com.fatec.bluds.api.Disciplina;
 
+import com.fatec.bluds.api.Usuario.Subclasses.Educador.Educador;
+import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Estudante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "Disciplina")
 @Table(name = "Disciplina")
@@ -23,4 +29,11 @@ public class Disciplina {
     @Column
     @NotNull
     private String descricao;
+
+    @ManyToOne
+    @JoinColumn(name = "educador_id", nullable = false)
+    private Educador educador;
+
+    @ManyToMany(mappedBy = "disciplinas")
+    private Set<Estudante> estudantes = new HashSet<>();
 }
