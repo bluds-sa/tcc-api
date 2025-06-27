@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_postagem", discriminatorType = DiscriminatorType.STRING)
 public class Postagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
