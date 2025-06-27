@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.Usuario.Subclasses.Estudante;
 
+import com.fatec.bluds.api.Disciplina.Disciplina;
 import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
 import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Enums.AnoEscolar;
 import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Enums.Periodo;
@@ -9,6 +10,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "Estudante")
 @Table(name = "Estudante")
@@ -31,4 +36,12 @@ public class Estudante extends Usuario {
     @ManyToOne
     @JoinColumn(name = "instituicao_id")
     private InstituicaoEnsino instituicaoEnsino;
+
+    @ManyToMany
+    @JoinTable(
+            name = "estudante_disciplina",
+            joinColumns = @JoinColumn(name = "estudante_id"),
+            inverseJoinColumns = @JoinColumn(name = "disciplina_id")
+    )
+    private Set<Disciplina> disciplinas = new HashSet<>();
 }

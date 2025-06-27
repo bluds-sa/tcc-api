@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.Usuario.Subclasses.Educador;
 
+import com.fatec.bluds.api.Disciplina.Disciplina;
 import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
 import com.fatec.bluds.api.Usuario.Usuario;
 import jakarta.persistence.*;
@@ -28,4 +29,7 @@ public class Educador extends Usuario {
             joinColumns = @JoinColumn(name = "educador_id"), inverseJoinColumns = @JoinColumn(name = "instituicao_id")
     )
     private Set<InstituicaoEnsino> instituicoes;
+
+    @OneToMany(mappedBy = "educador")
+    private Set<Disciplina> disciplinas;
 }
