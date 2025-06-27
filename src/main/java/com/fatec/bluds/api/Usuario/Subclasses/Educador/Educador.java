@@ -23,13 +23,6 @@ public class Educador extends Usuario {
     @Column
     private String titulo;
 
-    @ManyToMany
-    @JoinTable(
-            name = "educador_instituicao",
-            joinColumns = @JoinColumn(name = "educador_id"), inverseJoinColumns = @JoinColumn(name = "instituicao_id")
-    )
-    private Set<InstituicaoEnsino> instituicoes;
-
     @OneToMany(mappedBy = "educador")
     private Set<Disciplina> disciplinas;
 }
