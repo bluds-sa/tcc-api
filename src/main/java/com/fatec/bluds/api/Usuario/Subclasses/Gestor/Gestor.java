@@ -18,8 +18,4 @@ public class Gestor extends Usuario {
 
     @Column
     private String cargo;
-
-    @OneToOne
-    @JoinColumn(name = "instituicao_id", unique = true)
-    private InstituicaoEnsino instituicao;
 }

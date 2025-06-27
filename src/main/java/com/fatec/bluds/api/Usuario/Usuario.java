@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.Usuario;
 
+import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
 import com.fatec.bluds.api.Usuario.Enums.Genero;
 import com.fatec.bluds.api.Usuario.Roles.Roles;
 import jakarta.persistence.*;
@@ -48,6 +49,10 @@ public class Usuario implements UserDetails {
     @NotNull
     @PastOrPresent
     private LocalDate dataNascimento;
+
+    @ManyToOne
+    @JoinColumn(name = "instituicao_id")
+    private InstituicaoEnsino instituicaoEnsino;
 
     @Column
     @NotNull
