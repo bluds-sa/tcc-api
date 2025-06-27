@@ -4,6 +4,7 @@ import com.fatec.bluds.api.Instituicao.Endereco.Endereco;
 import com.fatec.bluds.api.Usuario.Subclasses.Educador.Educador;
 import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Estudante;
 import com.fatec.bluds.api.Usuario.Subclasses.Gestor.Gestor;
+import com.fatec.bluds.api.Usuario.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -40,11 +41,5 @@ public class InstituicaoEnsino {
     private Endereco endereco;
 
     @OneToMany(mappedBy = "instituicaoEnsino")
-    private List<Estudante> estudantes;
-
-    @ManyToMany(mappedBy = "instituicoes")
-    private Set<Educador> educadores = new HashSet<>();
-
-    @OneToOne(mappedBy = "instituicao")
-    private Gestor gestor;
+    private Set<Usuario> usuarios = new HashSet<>();
 }
