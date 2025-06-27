@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.Disciplina;
 
+import com.fatec.bluds.api.Disciplina.Arquivo.Arquivo;
 import com.fatec.bluds.api.Usuario.Subclasses.Educador.Educador;
 import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Estudante;
 import jakarta.persistence.*;
@@ -8,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,4 +36,7 @@ public class Disciplina {
 
     @ManyToMany(mappedBy = "disciplinas")
     private Set<Estudante> estudantes = new HashSet<>();
+
+    @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Arquivo> arquivos = new HashSet<>();
 }
