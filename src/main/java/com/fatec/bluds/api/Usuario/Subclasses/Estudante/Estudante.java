@@ -33,10 +33,6 @@ public class Estudante extends Usuario {
     @NotNull
     private AnoEscolar anoEscolar;
 
-    @ManyToOne
-    @JoinColumn(name = "instituicao_id")
-    private InstituicaoEnsino instituicaoEnsino;
-
     @ManyToMany
     @JoinTable(
             name = "estudante_disciplina",
