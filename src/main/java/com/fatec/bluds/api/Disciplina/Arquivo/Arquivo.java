@@ -4,11 +4,17 @@ import com.fatec.bluds.api.Disciplina.Disciplina;
 import com.fatec.bluds.api.Usuario.Subclasses.Educador.Educador;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity(name = "arquivo")
 @Table(name = "arquivo")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Arquivo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
