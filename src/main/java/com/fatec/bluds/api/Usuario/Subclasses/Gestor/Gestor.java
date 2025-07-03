@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "Gestor")
-@Table(name = "Gestor")
+@DiscriminatorValue("GESTOR")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
