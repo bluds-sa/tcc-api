@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 @Entity(name = "Educador")
-@Table(name = "Educador")
+@DiscriminatorValue("EDUCADOR")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
