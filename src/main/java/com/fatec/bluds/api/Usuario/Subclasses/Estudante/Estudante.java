@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "Estudante")
-@Table(name = "Estudante")
+@DiscriminatorValue("ESTUDANTE")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
