@@ -1,7 +1,7 @@
-package com.fatec.bluds.api.Disciplina.Tarefa;
+package com.fatec.bluds.api.Domain.Disciplina.Tarefa;
 
-import com.fatec.bluds.api.Disciplina.Postagem.Postagem;
-import com.fatec.bluds.api.Disciplina.Tarefa.Resposta.Resposta;
+import com.fatec.bluds.api.Domain.Disciplina.Postagem.Postagem;
+import com.fatec.bluds.api.Domain.Disciplina.Tarefa.Resposta.Resposta;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

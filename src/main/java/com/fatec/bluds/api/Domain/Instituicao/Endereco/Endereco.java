@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.Instituicao.Endereco;
+package com.fatec.bluds.api.Domain.Instituicao.Endereco;
 
 import jakarta.persistence.Embeddable;
 

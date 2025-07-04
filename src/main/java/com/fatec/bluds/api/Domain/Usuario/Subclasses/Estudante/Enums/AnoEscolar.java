@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.Usuario.Subclasses.Estudante.Enums;
+package com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Enums;
 
 public enum AnoEscolar {
     PRIMEIRO_ANO("Primeiro Ano", GrauAcademico.FUNDAMENTAL_01),

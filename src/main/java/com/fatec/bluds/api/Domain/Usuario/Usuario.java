@@ -1,8 +1,8 @@
-package com.fatec.bluds.api.Usuario;
+package com.fatec.bluds.api.Domain.Usuario;
 
-import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
-import com.fatec.bluds.api.Usuario.Enums.Genero;
-import com.fatec.bluds.api.Usuario.Roles.Roles;
+import com.fatec.bluds.api.Domain.Instituicao.InstituicaoEnsino;
+import com.fatec.bluds.api.Domain.Usuario.Enums.Genero;
+import com.fatec.bluds.api.Domain.Usuario.Roles.Roles;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

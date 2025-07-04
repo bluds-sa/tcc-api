@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.Usuario.Enums;
+package com.fatec.bluds.api.Domain.Usuario.Enums;
 
 public enum Genero {
     MASCULINO("Masculino"),
