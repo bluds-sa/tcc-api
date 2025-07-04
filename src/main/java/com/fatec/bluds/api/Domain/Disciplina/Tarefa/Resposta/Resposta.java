@@ -1,7 +1,7 @@
-package com.fatec.bluds.api.Disciplina.Tarefa.Resposta;
+package com.fatec.bluds.api.Domain.Disciplina.Tarefa.Resposta;
 
-import com.fatec.bluds.api.Disciplina.Tarefa.Tarefa;
-import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Estudante;
+import com.fatec.bluds.api.Domain.Disciplina.Tarefa.Tarefa;
+import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Estudante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

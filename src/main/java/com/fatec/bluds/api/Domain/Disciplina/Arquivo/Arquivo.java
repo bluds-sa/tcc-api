@@ -1,6 +1,7 @@
-package com.fatec.bluds.api.Disciplina.Postagem;
+package com.fatec.bluds.api.Domain.Disciplina.Arquivo;
 
-import com.fatec.bluds.api.Disciplina.Disciplina;
+import com.fatec.bluds.api.Domain.Disciplina.Disciplina;
+import com.fatec.bluds.api.Domain.Usuario.Subclasses.Educador.Educador;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -9,30 +10,30 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "postagem")
-@Table(name = "postagem")
+@Entity(name = "arquivo")
+@Table(name = "arquivo")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_postagem", discriminatorType = DiscriminatorType.STRING)
-public class Postagem {
+public class Arquivo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private String titulo;
+    private String nome;
 
     @NotNull
-    private String conteudo;
+    private String caminho;
 
     @NotNull
     private LocalDateTime dataEnvio;
 
-    private String caminhoAnexo;
-
     @ManyToOne
     @JoinColumn(name = "disciplina_id")
     private Disciplina disciplina;
+
+    @ManyToOne
+    @JoinColumn(name = "educador_id")
+    private Educador enviadoPor;
 }

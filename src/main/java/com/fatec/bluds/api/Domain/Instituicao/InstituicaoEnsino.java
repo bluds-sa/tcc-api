@@ -1,10 +1,7 @@
-package com.fatec.bluds.api.Instituicao;
+package com.fatec.bluds.api.Domain.Instituicao;
 
-import com.fatec.bluds.api.Instituicao.Endereco.Endereco;
-import com.fatec.bluds.api.Usuario.Subclasses.Educador.Educador;
-import com.fatec.bluds.api.Usuario.Subclasses.Estudante.Estudante;
-import com.fatec.bluds.api.Usuario.Subclasses.Gestor.Gestor;
-import com.fatec.bluds.api.Usuario.Usuario;
+import com.fatec.bluds.api.Domain.Instituicao.Endereco.Endereco;
+import com.fatec.bluds.api.Domain.Usuario.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -12,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "Instituicao")

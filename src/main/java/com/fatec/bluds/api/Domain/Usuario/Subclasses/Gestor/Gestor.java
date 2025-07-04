@@ -1,7 +1,6 @@
-package com.fatec.bluds.api.Usuario.Subclasses.Gestor;
+package com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor;
 
-import com.fatec.bluds.api.Instituicao.InstituicaoEnsino;
-import com.fatec.bluds.api.Usuario.Usuario;
+import com.fatec.bluds.api.Domain.Usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
