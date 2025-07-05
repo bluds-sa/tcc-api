@@ -2,10 +2,12 @@ package com.fatec.bluds.api.Domain.Usuario.Subclasses.Educador.Service;
 
 import com.fatec.bluds.api.Domain.Usuario.Service.UsuarioServiceInterface;
 import com.fatec.bluds.api.Domain.Usuario.Subclasses.Educador.Educador;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class EducadorService implements UsuarioServiceInterface<Educador> {
 
 
