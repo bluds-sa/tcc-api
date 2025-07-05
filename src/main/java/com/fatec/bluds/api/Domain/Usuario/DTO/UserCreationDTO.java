@@ -5,7 +5,7 @@ import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
-/** DTO criado com o objetivo de conter os dados básicos necessários para a criação de um usuário, independentemente da subclasse **/
+/** DTO criado para conter os dados básicos necessários para a criação de um usuário, independentemente da subclasse **/
 public record UserCreationDTO(
         @NotBlank
         String nome,
