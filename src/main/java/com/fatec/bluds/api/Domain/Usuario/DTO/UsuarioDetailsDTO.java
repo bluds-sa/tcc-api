@@ -16,7 +16,7 @@ public record UsuarioDetailsDTO(
         InstituicaoEnsino instituicaoEnsino,
         Roles roles
 ) {
-     UsuarioDetailsDTO(Usuario usuario) {
+     public UsuarioDetailsDTO(Usuario usuario) {
         this(
                 usuario.getNome(),
                 usuario.getEmail(),
