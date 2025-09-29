@@ -1,10 +1,12 @@
 package com.fatec.bluds.api.Domain.Usuario.Controller;
 
 import com.fatec.bluds.api.Domain.Usuario.DTO.AuthenticationDTO;
+import com.fatec.bluds.api.Domain.Usuario.DTO.LoginResponseDTO;
 import com.fatec.bluds.api.Domain.Usuario.DTO.RegisterDTO;
 import com.fatec.bluds.api.Domain.Usuario.DTO.UsuarioDetailsDTO;
 import com.fatec.bluds.api.Domain.Usuario.Service.AuthenticationService;
 import com.fatec.bluds.api.Domain.Usuario.Usuario;
+import com.fatec.bluds.api.Infra.Security.Token.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("auth")
 public class AuthenticationController {
+    @Autowired
+    private TokenService tokenService;
 
     @Autowired
     private AuthenticationService authenticationService;
@@ -30,7 +34,9 @@ public class AuthenticationController {
 
         var auth = this.authenticationService.authenticate(dto, authenticationManager);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((Usuario) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
