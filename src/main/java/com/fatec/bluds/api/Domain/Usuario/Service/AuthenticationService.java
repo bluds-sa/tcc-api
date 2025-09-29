@@ -21,18 +21,15 @@ public class AuthenticationService implements UserDetailsService {
     @Autowired
     private UsuarioRepository repository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByEmail(username);
     }
 
-    public Authentication authenticate(AuthenticationDTO dto) {
+    public Authentication authenticate(AuthenticationDTO dto, AuthenticationManager authenticationManager) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(dto.email(), dto.senha());
 
-        return this.authenticationManager.authenticate(usernamePassword);
+        return authenticationManager.authenticate(usernamePassword);
     }
 
     public Usuario register(RegisterDTO dto) {
