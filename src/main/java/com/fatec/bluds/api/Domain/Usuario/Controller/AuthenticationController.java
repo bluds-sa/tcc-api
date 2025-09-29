@@ -1,6 +1,7 @@
 package com.fatec.bluds.api.Domain.Usuario.Controller;
 
 import com.fatec.bluds.api.Domain.Usuario.DTO.AuthenticationDTO;
+import com.fatec.bluds.api.Domain.Usuario.Service.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("auth")
 public class AuthenticationController {
+
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO dto) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(dto.email(), dto.senha());
-        var auth = this.authenticationManager.authenticate(usernamePassword);
+    public ResponseEntity<Object> login(@RequestBody @Valid AuthenticationDTO dto) {
+
+        var auth = this.authenticationService.authenticate(dto);
 
         return ResponseEntity.ok().build();
     }
-    
 }
