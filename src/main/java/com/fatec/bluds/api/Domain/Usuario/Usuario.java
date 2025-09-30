@@ -60,8 +60,10 @@ public class Usuario implements UserDetails {
     @Column
     @NotNull
     @Size(min = 8)
+
+    // TODO: RESOLVER PROBLEMA DE REGEX
     // Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")
+    // @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")
     private String senha;
 
     @Column(name = "roles", nullable = false)
