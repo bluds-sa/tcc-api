@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.Domain.Usuario.DTO;
+package com.fatec.bluds.api.Domain.PasswordReset.DTO;
 
 import jakarta.validation.constraints.Email;
 

@@ -1,9 +1,7 @@
 package com.fatec.bluds.api.Domain.Usuario.Controller;
 
-import com.fatec.bluds.api.Domain.Usuario.DTO.AuthenticationDTO;
-import com.fatec.bluds.api.Domain.Usuario.DTO.LoginResponseDTO;
-import com.fatec.bluds.api.Domain.Usuario.DTO.RegisterDTO;
-import com.fatec.bluds.api.Domain.Usuario.DTO.UsuarioDetailsDTO;
+import com.fatec.bluds.api.Domain.PasswordReset.DTO.PasswordResetDTO;
+import com.fatec.bluds.api.Domain.Usuario.DTO.*;
 import com.fatec.bluds.api.Domain.Usuario.Service.AuthenticationService;
 import com.fatec.bluds.api.Domain.Usuario.Usuario;
 import com.fatec.bluds.api.Infra.Security.Token.TokenService;
@@ -11,10 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
