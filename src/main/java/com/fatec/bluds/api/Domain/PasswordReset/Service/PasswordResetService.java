@@ -24,7 +24,7 @@ public class PasswordResetService {
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder().withoutPadding();
 
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioRepository usuarioRepositoryrepository;
 
     @Autowired
     private EmailService emailService;
@@ -39,7 +39,7 @@ public class PasswordResetService {
     private String appAdress;
 
     public void processRequest(PasswordResetDTO dto) throws MessagingException {
-        Optional<Usuario> usuarioOptional = repository.findByEmail(dto.email());
+        Optional<Usuario> usuarioOptional = usuarioRepositoryrepository.findByEmail(dto.email());
 
         if (usuarioOptional.isEmpty()) return;
 
@@ -56,6 +56,12 @@ public class PasswordResetService {
         sendPasswordResetEmail(usuario, token);
     }
 
+    public boolean validateToken(String token) {
+        Optional<PasswordResetToken> optionalResetToken = passwordResetTokenRepository.findByToken(token);
+
+        return optionalResetToken.isPresent() && !optionalResetToken.get().isExpired();
+    }
+
     private String makePasswordResetToken() {
         byte[] randomBytes = new byte[32];
         secureRandom.nextBytes(randomBytes);
@@ -64,7 +70,7 @@ public class PasswordResetService {
     }
 
     private String buildResetLink(String token) {
-        return appAdress + "/reset-password?token=" + token;
+        return appAdress + "/reset-password/validate/?token=" + token;
     }
 
     private void sendPasswordResetEmail(Usuario usuario, String token) throws MessagingException {
