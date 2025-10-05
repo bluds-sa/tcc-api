@@ -23,7 +23,7 @@ public class PasswordResetController {
         return ResponseEntity.ok().body("Se o e-mail estiver cadastrado, você receberá instruções de redefinição de senha.");
     }
 
-    @PostMapping("/validate/{token}")
+    @PostMapping("/validate")
     public ResponseEntity<Object> validateToken(@RequestParam String token) {
         if (passwordResetService.validateToken(token)) {
             return ResponseEntity.ok().body("Token é válida.");

@@ -96,7 +96,7 @@ public class PasswordResetService {
     }
 
     private String buildResetLink(String token) {
-        return appAdress + "/reset-password/validate/?token=" + token;
+        return appAdress + "/reset-password/validate?token=" + token;
     }
 
     private void sendPasswordResetEmail(Usuario usuario, String token) throws MessagingException {
