@@ -23,7 +23,7 @@ public class AuthenticationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByEmail(username);
+        return repository.findUserDetailsByEmail(username);
     }
 
     public Authentication authenticate(AuthenticationDTO dto, AuthenticationManager authenticationManager) {
@@ -33,7 +33,7 @@ public class AuthenticationService implements UserDetailsService {
     }
 
     public Usuario register(RegisterDTO dto) {
-        if (this.repository.findByEmail(dto.email()) != null) {
+        if (this.repository.findUserDetailsByEmail(dto.email()) != null) {
             throw new IllegalArgumentException("E-mail já cadastrado.");
         }
 
