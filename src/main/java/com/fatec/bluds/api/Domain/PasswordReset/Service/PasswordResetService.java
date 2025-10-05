@@ -8,6 +8,7 @@ import com.fatec.bluds.api.Domain.Usuario.Repository.UsuarioRepository;
 import com.fatec.bluds.api.Domain.Usuario.Usuario;
 import com.fatec.bluds.api.Infra.Email.EmailService;
 import jakarta.mail.MessagingException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -64,6 +65,7 @@ public class PasswordResetService {
         return optionalResetToken.isPresent() && !optionalResetToken.get().isExpired();
     }
 
+    @Transactional
     public boolean updatePassword(PasswordResetDTO dto) {
         if (!validateToken(dto.token())) return false;
 
