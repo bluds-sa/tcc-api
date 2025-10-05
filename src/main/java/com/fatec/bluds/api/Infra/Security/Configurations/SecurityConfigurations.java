@@ -32,6 +32,8 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/reset-password/forgot-password").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/reset-password/reset-password").permitAll()
                         .anyRequest().permitAll()) // Alterar para .authenticated depois
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
