@@ -1,6 +1,5 @@
 package com.fatec.bluds.api.Domain.Usuario.Controller;
 
-import com.fatec.bluds.api.Domain.PasswordReset.DTO.PasswordResetDTO;
 import com.fatec.bluds.api.Domain.Usuario.DTO.*;
 import com.fatec.bluds.api.Domain.Usuario.Service.AuthenticationService;
 import com.fatec.bluds.api.Domain.Usuario.Usuario;

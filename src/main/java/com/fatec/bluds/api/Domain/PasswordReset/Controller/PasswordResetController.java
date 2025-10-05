@@ -1,6 +1,7 @@
 package com.fatec.bluds.api.Domain.PasswordReset.Controller;
 
 import com.fatec.bluds.api.Domain.PasswordReset.DTO.PasswordResetDTO;
+import com.fatec.bluds.api.Domain.PasswordReset.DTO.RequestResetDTO;
 import com.fatec.bluds.api.Domain.PasswordReset.Service.PasswordResetService;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
@@ -16,18 +17,27 @@ public class PasswordResetController {
     private PasswordResetService passwordResetService;
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<Object> forgotPassword(@RequestBody @Valid PasswordResetDTO dto) throws MessagingException {
+    public ResponseEntity<Object> forgotPassword(@RequestBody @Valid RequestResetDTO dto) throws MessagingException {
         passwordResetService.processRequest(dto);
 
         return ResponseEntity.ok().body("Se o e-mail estiver cadastrado, você receberá instruções de redefinição de senha.");
     }
 
     @PostMapping("/validate/{token}")
-    public ResponseEntity<Object> validateToken(@PathVariable String token) {
+    public ResponseEntity<Object> validateToken(@RequestParam String token) {
         if (passwordResetService.validateToken(token)) {
-            return ResponseEntity.badRequest().body("Token é inválida.");
-        } else {
             return ResponseEntity.ok().body("Token é válida.");
+        } else {
+            return ResponseEntity.badRequest().body("Token é inválida.");
+        }
+    }
+
+    @PutMapping()
+    public ResponseEntity<Object> updatePassword(@RequestBody PasswordResetDTO dto) {
+        if (passwordResetService.updatePassword(dto)) {
+            return ResponseEntity.ok().body("Senha atualizada com sucesso.");
+        } else {
+            return ResponseEntity.badRequest().body("Falha ao atualizar senha");
         }
     }
 }

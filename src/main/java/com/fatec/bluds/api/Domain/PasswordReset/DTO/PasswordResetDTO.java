@@ -1,9 +1,12 @@
 package com.fatec.bluds.api.Domain.PasswordReset.DTO;
 
-import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 public record PasswordResetDTO(
-        @Email
-        String email
+        @NotBlank
+        String token,
+
+        @NotBlank
+        String password
 ) {
 }

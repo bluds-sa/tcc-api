@@ -1,6 +1,7 @@
 package com.fatec.bluds.api.Domain.PasswordReset.Service;
 
 import com.fatec.bluds.api.Domain.PasswordReset.DTO.PasswordResetDTO;
+import com.fatec.bluds.api.Domain.PasswordReset.DTO.RequestResetDTO;
 import com.fatec.bluds.api.Domain.PasswordReset.PasswordResetToken;
 import com.fatec.bluds.api.Domain.PasswordReset.Repository.PasswordResetTokenRepository;
 import com.fatec.bluds.api.Domain.Usuario.Repository.UsuarioRepository;
@@ -9,6 +10,7 @@ import com.fatec.bluds.api.Infra.Email.EmailService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -24,7 +26,7 @@ public class PasswordResetService {
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder().withoutPadding();
 
     @Autowired
-    private UsuarioRepository usuarioRepositoryrepository;
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private EmailService emailService;
@@ -33,13 +35,13 @@ public class PasswordResetService {
     private TemplateEngine templateEngine;
 
     @Autowired
-    private PasswordResetTokenRepository passwordResetTokenRepository;
+    private PasswordResetTokenRepository tokenRepository;
 
     @Value("${api.address}")
     private String appAdress;
 
-    public void processRequest(PasswordResetDTO dto) throws MessagingException {
-        Optional<Usuario> usuarioOptional = usuarioRepositoryrepository.findByEmail(dto.email());
+    public void processRequest(RequestResetDTO dto) throws MessagingException {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(dto.email());
 
         if (usuarioOptional.isEmpty()) return;
 
@@ -51,15 +53,39 @@ public class PasswordResetService {
         passwordResetToken.setUsuario(usuario);
         passwordResetToken.setExpiresAt(LocalDateTime.now().plusMinutes(30));
 
-        passwordResetTokenRepository.save(passwordResetToken);
+        tokenRepository.save(passwordResetToken);
 
         sendPasswordResetEmail(usuario, token);
     }
 
     public boolean validateToken(String token) {
-        Optional<PasswordResetToken> optionalResetToken = passwordResetTokenRepository.findByToken(token);
+        Optional<PasswordResetToken> optionalResetToken = tokenRepository.findByToken(token);
 
         return optionalResetToken.isPresent() && !optionalResetToken.get().isExpired();
+    }
+
+    public boolean updatePassword(PasswordResetDTO dto) {
+        if (!validateToken(dto.token())) return false;
+
+        return tokenRepository.findByToken(dto.token())
+                .map(resetToken -> {
+                    Usuario usuario = resetToken.getUsuario();
+
+                    String encryptedPassword = new BCryptPasswordEncoder().encode(dto.password());
+
+                    usuario.setSenha(encryptedPassword);
+
+                    usuarioRepository.save(usuario);
+
+                    resolveUserTokens(usuario);
+
+                    return true;
+                })
+                .orElse(false);
+    }
+
+    private void resolveUserTokens(Usuario usuario) {
+        tokenRepository.deleteByUsuario(usuario);
     }
 
     private String makePasswordResetToken() {
