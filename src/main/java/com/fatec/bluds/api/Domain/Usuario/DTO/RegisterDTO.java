@@ -22,8 +22,6 @@ public record RegisterDTO(
         String telefone,
         Genero genero,
         LocalDate dataNascimento,
-        @Nullable
-        InstituicaoEnsino instituicaoEnsino,
         @NotBlank
         String senha,
         UserTypeEnum userType,

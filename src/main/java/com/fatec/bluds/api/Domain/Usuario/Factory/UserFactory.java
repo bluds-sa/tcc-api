@@ -19,7 +19,6 @@ public class UserFactory {
                 estudante.setTelefone(dto.telefone());
                 estudante.setGenero(dto.genero());
                 estudante.setDataNascimento(dto.dataNascimento());
-                estudante.setInstituicaoEnsino(dto.instituicaoEnsino());
                 estudante.setSenha(dto.senha());
                 estudante.setRoles(Roles.ESTUDANTE);
                 estudante.setMatricula(dto.matricula());
@@ -36,7 +35,6 @@ public class UserFactory {
                 educador.setTelefone(dto.telefone());
                 educador.setGenero(dto.genero());
                 educador.setDataNascimento(dto.dataNascimento());
-                educador.setInstituicaoEnsino(dto.instituicaoEnsino());
                 educador.setSenha(dto.senha());
                 educador.setRoles(Roles.EDUCADOR);
                 educador.setTitulo(dto.titulo());
@@ -51,7 +49,6 @@ public class UserFactory {
                 gestor.setTelefone(dto.telefone());
                 gestor.setGenero(dto.genero());
                 gestor.setDataNascimento(dto.dataNascimento());
-                gestor.setInstituicaoEnsino(dto.instituicaoEnsino());
                 gestor.setSenha(dto.senha());
                 gestor.setRoles(Roles.GESTOR);
                 gestor.setCargo(dto.cargo());

@@ -4,6 +4,10 @@ import com.fatec.bluds.api.Domain.Usuario.DTO.*;
 import com.fatec.bluds.api.Domain.Usuario.Service.AuthenticationService;
 import com.fatec.bluds.api.Domain.Usuario.Usuario;
 import com.fatec.bluds.api.Infra.Security.Token.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("auth")
+@Tag(name = "Authentication", description = "Responsável autenticação e registro de usuários")
 public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
@@ -23,6 +28,11 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Operation(summary = "Realiza a autenticação de usuários", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",  description = "Usuário autenticado com sucesso"),
+            @ApiResponse(responseCode = "400",  description = "Requisição tem parâmetros inválidos"),
+    })
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody @Valid AuthenticationDTO dto) {
 
@@ -33,6 +43,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(new LoginResponseDTO(token, new UsuarioDetailsDTO((Usuario) auth.getPrincipal())));
     }
 
+    @Operation(summary = "Realiza o registro de usuários", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201",  description = "Usuário registrado com sucesso"),
+            @ApiResponse(responseCode = "400",  description = "Requisição tem parâmetros inválidos"),
+    })
     @PostMapping("/register")
     public ResponseEntity<Object> register(@RequestBody @Valid RegisterDTO dto, UriComponentsBuilder uriBuilder) {
         Usuario usuario = authenticationService.register(dto);
