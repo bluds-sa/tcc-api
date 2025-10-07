@@ -5,6 +5,9 @@ import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.GestorGetByEmail
 import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.UpdateGestorDTO;
 import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Gestor;
 import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Service.GestorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,12 @@ public class GestorController {
     @Autowired
     private GestorService service;
 
+    @Operation(summary = "Obtém um Gestor de acordo com seu ID", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",  description = "Gestor obtido com sucesso"),
+            @ApiResponse(responseCode = "400",  description = "Ocorreu erro durante o processamento da requsição"),
+            @ApiResponse(responseCode = "404",  description = "Não foi possível obter o Gestor com o ID especificado")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Object> getGestorById(@PathVariable Long id) {
         Gestor gestor = service.getGestorById(id);
@@ -28,6 +37,12 @@ public class GestorController {
         return ResponseEntity.ok(new GestorDetailsDTO(gestor));
     }
 
+    @Operation(summary = "Obtém um Gestor de acordo com seu e-mail", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",  description = "Gestor obtido com sucesso"),
+            @ApiResponse(responseCode = "400",  description = "Ocorreu erro durante o processamento da requsição"),
+            @ApiResponse(responseCode = "404",  description = "Não foi possível obter o Gestor com o ID especificado")
+    })
     @GetMapping
     public ResponseEntity<Object> getGestorByEmail(@RequestBody @Valid GestorGetByEmailDTO dto) {
         Gestor gestor = service.getGestorByEmail(dto);
@@ -35,6 +50,12 @@ public class GestorController {
         return ResponseEntity.ok(new GestorDetailsDTO(gestor));
     }
 
+    @Operation(summary = "Atualiza as informações de um Gestor", method = "PUT")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",  description = "Gestor obtido com sucesso"),
+            @ApiResponse(responseCode = "400",  description = "Ocorreu erro durante o processamento da requsição"),
+            @ApiResponse(responseCode = "404",  description = "Não foi possível obter o Gestor com o ID especificado")
+    })
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateGestor(@RequestBody @Valid UpdateGestorDTO dto, @PathVariable Long id) {
 
