@@ -2,13 +2,16 @@ package com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Controller;
 
 import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.GestorDetailsDTO;
 import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.GestorGetByEmailDTO;
+import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.UpdateGestorDTO;
 import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Gestor;
 import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Service.GestorService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/gestor")
@@ -32,5 +35,17 @@ public class GestorController {
         return ResponseEntity.ok(new GestorDetailsDTO(gestor));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateGestor(
+            @RequestBody @Valid UpdateGestorDTO dto,
+            @PathVariable Long id,
+            UriComponentsBuilder uriBuilder) {
+
+        Gestor gestor = service.getGestorById(id);
+
+        service.updateGestor(gestor, dto);
+
+        return ResponseEntity.ok(new GestorDetailsDTO(gestor));
+    }
 
 }
