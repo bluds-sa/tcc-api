@@ -27,7 +27,7 @@ public record GestorDetailsDTO(
                 gestor.getGenero(),
                 gestor.getDataNascimento(),
                 gestor.getCargo(),
-                new InstituicaoDetailsDTO(gestor.getInstituicaoEnsino())
+                gestor.getInstituicaoEnsino() != null ? new InstituicaoDetailsDTO(gestor.getInstituicaoEnsino()) : null
         );
     }
 }
