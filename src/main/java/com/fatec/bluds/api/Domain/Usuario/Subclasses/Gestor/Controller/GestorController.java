@@ -45,4 +45,8 @@ public class GestorController {
         return ResponseEntity.ok(new GestorDetailsDTO(gestor));
     }
 
+    /*
+     TODO: Exclusão de Gestores deve ser lógica (apenas colocamos isActivated = false)
+      e não pode ser realizada ser o gestor for o único vinculado a sua Instituição de Ensino
+     */
 }
