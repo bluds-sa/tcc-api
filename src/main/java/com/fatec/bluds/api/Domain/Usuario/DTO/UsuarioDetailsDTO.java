@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.Domain.Usuario.DTO;
 
+import com.fatec.bluds.api.Domain.Instituicao.DTO.InstituicaoDetailsDTO;
 import com.fatec.bluds.api.Domain.Instituicao.InstituicaoEnsino;
 import com.fatec.bluds.api.Domain.Usuario.Enums.Genero;
 import com.fatec.bluds.api.Domain.Usuario.Roles.Roles;
@@ -13,7 +14,7 @@ public record UsuarioDetailsDTO(
         String telefone,
         Genero genero,
         LocalDate dataNascimento,
-        InstituicaoEnsino instituicaoEnsino,
+        InstituicaoDetailsDTO instituicao,
         Roles roles
 ) {
      public UsuarioDetailsDTO(Usuario usuario) {
@@ -23,7 +24,7 @@ public record UsuarioDetailsDTO(
                 usuario.getTelefone(),
                 usuario.getGenero(),
                 usuario.getDataNascimento(),
-                usuario.getInstituicaoEnsino(),
+                usuario.getInstituicaoEnsino() != null ? new InstituicaoDetailsDTO(usuario.getInstituicaoEnsino()) : null,
                 usuario.getRoles()
         );
     }
