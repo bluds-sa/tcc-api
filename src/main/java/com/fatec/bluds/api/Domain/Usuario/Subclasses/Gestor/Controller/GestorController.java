@@ -36,10 +36,7 @@ public class GestorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateGestor(
-            @RequestBody @Valid UpdateGestorDTO dto,
-            @PathVariable Long id,
-            UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Object> updateGestor(@RequestBody @Valid UpdateGestorDTO dto, @PathVariable Long id) {
 
         Gestor gestor = service.getGestorById(id);
 
