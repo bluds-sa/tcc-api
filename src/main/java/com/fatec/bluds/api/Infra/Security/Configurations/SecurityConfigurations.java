@@ -34,6 +34,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/reset-password/forgot-password").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/reset-password/reset-password").permitAll()
+                        .requestMatchers("/gestor","/gestor/**").authenticated()
                         .anyRequest().permitAll()) // Alterar para .authenticated depois
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
