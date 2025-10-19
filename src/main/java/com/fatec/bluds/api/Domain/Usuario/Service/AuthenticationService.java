@@ -1,48 +1,48 @@
 package com.fatec.bluds.api.Domain.Usuario.Service;
 
-import com.fatec.bluds.api.Domain.Usuario.DTO.AuthenticationDTO;
 import com.fatec.bluds.api.Domain.Usuario.DTO.RegisterDTO;
 import com.fatec.bluds.api.Domain.Usuario.Factory.UserFactory;
 import com.fatec.bluds.api.Domain.Usuario.Repository.UsuarioRepository;
 import com.fatec.bluds.api.Domain.Usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * Service responsável por operações de autenticação (registro, login etc).
+ */
 @Service
-public class AuthenticationService implements UserDetailsService {
+public class AuthenticationService {
 
     @Autowired
     private UsuarioRepository repository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findUserDetailsByEmail(username);
-    }
+    // outros beans (jwt, auth manager, etc) já presentes no projeto podem permanecer
 
-    public Authentication authenticate(AuthenticationDTO dto, AuthenticationManager authenticationManager) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(dto.email(), dto.senha());
-
-        return authenticationManager.authenticate(usernamePassword);
-    }
-
+    /**
+     * Registra um usuário novo.
+     *
+     * Regras aplicadas:
+     * - Se e-mail já existente -> 409 Conflict (ResponseStatusException)
+     * - Senha é codificada com BCrypt antes de persistir
+     */
     public Usuario register(RegisterDTO dto) {
-        if (this.repository.findUserDetailsByEmail(dto.email()) != null) {
-            throw new IllegalArgumentException("E-mail já cadastrado.");
+        // Ajuste: use um método que verifique se o e-mail já existe
+        var existing = this.repository.findUserDetailsByEmail(dto.email());
+        if (existing != null) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "E-mail já cadastrado.");
         }
 
+        // Cria a entidade (UserFactory deve construir a subclasse correta: Estudante/Educador/Gestor)
         Usuario usuario = UserFactory.createUser(dto);
 
-        String encryptedPassword = new BCryptPasswordEncoder().encode(usuario.getPassword());
+        // Codificação de senha
+        String encryptedPassword = new BCryptPasswordEncoder().encode(dto.senha());
         usuario.setSenha(encryptedPassword);
 
+        // Salvando no repositório
         return repository.save(usuario);
     }
-
 }
