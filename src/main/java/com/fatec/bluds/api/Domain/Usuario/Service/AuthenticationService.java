@@ -19,6 +19,9 @@ public class AuthenticationService {
     @Autowired
     private UsuarioRepository repository;
 
+    @Autowired
+    private JwtTokenService jwtService;
+
     // outros beans (jwt, auth manager, etc) já presentes no projeto podem permanecer
 
     /**
@@ -44,5 +47,32 @@ public class AuthenticationService {
 
         // Salvando no repositório
         return repository.save(usuario);
+    }
+    // Login
+    public LoginResponseDTO login(LoginRequestDTO dto) {
+        Usuario usuario = repository.findUserDetailsByEmail(dto.email());
+        if (usuario == null || !encoder.matches(dto.senha(), usuario.getSenha()))
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciais inválidas.");
+        // Gerando o token de acordo com o arquivo "JwtTokenService"
+        String access = jwtService.generateAccessToken(usuario.getEmail());
+        String refresh = jwtService.generateRefreshToken(usuario.getEmail());
+
+        validRefreshTokens.put(refresh, usuario.getEmail());
+
+        return new LoginResponseDTO(access, refresh, "Bearer");
+    }
+    // Dar refresh no token, caso algo aconteça, como seu vencimento
+    public LoginResponseDTO refreshToken(String refreshToken) {
+        if (!jwtService.validateToken(refreshToken) || !validRefreshTokens.containsKey(refreshToken))
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Refresh token inválido.");
+
+        String email = jwtService.getEmailFromToken(refreshToken);
+        String newAccess = jwtService.generateAccessToken(email);
+
+        return new LoginResponseDTO(newAccess, refreshToken, "Bearer");
+    }
+    // Logout
+    public void logout(String refreshToken) {
+        validRefreshTokens.remove(refreshToken);
     }
 }
