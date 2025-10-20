@@ -1,11 +1,10 @@
-package com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Service;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.service;
 
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.GestorGetByEmailDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.UpdateGestorDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Gestor;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Repository.GestorRepository;
-import com.fatec.bluds.api.Infra.Exceptions.Usuario.UsuarioNotFoundException;
-import jakarta.validation.Valid;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.GestorGetByEmailDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.UpdateGestorDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.repository.GestorRepository;
+import com.fatec.bluds.api.infra.exceptions.Usuario.UsuarioNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

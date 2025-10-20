@@ -1,6 +1,6 @@
-package com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto;
 
-import com.fatec.bluds.api.Domain.Usuario.Enums.Genero;
+import com.fatec.bluds.api.domain.usuario.enums.Genero;
 import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;

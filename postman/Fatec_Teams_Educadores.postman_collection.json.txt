@@ -1,0 +1,176 @@
+{
+  "info": {
+    "name": "Fatec Bluds API",
+    "_postman_id": "3f29a712-educadores-fatec",
+    "description": "Coleção oficial da API Bluds — Autenticação + Educadores + Gestores com JWT.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🔐 Autenticação",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// salva token JWT automaticamente",
+                  "const json = pm.response.json();",
+                  "if (json.token) {",
+                  "  pm.environment.set('token', json.token);",
+                  "  console.log('✅ Token salvo:', json.token);",
+                  "} else {",
+                  "  console.warn('⚠️ Nenhum token retornado.');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"lucas@fatec.sp.gov.br\",\n  \"senha\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Registrar Usuário (Educador)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Lucas Petenusso Viana\",\n  \"cpf\": \"12345678900\",\n  \"email\": \"lucas@fatec.sp.gov.br\",\n  \"telefone\": \"11999999999\",\n  \"genero\": \"MASCULINO\",\n  \"dataNascimento\": \"2000-01-01\",\n  \"senha\": \"123456\",\n  \"userType\": \"EDUCADOR\",\n  \"matricula\": \"EDU123\",\n  \"titulo\": \"Mestre em IA\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👨‍🏫 Educadores",
+      "item": [
+        {
+          "name": "🔎 Buscar Educador por ID",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/educadores/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["educadores", "1"]
+            }
+          }
+        },
+        {
+          "name": "➕ Adicionar Formação",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Curso de Especialização em Machine Learning\",\n  \"instituicao\": \"Escola de Tecnologia Avançada\",\n  \"dataInicio\": \"2024-03-01\",\n  \"dataConclusao\": \"2025-02-28\",\n  \"descricao\": \"Programa de 12 meses focado em modelos de deep learning, NLP e IA aplicada.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/educadores/1/formacoes",
+              "host": ["{{baseUrl}}"],
+              "path": ["educadores", "1", "formacoes"]
+            }
+          }
+        },
+        {
+          "name": "📋 Listar Formações",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/educadores/1/formacoes",
+              "host": ["{{baseUrl}}"],
+              "path": ["educadores", "1", "formacoes"]
+            }
+          }
+        },
+        {
+          "name": "🗑️ Remover Formação",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/educadores/1/formacoes/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["educadores", "1", "formacoes", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🧑‍💼 Gestores",
+      "item": [
+        {
+          "name": "🔍 Obter Gestor por ID",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/gestores/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["gestores", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "✏️ Atualizar Gestor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Lucas Gestor\",\n  \"telefone\": \"11988887777\",\n  \"genero\": \"MASCULINO\",\n  \"dataNascimento\": \"1995-05-20\",\n  \"matricula\": \"GEST001\",\n  \"cargo\": \"Coordenador Geral\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/gestores/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["gestores", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "🗑️ Remover Gestor",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/gestores/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["gestores", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

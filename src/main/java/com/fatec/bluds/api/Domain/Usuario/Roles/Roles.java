@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.Domain.Usuario.Roles;
+package com.fatec.bluds.api.domain.usuario.roles;
 
 import org.springframework.security.core.GrantedAuthority;
 

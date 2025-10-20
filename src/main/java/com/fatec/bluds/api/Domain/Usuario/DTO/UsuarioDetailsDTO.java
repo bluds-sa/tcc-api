@@ -1,10 +1,9 @@
-package com.fatec.bluds.api.Domain.Usuario.DTO;
+package com.fatec.bluds.api.domain.usuario.dto;
 
-import com.fatec.bluds.api.Domain.Instituicao.DTO.InstituicaoDetailsDTO;
-import com.fatec.bluds.api.Domain.Instituicao.InstituicaoEnsino;
-import com.fatec.bluds.api.Domain.Usuario.Enums.Genero;
-import com.fatec.bluds.api.Domain.Usuario.Roles.Roles;
-import com.fatec.bluds.api.Domain.Usuario.Usuario;
+import com.fatec.bluds.api.domain.instituicao.dto.InstituicaoDetailsDTO;
+import com.fatec.bluds.api.domain.usuario.enums.Genero;
+import com.fatec.bluds.api.domain.usuario.roles.Roles;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 
 import java.time.LocalDate;
 

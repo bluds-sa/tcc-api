@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.Infra.Email;
+package com.fatec.bluds.api.infra.email;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

@@ -1,8 +1,8 @@
-package com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto;
 
-import com.fatec.bluds.api.Domain.Instituicao.DTO.InstituicaoDetailsDTO;
-import com.fatec.bluds.api.Domain.Usuario.Enums.Genero;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Gestor;
+import com.fatec.bluds.api.domain.instituicao.dto.InstituicaoDetailsDTO;
+import com.fatec.bluds.api.domain.usuario.enums.Genero;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
 
 import java.time.LocalDate;
 

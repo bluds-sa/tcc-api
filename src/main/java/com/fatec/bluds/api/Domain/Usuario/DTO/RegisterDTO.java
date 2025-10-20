@@ -1,11 +1,9 @@
-package com.fatec.bluds.api.Domain.Usuario.DTO;
+package com.fatec.bluds.api.domain.usuario.dto;
 
-import com.fatec.bluds.api.Domain.Instituicao.InstituicaoEnsino;
-import com.fatec.bluds.api.Domain.Usuario.DTO.Enums.UserTypeEnum;
-import com.fatec.bluds.api.Domain.Usuario.Enums.Genero;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Enums.AnoEscolar;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Enums.Periodo;
-import jakarta.annotation.Nullable;
+import com.fatec.bluds.api.domain.usuario.dto.Enums.UserTypeEnum;
+import com.fatec.bluds.api.domain.usuario.enums.Genero;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.AnoEscolar;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.Periodo;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 

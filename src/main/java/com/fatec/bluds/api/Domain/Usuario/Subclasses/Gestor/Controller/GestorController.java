@@ -1,20 +1,18 @@
-package com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Controller;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.controller;
 
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.GestorDetailsDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.GestorGetByEmailDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.DTO.UpdateGestorDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Gestor;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Service.GestorService;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.GestorDetailsDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.GestorGetByEmailDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.UpdateGestorDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.service.GestorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/gestor")

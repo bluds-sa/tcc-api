@@ -1,11 +1,11 @@
-package com.fatec.bluds.api.Domain.Usuario.Factory;
+package com.fatec.bluds.api.domain.usuario.factory;
 
-import com.fatec.bluds.api.Domain.Usuario.DTO.RegisterDTO;
-import com.fatec.bluds.api.Domain.Usuario.Roles.Roles;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Educador.Educador;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Estudante;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Gestor;
-import com.fatec.bluds.api.Domain.Usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.dto.RegisterDTO;
+import com.fatec.bluds.api.domain.usuario.roles.Roles;
+import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Estudante;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 
 public class UserFactory {
 
@@ -38,6 +38,7 @@ public class UserFactory {
                 educador.setSenha(dto.senha());
                 educador.setRoles(Roles.EDUCADOR);
                 educador.setTitulo(dto.titulo());
+                educador.setMatricula(dto.matricula());
 
                 return educador;
             }

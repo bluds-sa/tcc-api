@@ -1,12 +1,12 @@
-package com.fatec.bluds.api.Domain.PasswordReset.Service;
+package com.fatec.bluds.api.domain.passwordReset.service;
 
-import com.fatec.bluds.api.Domain.PasswordReset.DTO.PasswordResetDTO;
-import com.fatec.bluds.api.Domain.PasswordReset.DTO.RequestResetDTO;
-import com.fatec.bluds.api.Domain.PasswordReset.PasswordResetToken;
-import com.fatec.bluds.api.Domain.PasswordReset.Repository.PasswordResetTokenRepository;
-import com.fatec.bluds.api.Domain.Usuario.Repository.UsuarioRepository;
-import com.fatec.bluds.api.Domain.Usuario.Usuario;
-import com.fatec.bluds.api.Infra.Email.EmailService;
+import com.fatec.bluds.api.domain.passwordReset.dto.PasswordResetDTO;
+import com.fatec.bluds.api.domain.passwordReset.dto.RequestResetDTO;
+import com.fatec.bluds.api.domain.passwordReset.PasswordResetToken;
+import com.fatec.bluds.api.domain.passwordReset.repository.PasswordResetTokenRepository;
+import com.fatec.bluds.api.domain.usuario.repository.UsuarioRepository;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
+import com.fatec.bluds.api.infra.email.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

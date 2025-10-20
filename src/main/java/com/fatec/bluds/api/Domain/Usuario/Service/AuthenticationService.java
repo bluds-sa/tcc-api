@@ -1,10 +1,10 @@
-package com.fatec.bluds.api.Domain.Usuario.Service;
+package com.fatec.bluds.api.domain.usuario.service;
 
-import com.fatec.bluds.api.Domain.Usuario.DTO.AuthenticationDTO;
-import com.fatec.bluds.api.Domain.Usuario.DTO.RegisterDTO;
-import com.fatec.bluds.api.Domain.Usuario.Factory.UserFactory;
-import com.fatec.bluds.api.Domain.Usuario.Repository.UsuarioRepository;
-import com.fatec.bluds.api.Domain.Usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.dto.AuthenticationDTO;
+import com.fatec.bluds.api.domain.usuario.dto.RegisterDTO;
+import com.fatec.bluds.api.domain.usuario.factory.UserFactory;
+import com.fatec.bluds.api.domain.usuario.repository.UsuarioRepository;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

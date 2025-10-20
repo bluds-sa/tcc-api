@@ -1,9 +1,7 @@
-package com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Repository;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.repository;
 
 
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Gestor.Gestor;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

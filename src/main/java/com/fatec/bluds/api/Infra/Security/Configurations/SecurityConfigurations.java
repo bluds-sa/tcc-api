@@ -1,9 +1,12 @@
-package com.fatec.bluds.api.Infra.Security.Configurations;
+package com.fatec.bluds.api.infra.security.configurations;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,21 +26,27 @@ public class SecurityConfigurations {
     @Autowired
     private SecurityFilter securityFilter;
 
-    // TODO: Configurar permissão dos endpoints
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        // 🔓 Endpoints públicos
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/reset-password/forgot-password").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/reset-password/reset-password").permitAll()
-                        .requestMatchers("/gestor","/gestor/**").authenticated()
-                        .anyRequest().permitAll()) // Alterar para .authenticated depois
-                .headers(headers -> headers
-                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
+                        .requestMatchers(HttpMethod.POST, "/reset-password/validate").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/reset-password").permitAll()
+                        // Swagger
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
+                        // 🔒 Endpoints protegidos
+                        .requestMatchers("/educadores/**").authenticated()
+                        .requestMatchers("/gestor/**").authenticated()
+                        .requestMatchers("/estudantes/**").authenticated()
+                        .anyRequest().authenticated()
+                )
+                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
@@ -50,5 +59,13 @@ public class SecurityConfigurations {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+
+    @Bean
+    public Jackson2ObjectMapperBuilder jacksonObjectMapperBuilder() {
+        return new Jackson2ObjectMapperBuilder()
+                .modules(new JavaTimeModule())
+                .featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 }

@@ -1,6 +1,6 @@
-package com.fatec.bluds.api.Domain.PasswordReset;
+package com.fatec.bluds.api.domain.passwordReset;
 
-import com.fatec.bluds.api.Domain.Usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

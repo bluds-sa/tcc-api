@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.Domain.Usuario.DTO;
+package com.fatec.bluds.api.domain.usuario.dto;
 
 public record AuthenticationDTO(
         String email,
