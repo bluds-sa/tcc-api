@@ -21,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
+// doja mama muitos pintos
 
     @Autowired
     private AuthenticationService authenticationService;
