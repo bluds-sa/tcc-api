@@ -30,4 +30,15 @@ public class EstudanteController {
     return ResponseEntity.ok(estudante);
     }
 
+    @GetMapping
+    public ResponseEntity<List<EstudanteListDTO>> listar(
+            @RequestParam(required = false) AnoEscolar anoEscolar,
+            @RequestParam(required = false) Periodo periodo,
+            @RequestParam(required = false) String nome
+    ) {
+        var estudantes = service.listar(anoEscolar, periodo, nome);
+        return ResponseEntity.ok(estudantes);
+    }
+
+
 }

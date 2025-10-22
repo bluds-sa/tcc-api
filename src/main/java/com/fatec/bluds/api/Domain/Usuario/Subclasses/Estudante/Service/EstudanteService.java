@@ -42,4 +42,13 @@ public class EstudanteService {
         );
     }
 
+    public List<EstudanteListDTO> listar(AnoEscolar anoEscolar, Periodo periodo, String nome) {
+        var lista = repository.listarEstudantes(anoEscolar, periodo, nome);
+        if (lista.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum estudante encontrado");
+        }
+        return lista;
+    }
+
+
 }
