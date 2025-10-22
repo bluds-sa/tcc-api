@@ -50,5 +50,10 @@ public class EstudanteService {
         return lista;
     }
 
+    public void remover(Long id) {
+        var estudante = repository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudante não encontrado"));
+        repository.delete(estudante);
+    }
 
 }

@@ -40,5 +40,10 @@ public class EstudanteController {
         return ResponseEntity.ok(estudantes);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+        service.remover(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
