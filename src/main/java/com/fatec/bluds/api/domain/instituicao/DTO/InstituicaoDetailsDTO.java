@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.instituicao.DTO;
 
-import com.fatec.bluds.api.domain.instituicao.Endereco.Endereco;
+import com.fatec.bluds.api.domain.instituicao.endereco.Endereco;
 import com.fatec.bluds.api.domain.instituicao.InstituicaoEnsino;
 
 public record InstituicaoDetailsDTO(
