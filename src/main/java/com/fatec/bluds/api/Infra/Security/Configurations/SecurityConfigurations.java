@@ -35,7 +35,8 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/reset-password/forgot-password").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/reset-password/reset-password").permitAll()
                         .requestMatchers("/gestor","/gestor/**").authenticated()
-                        .anyRequest().permitAll()) // Alterar para .authenticated depois
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .anyRequest().authenticated()) // Alterar para .authenticated depois
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
