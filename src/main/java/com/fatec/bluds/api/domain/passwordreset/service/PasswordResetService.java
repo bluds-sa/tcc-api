@@ -2,7 +2,7 @@ package com.fatec.bluds.api.domain.passwordreset.service;
 
 import com.fatec.bluds.api.domain.passwordreset.dto.PasswordResetDTO;
 import com.fatec.bluds.api.domain.passwordreset.dto.RequestResetDTO;
-import com.fatec.bluds.api.domain.passwordreset.PasswordResetToken;
+import com.fatec.bluds.api.domain.passwordreset.model.PasswordResetToken;
 import com.fatec.bluds.api.domain.passwordreset.repository.PasswordResetTokenRepository;
 import com.fatec.bluds.api.domain.usuario.repository.UsuarioRepository;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
