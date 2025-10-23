@@ -2,8 +2,8 @@ package com.fatec.bluds.api.domain.disciplina;
 
 import com.fatec.bluds.api.domain.disciplina.arquivo.Arquivo;
 import com.fatec.bluds.api.domain.disciplina.postagem.Postagem;
-import com.fatec.bluds.api.domain.Usuario.Subclasses.Educador.Educador;
-import com.fatec.bluds.api.domain.Usuario.Subclasses.Estudante.Estudante;
+import com.fatec.bluds.api.domain.usuario.subclasses.Educador.Educador;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Estudante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

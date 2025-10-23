@@ -1,7 +1,7 @@
 package com.fatec.bluds.api.domain.instituicao;
 
 import com.fatec.bluds.api.domain.instituicao.endereco.Endereco;
-import com.fatec.bluds.api.domain.Usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
