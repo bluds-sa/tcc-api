@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class CustomExceptionHandler {
 
+    /*
     @ExceptionHandler(RuntimeException.class)
     private ResponseEntity<String> handleBaseException(RuntimeException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao processar requisição");
     }
+     */
 
     @ExceptionHandler(UsuarioNotFoundException.class)
     private ResponseEntity<String> handleUsuarioNotFoundException(UsuarioNotFoundException exception){
