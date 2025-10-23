@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.infra.security.Token;
+package com.fatec.bluds.api.infra.security.token;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
