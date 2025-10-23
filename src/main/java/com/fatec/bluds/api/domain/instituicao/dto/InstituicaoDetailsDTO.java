@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao.DTO;
+package com.fatec.bluds.api.domain.instituicao.dto;
 
 import com.fatec.bluds.api.domain.instituicao.endereco.Endereco;
 import com.fatec.bluds.api.domain.instituicao.InstituicaoEnsino;
