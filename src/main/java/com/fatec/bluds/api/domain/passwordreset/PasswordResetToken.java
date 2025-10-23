@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.PasswordReset;
+package com.fatec.bluds.api.domain.passwordreset;
 
 import com.fatec.bluds.api.domain.Usuario.Usuario;
 import jakarta.persistence.*;

@@ -1,8 +1,8 @@
-package com.fatec.bluds.api.domain.PasswordReset.Controller;
+package com.fatec.bluds.api.domain.passwordreset.controller;
 
-import com.fatec.bluds.api.domain.PasswordReset.DTO.PasswordResetDTO;
-import com.fatec.bluds.api.domain.PasswordReset.DTO.RequestResetDTO;
-import com.fatec.bluds.api.domain.PasswordReset.Service.PasswordResetService;
+import com.fatec.bluds.api.domain.passwordreset.dto.PasswordResetDTO;
+import com.fatec.bluds.api.domain.passwordreset.dto.RequestResetDTO;
+import com.fatec.bluds.api.domain.passwordreset.service.PasswordResetService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

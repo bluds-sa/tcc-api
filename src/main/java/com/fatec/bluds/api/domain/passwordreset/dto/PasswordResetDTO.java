@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.PasswordReset.DTO;
+package com.fatec.bluds.api.domain.passwordreset.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

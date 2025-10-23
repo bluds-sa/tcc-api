@@ -1,6 +1,6 @@
-package com.fatec.bluds.api.domain.PasswordReset.Repository;
+package com.fatec.bluds.api.domain.passwordreset.repository;
 
-import com.fatec.bluds.api.domain.PasswordReset.PasswordResetToken;
+import com.fatec.bluds.api.domain.passwordreset.PasswordResetToken;
 import com.fatec.bluds.api.domain.Usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
