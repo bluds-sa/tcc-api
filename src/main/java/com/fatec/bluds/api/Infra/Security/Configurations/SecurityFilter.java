@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.Infra.Security.Configurations;
 
-import com.fatec.bluds.api.Domain.Usuario.Repository.UsuarioRepository;
+import com.fatec.bluds.api.domain.Usuario.Repository.UsuarioRepository;
 import com.fatec.bluds.api.Infra.Security.Token.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
