@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.Infra.Exceptions.Usuario;
+package com.fatec.bluds.api.infra.exceptions.Usuario;
 
 public class UsuarioNotFoundException extends RuntimeException {
 

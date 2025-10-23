@@ -3,7 +3,7 @@ package com.fatec.bluds.api.domain.usuario.controller;
 import com.fatec.bluds.api.domain.usuario.dto.*;
 import com.fatec.bluds.api.domain.usuario.service.AuthenticationService;
 import com.fatec.bluds.api.domain.usuario.Usuario;
-import com.fatec.bluds.api.Infra.Security.Token.TokenService;
+import com.fatec.bluds.api.infra.security.Token.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

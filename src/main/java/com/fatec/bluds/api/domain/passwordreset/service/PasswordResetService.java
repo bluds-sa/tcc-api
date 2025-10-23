@@ -6,7 +6,7 @@ import com.fatec.bluds.api.domain.passwordreset.PasswordResetToken;
 import com.fatec.bluds.api.domain.passwordreset.repository.PasswordResetTokenRepository;
 import com.fatec.bluds.api.domain.usuario.repository.UsuarioRepository;
 import com.fatec.bluds.api.domain.usuario.Usuario;
-import com.fatec.bluds.api.Infra.Email.EmailService;
+import com.fatec.bluds.api.infra.email.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

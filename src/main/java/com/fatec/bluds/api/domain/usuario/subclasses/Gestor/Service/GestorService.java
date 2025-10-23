@@ -4,7 +4,7 @@ import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.DTO.GestorGetByEmail
 import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.DTO.UpdateGestorDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Gestor;
 import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Repository.GestorRepository;
-import com.fatec.bluds.api.Infra.Exceptions.Usuario.UsuarioNotFoundException;
+import com.fatec.bluds.api.infra.exceptions.Usuario.UsuarioNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
