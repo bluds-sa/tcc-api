@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.Usuario.Subclasses.Educador;
 
-import com.fatec.bluds.api.domain.Disciplina.Disciplina;
+import com.fatec.bluds.api.domain.disciplina.Disciplina;
 import com.fatec.bluds.api.domain.Usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
