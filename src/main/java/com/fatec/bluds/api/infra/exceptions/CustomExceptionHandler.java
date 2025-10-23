@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.infra.exceptions;
 
-import com.fatec.bluds.api.infra.exceptions.Usuario.UsuarioNotFoundException;
+import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

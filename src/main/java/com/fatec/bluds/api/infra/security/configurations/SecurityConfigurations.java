@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.infra.security.Configurations;
+package com.fatec.bluds.api.infra.security.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
