@@ -3,7 +3,7 @@ package com.fatec.bluds.api.domain.usuario.subclasses.Estudante;
 import com.fatec.bluds.api.domain.disciplina.Disciplina;
 import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.AnoEscolar;
 import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.Periodo;
-import com.fatec.bluds.api.domain.usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

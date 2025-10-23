@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.usuario.subclasses.Gestor;
 
-import com.fatec.bluds.api.domain.usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

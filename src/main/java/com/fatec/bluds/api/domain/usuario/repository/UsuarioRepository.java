@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.usuario.repository;
 
-import com.fatec.bluds.api.domain.usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 

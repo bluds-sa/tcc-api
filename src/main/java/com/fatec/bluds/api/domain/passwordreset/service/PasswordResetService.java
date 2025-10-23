@@ -5,7 +5,7 @@ import com.fatec.bluds.api.domain.passwordreset.dto.RequestResetDTO;
 import com.fatec.bluds.api.domain.passwordreset.PasswordResetToken;
 import com.fatec.bluds.api.domain.passwordreset.repository.PasswordResetTokenRepository;
 import com.fatec.bluds.api.domain.usuario.repository.UsuarioRepository;
-import com.fatec.bluds.api.domain.usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import com.fatec.bluds.api.infra.email.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;

@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario;
+package com.fatec.bluds.api.domain.usuario.model;
 
 import com.fatec.bluds.api.domain.instituicao.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.usuario.enums.Genero;

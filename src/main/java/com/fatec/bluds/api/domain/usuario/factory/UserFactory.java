@@ -5,7 +5,7 @@ import com.fatec.bluds.api.domain.usuario.roles.Roles;
 import com.fatec.bluds.api.domain.usuario.subclasses.Educador.Educador;
 import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Estudante;
 import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Gestor;
-import com.fatec.bluds.api.domain.usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 
 public class UserFactory {
 

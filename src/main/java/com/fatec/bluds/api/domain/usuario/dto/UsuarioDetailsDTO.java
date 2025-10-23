@@ -3,7 +3,7 @@ package com.fatec.bluds.api.domain.usuario.dto;
 import com.fatec.bluds.api.domain.instituicao.DTO.InstituicaoDetailsDTO;
 import com.fatec.bluds.api.domain.usuario.enums.Genero;
 import com.fatec.bluds.api.domain.usuario.roles.Roles;
-import com.fatec.bluds.api.domain.usuario.Usuario;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 
 import java.time.LocalDate;
 
