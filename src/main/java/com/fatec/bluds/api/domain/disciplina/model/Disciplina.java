@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.disciplina;
+package com.fatec.bluds.api.domain.disciplina.model;
 
 import com.fatec.bluds.api.domain.disciplina.arquivo.Arquivo;
 import com.fatec.bluds.api.domain.disciplina.postagem.Postagem;

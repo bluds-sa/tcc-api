@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.disciplina.postagem;
 
-import com.fatec.bluds.api.domain.disciplina.Disciplina;
+import com.fatec.bluds.api.domain.disciplina.model.Disciplina;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

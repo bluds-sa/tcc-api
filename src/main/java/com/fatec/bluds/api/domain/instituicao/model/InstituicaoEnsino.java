@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao;
+package com.fatec.bluds.api.domain.instituicao.model;
 
 import com.fatec.bluds.api.domain.instituicao.endereco.Endereco;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;

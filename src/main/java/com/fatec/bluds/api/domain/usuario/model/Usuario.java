@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.usuario.model;
 
-import com.fatec.bluds.api.domain.instituicao.InstituicaoEnsino;
+import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.usuario.enums.Genero;
 import com.fatec.bluds.api.domain.usuario.roles.Roles;
 import jakarta.persistence.*;
