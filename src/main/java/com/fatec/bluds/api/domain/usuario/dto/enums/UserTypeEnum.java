@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.dto.Enums;
+package com.fatec.bluds.api.domain.usuario.dto.enums;
 
 public enum UserTypeEnum {
     ESTUDANTE("Estudante"),

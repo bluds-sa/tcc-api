@@ -1,16 +1,17 @@
-package com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Service;
+package com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Service;
 
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.DTO.EstudanteListDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.DTO.EstudanteUpdateDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Enums.AnoEscolar;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Enums.Periodo;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Estudante;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Repository.EstudanteRepository;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteListDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteUpdateDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.AnoEscolar;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.Periodo;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Estudante;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Repository.EstudanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.DTO.EstudanteResponseDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteResponseDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteSummaryDTO;
 
 import java.util.List;
 
@@ -31,10 +32,10 @@ public class EstudanteService {
         return repository.save(estudante);
     }
 
-    public EstudanteResponseDTO buscarPorId(Long id) {
+    public EstudanteSummaryDTO buscarPorId(Long id) {
         var estudante = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudante não encontrado"));
-        return new EstudanteResponseDTO(
+        return new EstudanteSummaryDTO(
             estudante.getId(),
             estudante.getNome(),
             estudante.getCpf(),

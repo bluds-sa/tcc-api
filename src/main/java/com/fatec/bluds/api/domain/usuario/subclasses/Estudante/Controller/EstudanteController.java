@@ -1,12 +1,13 @@
-package com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Controller;
+package com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Controller;
 
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.DTO.EstudanteListDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.DTO.EstudanteResponseDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.DTO.EstudanteUpdateDTO;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Enums.AnoEscolar;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Enums.Periodo;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Estudante;
-import com.fatec.bluds.api.Domain.Usuario.Subclasses.Estudante.Service.EstudanteService;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteListDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteResponseDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteSummaryDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteUpdateDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.AnoEscolar;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.Periodo;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Estudante;
+import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Service.EstudanteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,18 +23,18 @@ public class EstudanteController {
     private EstudanteService service;
 
     @PutMapping("/{id}")
-    public ResponseEntity<Estudante> atualizar(
+    public ResponseEntity<EstudanteResponseDTO> atualizar(
             @PathVariable Long id,
             @RequestBody @Valid EstudanteUpdateDTO dto
     ) {
         Estudante atualizado = service.atualizar(id, dto);
-        return ResponseEntity.ok(atualizado);
+        return ResponseEntity.ok(new EstudanteResponseDTO(atualizado));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EstudanteResponseDTO> buscarPorId(@PathVariable Long id) {
-    var estudante = service.buscarPorId(id);
-    return ResponseEntity.ok(estudante);
+    public ResponseEntity<EstudanteSummaryDTO> buscarPorId(@PathVariable Long id) {
+        var estudante = service.buscarPorId(id);
+        return ResponseEntity.ok(estudante);
     }
 
     @GetMapping
