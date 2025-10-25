@@ -7,8 +7,6 @@ import java.time.LocalDate;
 public record EstudanteUpdateDTO(
         String nome,
         String telefone,
-        @NotNull(message = "Gênero é obrigatório")
         Genero genero,
-        @NotNull(message = "Data de nascimento é obrigatória")
         LocalDate dataNascimento
 ) {}
