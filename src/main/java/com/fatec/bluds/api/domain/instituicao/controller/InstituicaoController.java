@@ -26,7 +26,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class InstituicaoController {
 
     @Autowired
-    private InstituicaoService service;
+    private InstituicaoService instituicaoService;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -43,6 +43,13 @@ public class InstituicaoController {
 
         Gestor gestorAutenticado = (Gestor) usuarioService.getAuthenticatedUser();
 
-        return null;
+        InstituicaoEnsino instituicaoEnsino = instituicaoService.createInstituicao(dto, gestorAutenticado);
+
+        var uri = uriBuilder
+                .path("/instituicao/{id}")
+                .buildAndExpand(instituicaoEnsino.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(new InstituicaoDetailsDTO(instituicaoEnsino));
     }
 }
