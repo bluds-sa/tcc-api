@@ -13,10 +13,11 @@ public enum Roles implements GrantedAuthority {
     public String roleName;
 
     Roles(String roleName) {
+        this.roleName = roleName;
     }
 
     @Override
     public String getAuthority() {
-        return this.roleName;
+        return "ROLE_" + this.roleName;
     }
 }
