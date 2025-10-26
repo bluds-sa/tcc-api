@@ -10,7 +10,7 @@ public enum Roles implements GrantedAuthority {
     USER("User"),
     ADMIN("Admin");
 
-    public String roleName;
+    private String roleName;
 
     Roles(String roleName) {
         this.roleName = roleName;
@@ -18,6 +18,10 @@ public enum Roles implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return "ROLE_" + this.roleName;
+        return "ROLE_" + this.name();
+    }
+
+    public String obterNome() {
+        return this.roleName;
     }
 }
