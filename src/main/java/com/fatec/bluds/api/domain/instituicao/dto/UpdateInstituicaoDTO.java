@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao.controller;
+package com.fatec.bluds.api.domain.instituicao.dto;
 
 import com.fatec.bluds.api.domain.instituicao.endereco.Endereco;
 import jakarta.validation.constraints.Email;
