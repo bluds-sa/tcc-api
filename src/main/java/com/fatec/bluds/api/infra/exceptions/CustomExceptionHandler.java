@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.infra.exceptions;
 
+import com.fatec.bluds.api.infra.exceptions.instituicao.InstituicaoNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,5 +20,15 @@ public class CustomExceptionHandler {
     @ExceptionHandler(UsuarioNotFoundException.class)
     private ResponseEntity<String> handleUsuarioNotFoundException(UsuarioNotFoundException exception){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(InstituicaoNotFoundException.class)
+    private ResponseEntity<String> handleInstituicaoNotFoundException(InstituicaoNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    private ResponseEntity<String> handleIllegalStateException(IllegalStateException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
     }
 }
