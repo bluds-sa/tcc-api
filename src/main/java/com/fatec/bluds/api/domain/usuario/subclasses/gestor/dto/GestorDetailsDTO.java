@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto;
 
 import com.fatec.bluds.api.domain.instituicao.dto.InstituicaoDetailsDTO;
 import com.fatec.bluds.api.domain.usuario.enums.Genero;

@@ -1,8 +1,8 @@
 package com.fatec.bluds.api.domain.usuario.subclasses.gestor.controller;
 
-import com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO.GestorDetailsDTO;
-import com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO.GestorGetByEmailDTO;
-import com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO.UpdateGestorDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.GestorDetailsDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.GestorGetByEmailDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.UpdateGestorDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Service.GestorService;
 import io.swagger.v3.oas.annotations.Operation;

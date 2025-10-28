@@ -1,7 +1,7 @@
 package com.fatec.bluds.api.domain.usuario.subclasses.gestor.Service;
 
-import com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO.GestorGetByEmailDTO;
-import com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO.UpdateGestorDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.GestorGetByEmailDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.UpdateGestorDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Repository.GestorRepository;
 import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;

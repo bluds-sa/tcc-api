@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
