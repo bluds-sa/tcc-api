@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.gestor.Service;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.service;
 
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.GestorGetByEmailDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.dto.UpdateGestorDTO;
