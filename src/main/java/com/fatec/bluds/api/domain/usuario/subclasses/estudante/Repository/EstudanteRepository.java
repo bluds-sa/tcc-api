@@ -1,17 +1,15 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Repository;
+package com.fatec.bluds.api.domain.usuario.subclasses.estudante.Repository;
 
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteListDTO;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Estudante;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.AnoEscolar;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.Periodo;
-import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Gestor;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO.EstudanteListDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Estudante;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.AnoEscolar;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.Periodo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface EstudanteRepository extends JpaRepository<Estudante, Long> {

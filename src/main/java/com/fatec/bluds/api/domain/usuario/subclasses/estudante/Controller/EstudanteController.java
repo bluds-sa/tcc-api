@@ -1,13 +1,13 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Controller;
+package com.fatec.bluds.api.domain.usuario.subclasses.estudante.Controller;
 
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteListDTO;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteResponseDTO;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteSummaryDTO;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteUpdateDTO;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.AnoEscolar;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.Periodo;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Estudante;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Service.EstudanteService;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO.EstudanteListDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO.EstudanteResponseDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO.EstudanteSummaryDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO.EstudanteUpdateDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.AnoEscolar;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.Periodo;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Estudante;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Service.EstudanteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

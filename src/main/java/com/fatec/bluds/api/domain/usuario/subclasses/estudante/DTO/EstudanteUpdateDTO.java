@@ -1,7 +1,7 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO;
+package com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO;
 
 import com.fatec.bluds.api.domain.usuario.enums.Genero;
-import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public record EstudanteUpdateDTO(

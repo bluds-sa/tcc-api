@@ -1,10 +1,9 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO;
+package com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO;
 
-import com.fatec.bluds.api.domain.instituicao.dto.InstituicaoDetailsDTO;
 import com.fatec.bluds.api.domain.usuario.enums.Genero;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.AnoEscolar;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums.Periodo;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Estudante;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.AnoEscolar;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.Periodo;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Estudante;
 
 import java.time.LocalDate;
 
