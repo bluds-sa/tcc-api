@@ -7,7 +7,7 @@ import com.fatec.bluds.api.domain.instituicao.dto.UpdateInstituicaoDTO;
 import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.instituicao.service.InstituicaoService;
 import com.fatec.bluds.api.domain.usuario.service.UsuarioService;
-import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
+import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Gestor;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
