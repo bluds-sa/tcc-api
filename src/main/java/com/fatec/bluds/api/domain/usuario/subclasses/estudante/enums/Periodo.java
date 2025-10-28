@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Enums;
+package com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums;
 
 public enum Periodo {
     MATUTINO("Matutino"),
