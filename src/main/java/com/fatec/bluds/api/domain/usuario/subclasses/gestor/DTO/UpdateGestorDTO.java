@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.Gestor.DTO;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO;
 
 import com.fatec.bluds.api.domain.usuario.enums.Genero;
 import jakarta.validation.constraints.PastOrPresent;
