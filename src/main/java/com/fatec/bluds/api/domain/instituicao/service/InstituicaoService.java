@@ -7,7 +7,7 @@ import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.instituicao.repository.InstituicaoRepository;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import com.fatec.bluds.api.domain.usuario.repository.UsuarioRepository;
-import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Gestor;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
 import com.fatec.bluds.api.infra.exceptions.instituicao.InstituicaoNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import jakarta.transaction.Transactional;

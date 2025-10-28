@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.Gestor;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor;
 
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import jakarta.persistence.*;

@@ -2,9 +2,9 @@ package com.fatec.bluds.api.domain.usuario.factory;
 
 import com.fatec.bluds.api.domain.usuario.dto.RegisterDTO;
 import com.fatec.bluds.api.domain.usuario.roles.Roles;
-import com.fatec.bluds.api.domain.usuario.subclasses.Educador.Educador;
-import com.fatec.bluds.api.domain.usuario.subclasses.Estudante.Estudante;
-import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Gestor;
+import com.fatec.bluds.api.domain.usuario.subclasses.educador.Educador;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Estudante;
+import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 
 public class UserFactory {
