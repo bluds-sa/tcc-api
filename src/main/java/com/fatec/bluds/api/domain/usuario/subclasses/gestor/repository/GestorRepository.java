@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.gestor.Repository;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.repository;
 
 
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
