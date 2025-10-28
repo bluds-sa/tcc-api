@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.gestor.Controller;
+package com.fatec.bluds.api.domain.usuario.subclasses.gestor.controller;
 
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO.GestorDetailsDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.DTO.GestorGetByEmailDTO;
