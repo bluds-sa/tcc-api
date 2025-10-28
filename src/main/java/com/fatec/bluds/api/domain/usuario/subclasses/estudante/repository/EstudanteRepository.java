@@ -15,7 +15,7 @@ import java.util.List;
 public interface EstudanteRepository extends JpaRepository<Estudante, Long> {
 
     @Query("""
-        SELECT new com.fatec.bluds.api.domain.usuario.subclasses.Estudante.DTO.EstudanteListDTO(
+        SELECT new com.fatec.bluds.api.domain.usuario.subclasses.estudante.dto.EstudanteListDTO(
             e.id, e.nome, e.email, e.matricula, e.anoEscolar, e.periodo
         )
         FROM Estudante e
