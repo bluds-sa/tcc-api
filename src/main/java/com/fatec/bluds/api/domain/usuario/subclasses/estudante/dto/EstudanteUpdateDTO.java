@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO;
+package com.fatec.bluds.api.domain.usuario.subclasses.estudante.dto;
 
 import com.fatec.bluds.api.domain.usuario.enums.Genero;
 

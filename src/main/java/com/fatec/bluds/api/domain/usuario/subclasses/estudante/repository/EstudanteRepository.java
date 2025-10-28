@@ -1,9 +1,9 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.estudante.Repository;
+package com.fatec.bluds.api.domain.usuario.subclasses.estudante.repository;
 
-import com.fatec.bluds.api.domain.usuario.subclasses.estudante.DTO.EstudanteListDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.dto.EstudanteListDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Estudante;
-import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.AnoEscolar;
-import com.fatec.bluds.api.domain.usuario.subclasses.estudante.Enums.Periodo;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums.AnoEscolar;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums.Periodo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
