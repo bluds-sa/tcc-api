@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.educador;
+package com.fatec.bluds.api.domain.usuario.subclasses.Educador;
 
 import com.fatec.bluds.api.domain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;

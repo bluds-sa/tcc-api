@@ -1,7 +1,7 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.gestor.repository;
+package com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Repository;
 
 
-import com.fatec.bluds.api.domain.usuario.subclasses.gestor.Gestor;
+import com.fatec.bluds.api.domain.usuario.subclasses.Gestor.Gestor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
