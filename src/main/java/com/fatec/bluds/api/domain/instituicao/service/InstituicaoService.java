@@ -20,6 +20,6 @@ public interface InstituicaoService {
     boolean instituicaoExists(Long id);
     boolean usuarioBelongsToInstituicao(Long instituicaoId, Long usuarioId);
 
-    InstituicaoEnsino buscarInstituicaoPorCnpj(String cnpj);
-    InstituicaoEnsino buscarInstituicaoPorEmail(String email);
+    InstituicaoEnsino getInstituicaoByCnpj(String cnpj);
+    InstituicaoEnsino getInstituicaoByEmail(String email);
 }
