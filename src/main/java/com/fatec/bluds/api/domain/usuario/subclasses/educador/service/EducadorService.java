@@ -4,7 +4,7 @@ import com.fatec.bluds.api.domain.usuario.subclasses.educador.dto.*;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.mapper.EducadorMapper;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.*;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.repository.*;
-import com.fatec.bluds.api.infra.exceptions.Usuario.UsuarioNotFoundException;
+import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
