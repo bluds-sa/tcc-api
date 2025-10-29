@@ -2,7 +2,7 @@ package com.fatec.bluds.api.domain.usuario.subclasses.educador.controller;
 
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.dto.*;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.service.EducadorService;
-import com.fatec.bluds.api.infra.exceptions.Usuario.UsuarioNotFoundException;
+import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
