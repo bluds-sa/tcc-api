@@ -142,21 +142,37 @@ public class InstituicaoServiceImpl implements InstituicaoService {
 
     @Override
     public boolean instituicaoExists(Long id) {
-        return false;
+        return instituicaoRepository.existsById(id);
     }
 
     @Override
-    public boolean usuarioBelongsToInstituicao(Long instituicaoId, Long usuarioId) {
-        return false;
+    public boolean usuarioBelongsToInstituicao(Long usuarioId, Long instituicaoId) {
+        if (instituicaoId == null || usuarioId == null) {
+            return false;
+        }
+
+        return usuarioRepository.existsByIdAndInstituicaoEnsinoId(usuarioId, instituicaoId);
     }
 
     @Override
-    public InstituicaoEnsino buscarInstituicaoPorCnpj(String cnpj) {
-        return null;
+    public InstituicaoEnsino getInstituicaoByCnpj(String cnpj) {
+        if (cnpj == null || cnpj.isBlank()) {
+            throw new IllegalArgumentException("CNPJ não pode ser nulo ou vazio");
+        }
+
+        return instituicaoRepository.findByCnpj(cnpj).orElseThrow(
+                () -> new InstituicaoNotFoundException("Instituição de Ensino com o CNPJ " + cnpj + " não encontrada")
+        );
     }
 
     @Override
-    public InstituicaoEnsino buscarInstituicaoPorEmail(String email) {
-        return null;
+    public InstituicaoEnsino getInstituicaoByEmail(String email) {
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("Email não pode ser nulo ou vazio");
+        }
+
+        return instituicaoRepository.findByEmail(email).orElseThrow(
+                () -> new InstituicaoNotFoundException("Instituição de Ensino com o email " + email + " não encontrada")
+        );
     }
 }
