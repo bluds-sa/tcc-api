@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 public class Educador extends Usuario {
-    
+
     @Column(nullable = true, unique = true)
     private String matricula;
 
