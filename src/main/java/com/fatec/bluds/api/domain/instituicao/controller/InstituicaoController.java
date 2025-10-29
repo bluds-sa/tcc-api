@@ -22,7 +22,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/instituicao")
+@RequestMapping("/instituicoes")
 @Tag(name = "Módulo Instituições de Ensino", description = "Gerencia as operações envolvendo instituições de ensino")
 public class InstituicaoController {
 
@@ -47,7 +47,7 @@ public class InstituicaoController {
         InstituicaoEnsino instituicaoEnsino = instituicaoService.createInstituicao(dto, gestorAutenticado);
 
         var uri = uriBuilder
-                .path("/instituicao/{id}")
+                .path("/instituicoes/{id}")
                 .buildAndExpand(instituicaoEnsino.getId())
                 .toUri();
 

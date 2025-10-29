@@ -35,6 +35,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/reset-password/forgot-password").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/reset-password/reset-password").permitAll()
                         .requestMatchers("/gestor","/gestor/**","/estudantes","/estudantes/**").authenticated()
+                        .requestMatchers("/instituicoes","/instituicoes/**").authenticated()
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().permitAll()) // Alterar para .authenticated depois
                 .headers(headers -> headers
