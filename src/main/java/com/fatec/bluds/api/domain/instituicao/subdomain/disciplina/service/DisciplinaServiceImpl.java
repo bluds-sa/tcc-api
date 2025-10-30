@@ -86,7 +86,7 @@ public class DisciplinaServiceImpl implements DisciplinaService{
     }
 
     @Override
-    public Disciplina updateDisciplina(UpdateDisciplinaDTO dto) {
+    public Disciplina updateDisciplina(Long id, UpdateDisciplinaDTO dto) {
         return null;
     }
 
