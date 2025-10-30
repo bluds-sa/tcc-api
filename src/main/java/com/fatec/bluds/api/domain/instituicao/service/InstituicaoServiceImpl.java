@@ -42,9 +42,9 @@ public class InstituicaoServiceImpl implements InstituicaoService {
 
         InstituicaoEnsino instituicaoEnsinoSaved = instituicaoRepository.save(instituicaoEnsino);
 
-        bindUsuarioToInstituicao(gestor, instituicaoEnsino);
+        gestor.setInstituicaoEnsino(instituicaoEnsino);
 
-        return instituicaoEnsinoSaved;
+        return usuarioRepository.save(gestor).getInstituicaoEnsino();
     }
 
     public InstituicaoEnsino getInstituicaoById(Long id) {
@@ -94,13 +94,16 @@ public class InstituicaoServiceImpl implements InstituicaoService {
 
         Usuario usuario = usuarioRepository
                 .findById(usuarioId)
-                .orElseThrow(UsuarioNotFoundException::new);
+                .orElseThrow(
+                        () -> new UsuarioNotFoundException("Usuário com o ID " + usuarioId + " não encontrado")
+                );
 
         if (usuario.getInstituicaoEnsino() != null) {
             throw new IllegalStateException("Usuário só pode estar associado a uma Instituição de Ensino");
         }
 
-        bindUsuarioToInstituicao(usuario, instituicao);
+        usuario.setInstituicaoEnsino(instituicao);
+        usuarioRepository.save(usuario);
 
         return instituicao;
     }
@@ -113,31 +116,16 @@ public class InstituicaoServiceImpl implements InstituicaoService {
                 .findById(usuarioId)
                 .orElseThrow(UsuarioNotFoundException::new);
 
-        if (!instituicao.getUsuarios().contains(usuario)) {
-            throw new IllegalStateException("Usuário não pertence a esta instituição.");
+        if (!usuarioBelongsToInstituicao(usuarioId, instituicaoId)) {
+            throw new IllegalArgumentException("O usuário não pertence a esta Instituição de Ensino");
         }
 
         instituicao.getUsuarios().remove(usuario);
 
-        unbindUsuarioFromInstituicao(usuario, instituicao);
+        usuario.setInstituicaoEnsino(null);
+        usuarioRepository.save(usuario);
 
         return instituicao;
-    }
-
-    private void bindUsuarioToInstituicao(Usuario usuario, InstituicaoEnsino instituicao) {
-        usuario.setInstituicaoEnsino(instituicao);
-        instituicao.getUsuarios().add(usuario);
-
-        usuarioRepository.save(usuario);
-        instituicaoRepository.save(instituicao);
-    }
-
-    private void unbindUsuarioFromInstituicao(Usuario usuario, InstituicaoEnsino instituicao) {
-        usuario.setInstituicaoEnsino(null);
-        instituicao.getUsuarios().remove(usuario);
-
-        usuarioRepository.save(usuario);
-        instituicaoRepository.save(instituicao);
     }
 
     @Override

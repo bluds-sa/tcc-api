@@ -1,9 +1,6 @@
 package com.fatec.bluds.api.domain.instituicao.controller;
 
-import com.fatec.bluds.api.domain.instituicao.dto.CreateInstituicaoDTO;
-import com.fatec.bluds.api.domain.instituicao.dto.InstituicaoDetailsDTO;
-import com.fatec.bluds.api.domain.instituicao.dto.InstituicaoMembersDTO;
-import com.fatec.bluds.api.domain.instituicao.dto.UpdateInstituicaoDTO;
+import com.fatec.bluds.api.domain.instituicao.dto.*;
 import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.instituicao.service.InstituicaoService;
 import com.fatec.bluds.api.domain.usuario.service.UsuarioService;
@@ -62,6 +59,25 @@ public class InstituicaoController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> getInstituicaoById(@PathVariable Long id) {
         InstituicaoEnsino instituicao = instituicaoService.getInstituicaoById(id);
+
+        return ResponseEntity.ok(new InstituicaoDetailsDTO(instituicao));
+    }
+
+    @Operation(summary = "Obtém um Instituição de Ensino através do seu CNPJ", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Instituição de Ensino encontrada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Instituição de Ensino não encontrada")
+    })
+    @GetMapping("/getByCNPJ")
+    public ResponseEntity<Object> getInstituicaoByCnpj(@RequestBody @Valid InstituicaoCnpjDTO dto) {
+        InstituicaoEnsino instituicao = instituicaoService.getInstituicaoByCnpj(dto.cnpj());
+
+        return ResponseEntity.ok(new InstituicaoDetailsDTO(instituicao));
+    }
+
+    @GetMapping("/getByEmail")
+    public ResponseEntity<Object> getInstituicaoByEmail(@RequestBody @Valid InstituicaoEmailDTO dto) {
+        InstituicaoEnsino instituicao = instituicaoService.getInstituicaoByEmail(dto.email());
 
         return ResponseEntity.ok(new InstituicaoDetailsDTO(instituicao));
     }
