@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -25,8 +26,16 @@ public class DisciplinaController {
 
     @PostMapping
     @PreAuthorize("hasRole('GESTOR')")
-    public ResponseEntity<Object> createDisciplina(@RequestBody @Valid CreateDisciplinaDTO dto) {
-        return ResponseEntity.ok(new DisciplinaSummaryDTO(disciplinaService.createDisciplina(dto)));
+    public ResponseEntity<Object> createDisciplina(@RequestBody @Valid CreateDisciplinaDTO dto, UriComponentsBuilder uriBuilder) {
+
+        Disciplina disciplina = disciplinaService.createDisciplina(dto);
+
+        var uri = uriBuilder
+                .path("/disciplinas/{id}")
+                .buildAndExpand(disciplina.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(new DisciplinaSummaryDTO(disciplina));
     }
 
     @GetMapping
