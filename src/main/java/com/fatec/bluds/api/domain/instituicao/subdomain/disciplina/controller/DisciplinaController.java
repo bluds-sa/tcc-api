@@ -43,7 +43,7 @@ public class DisciplinaController {
     }
 
     @GetMapping("/estudante")
-    public ResponseEntity<Object> getDisciplinaByEstudante(
+    public ResponseEntity<Object> getDisciplinasByEstudante(
             @RequestParam
             @NotNull(message = "ID do Estudante não pode ser nulo")
             @Positive(message = "ID do  Estudante não pode ser negativo")
@@ -55,8 +55,6 @@ public class DisciplinaController {
                 disciplinas.stream().map(DisciplinaSummaryDTO::new).toList()
         );
     }
-
-    
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDisciplina(@PathVariable Long id, @RequestBody @Valid UpdateDisciplinaDTO dto) {
