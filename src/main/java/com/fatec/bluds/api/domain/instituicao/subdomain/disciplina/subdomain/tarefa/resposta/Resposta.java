@@ -1,6 +1,6 @@
-package com.fatec.bluds.api.domain.disciplina.tarefa.resposta;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.tarefa.resposta;
 
-import com.fatec.bluds.api.domain.disciplina.tarefa.Tarefa;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.tarefa.Tarefa;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

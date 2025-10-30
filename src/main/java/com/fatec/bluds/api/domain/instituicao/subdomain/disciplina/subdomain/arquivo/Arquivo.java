@@ -1,6 +1,6 @@
-package com.fatec.bluds.api.domain.disciplina.arquivo;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo;
 
-import com.fatec.bluds.api.domain.disciplina.model.Disciplina;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
