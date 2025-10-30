@@ -2,8 +2,8 @@ package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto;
 
 import jakarta.validation.constraints.NotNull;
 
-public record ListDisciplinaByInstituicaoDTO(
+public record DisciplinaByEstudanteDTO(
         @NotNull
-        Long instituicaoId
+        Long estudanteId
 ) {
 }
