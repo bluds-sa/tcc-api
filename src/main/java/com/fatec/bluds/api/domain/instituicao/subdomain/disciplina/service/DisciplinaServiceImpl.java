@@ -1,10 +1,13 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.service;
 
+import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.instituicao.service.InstituicaoService;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.*;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.repository.DisciplinaRepository;
+import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.service.EducadorService;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.service.EstudanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +41,16 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 
     @Override
     public Disciplina createDisciplina(CreateDisciplinaDTO dto) {
-        return null;
+        InstituicaoEnsino instituicaoEnsino = instituicaoService.getInstituicaoById(dto.idInstituicao());
+        Educador educador = educadorService.findById(dto.idEducadorResponsavel());
+
+        Disciplina disciplina = new Disciplina();
+        disciplina.setNome(dto.nome());
+        disciplina.setDescricao(dto.descricao());
+        disciplina.setEducador(educador);
+        disciplina.setInstituicaoEnsino(instituicaoEnsino);
+
+        return disciplinaRepository.save(disciplina);
     }
 
     @Override
@@ -57,22 +69,22 @@ public class DisciplinaServiceImpl implements DisciplinaService{
     }
 
     @Override
-    public DisciplinaEstudantesDTO addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto) {
+    public List<Estudante> addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto) {
         return null;
     }
 
     @Override
-    public DisciplinaEstudantesDTO removeEstudanteFromDisciplina(DisciplinaByEstudanteDTO dto) {
+    public List<Estudante> removeEstudanteFromDisciplina(DisciplinaByEstudanteDTO dto) {
         return null;
     }
 
     @Override
-    public DisciplinaEstudantesDTO enrollByBulk(EstudantesByBulkDTO dto) {
+    public List<Estudante> enrollByBulk(EstudantesByBulkDTO dto) {
         return null;
     }
 
     @Override
-    public DisciplinaEstudantesDTO unenrollByBulk(EstudantesByBulkDTO dto) {
+    public List<Estudante> unenrollByBulk(EstudantesByBulkDTO dto) {
         return null;
     }
 }

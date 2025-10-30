@@ -2,6 +2,7 @@ package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.service;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.*;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 
 import java.util.List;
 
@@ -10,8 +11,8 @@ public interface DisciplinaService {
     List<Disciplina> getDisciplinasByEstudante(DisciplinaByEstudanteDTO dto);
     List<Disciplina> getDisciplinasByInstituicao(DisciplinaByInstituicaoDTO dto);
     Disciplina updateDisciplina(UpdateDisciplinaDTO dto);
-    DisciplinaEstudantesDTO addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto);
-    DisciplinaEstudantesDTO removeEstudanteFromDisciplina(DisciplinaByEstudanteDTO dto);
-    DisciplinaEstudantesDTO enrollByBulk(EstudantesByBulkDTO dto);
-    DisciplinaEstudantesDTO unenrollByBulk(EstudantesByBulkDTO dto);
+    List<Estudante> addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto);
+    List<Estudante> removeEstudanteFromDisciplina(DisciplinaByEstudanteDTO dto);
+    List<Estudante> enrollByBulk(EstudantesByBulkDTO dto);
+    List<Estudante> unenrollByBulk(EstudantesByBulkDTO dto);
 }
