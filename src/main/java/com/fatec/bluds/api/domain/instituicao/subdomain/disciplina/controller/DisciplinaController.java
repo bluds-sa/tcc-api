@@ -40,25 +40,7 @@ public class DisciplinaController {
         return ResponseEntity.ok(disciplinaService.getDisciplinaById(id));
     }
 
-    @GetMapping
-    public ResponseEntity<Object> getDisciplinasByEstudante(@RequestBody @Valid DisciplinaByEstudanteDTO dto) {
-        List<DisciplinaSummaryDTO> disciplinas = disciplinaService
-                .getDisciplinasByEstudante(dto)
-                .stream().map(DisciplinaSummaryDTO::new)
-                .toList();
 
-        return ResponseEntity.ok(disciplinas);
-    }
-
-    @GetMapping
-    public ResponseEntity<Object> getDisciplinasByInstituicao(@RequestBody @Valid DisciplinaByInstituicaoDTO dto) {
-        List<DisciplinaSummaryDTO> disciplinas = disciplinaService
-                .getDisciplinasByInstituicao(dto)
-                .stream().map(DisciplinaSummaryDTO::new)
-                .toList();
-
-        return ResponseEntity.ok(disciplinas);
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDisciplina(@PathVariable Long id, @RequestBody @Valid UpdateDisciplinaDTO dto) {

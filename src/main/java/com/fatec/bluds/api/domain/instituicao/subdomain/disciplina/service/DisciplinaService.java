@@ -9,9 +9,9 @@ import java.util.List;
 public interface DisciplinaService {
     Disciplina createDisciplina(CreateDisciplinaDTO dto);
     Disciplina getDisciplinaById(Long id);
-    List<Disciplina> getDisciplinasByEstudante(DisciplinaByEstudanteDTO dto);
-    List<Disciplina> getDisciplinasByInstituicao(DisciplinaByInstituicaoDTO dto);
-    List<Disciplina> getDisciplinasByEducador(DisciplinaByEducadorDTO dto);
+    List<Disciplina> getDisciplinasByEstudante(Long estudanteId);
+    List<Disciplina> getDisciplinasByInstituicao(Long instituicaoId);
+    List<Disciplina> getDisciplinasByEducador(Long educadorId);
     Disciplina updateDisciplina(Long id,UpdateDisciplinaDTO dto);
     List<Estudante> getEstudantesFromDisciplina(Long id);
     List<Estudante> addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto);

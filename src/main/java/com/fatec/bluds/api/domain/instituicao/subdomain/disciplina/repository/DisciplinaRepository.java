@@ -13,6 +13,6 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
 
     @Query("SELECT d FROM Disciplina d JOIN d.estudantes e WHERE e.id = :estudanteId")
     List<Disciplina> findByEstudanteId(@Param("estudanteId") Long estudanteId);
-
     List<Disciplina> findByInstituicaoEnsinoId(Long instituicaoId);
+    List<Disciplina> findByEducadorId(Long educadorId);
 }

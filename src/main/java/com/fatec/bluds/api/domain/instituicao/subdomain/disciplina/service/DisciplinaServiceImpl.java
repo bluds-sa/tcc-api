@@ -67,23 +67,18 @@ public class DisciplinaServiceImpl implements DisciplinaService{
     }
 
     @Override
-    public List<Disciplina> getDisciplinasByEstudante(DisciplinaByEstudanteDTO dto) {
-        if (dto.estudanteId() == null || dto.estudanteId() <= 0) {
-            throw new IllegalArgumentException("ID de Estudante deve ser maior que zero");
-        }
-
-        List<Disciplina> disciplinas = disciplinaRepository.findByEstudanteId(dto.estudanteId());
-
-        return disciplinas;
+    public List<Disciplina> getDisciplinasByEstudante(Long estudanteId) {
+        return List.of();
     }
 
     @Override
-    public List<Disciplina> getDisciplinasByInstituicao(DisciplinaByInstituicaoDTO dto) {
-        if (dto.instituicaoId() == null || dto.instituicaoId() <= 0) {
-            throw new IllegalArgumentException("ID da Instituição de Ensino deve ser maior que zero");
-        }
+    public List<Disciplina> getDisciplinasByInstituicao(Long instituicaoId) {
+        return List.of();
+    }
 
-        return disciplinaRepository.findByInstituicaoEnsinoId(dto.instituicaoId());
+    @Override
+    public List<Disciplina> getDisciplinasByEducador(Long educadorId) {
+        return List.of();
     }
 
     @Transactional
