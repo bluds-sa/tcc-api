@@ -126,12 +126,12 @@ public class DisciplinaServiceImpl implements DisciplinaService{
     }
 
     @Override
-    public List<Estudante> addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto) {
+    public List<Estudante> addEstudanteToDisciplina(Long disciplinaId, Long estudanteId) {
         return null;
     }
 
     @Override
-    public List<Estudante> removeEstudanteFromDisciplina(DisciplinaByEstudanteDTO dto) {
+    public List<Estudante> removeEstudanteFromDisciplina(Long disciplinaId, Long estudanteId) {
         return null;
     }
 

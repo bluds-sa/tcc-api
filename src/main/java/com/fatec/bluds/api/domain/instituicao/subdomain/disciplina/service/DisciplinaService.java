@@ -14,8 +14,8 @@ public interface DisciplinaService {
     List<Disciplina> getDisciplinasByEducador(Long educadorId);
     Disciplina updateDisciplina(Long id,UpdateDisciplinaDTO dto);
     List<Estudante> getEstudantesFromDisciplina(Long id);
-    List<Estudante> addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto);
-    List<Estudante> removeEstudanteFromDisciplina(DisciplinaByEstudanteDTO dto);
+    List<Estudante> addEstudanteToDisciplina(Long disciplinaId, Long estudanteId);
+    List<Estudante> removeEstudanteFromDisciplina(Long disciplinaId, Long estudanteId);
     List<Estudante> enrollByBulk(EstudantesByBulkDTO dto);
     List<Estudante> unenrollByBulk(EstudantesByBulkDTO dto);
 }
