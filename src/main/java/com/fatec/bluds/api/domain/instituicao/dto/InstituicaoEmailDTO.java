@@ -1,4 +1,11 @@
 package com.fatec.bluds.api.domain.instituicao.dto;
 
-public record InstituicaoEmailDTO() {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+public record InstituicaoEmailDTO(
+        @Email
+        @NotBlank
+        String email
+) {
 }
