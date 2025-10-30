@@ -10,6 +10,7 @@ import com.fatec.bluds.api.domain.usuario.subclasses.educador.service.EducadorSe
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.service.EstudanteService;
 import com.fatec.bluds.api.infra.exceptions.disciplina.DisciplinaNotFoundException;
+import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,10 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 
     @Override
     public List<Disciplina> getDisciplinasByEstudante(Long estudanteId) {
+        if (!estudanteService.existsById(estudanteId)) {
+            throw new UsuarioNotFoundException("Estudante com ID " + estudanteId + " não encontrado");
+        }
+
         return disciplinaRepository.findByEstudanteId(estudanteId);
     }
 
