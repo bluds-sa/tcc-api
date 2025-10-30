@@ -31,6 +31,15 @@ public class EducadorController {
                 .orElseThrow(() -> new UsuarioNotFoundException("Educador não encontrado."));
     }
 
+    @Operation(summary = "Atualiza um Educador")
+    @ApiResponse(responseCode = "200", description = "Atualização realizada com sucesso")
+    @ApiResponse(responseCode = "404", description = "Educador não encontrado")
+    @ApiResponse(responseCode = "409", description = "Dados conflitantes ou inválidos")
+    @PutMapping("/{id}")
+    public ResponseEntity<EducadorSummaryDTO> updateEducador(@PathVariable Long id, @RequestBody UpdateEducadorDTO dto) {
+        return ResponseEntity.ok(new EducadorSummaryDTO(educadorService.updateEducador(id, dto)));
+    }
+
     //  Adicionar Formacao
     @Operation(summary = "Adicionar nova formação ao educador")
     @ApiResponse(responseCode = "200", description = "Formação adicionada com sucesso")
