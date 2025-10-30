@@ -42,7 +42,7 @@ public class DisciplinaController {
         return ResponseEntity.ok(disciplinaService.getDisciplinaById(id));
     }
 
-    @GetMapping
+    @GetMapping("/estudante")
     public ResponseEntity<Object> getDisciplinaByEstudante(
             @RequestParam
             @NotNull(message = "ID do Estudante não pode ser nulo")
@@ -55,6 +55,8 @@ public class DisciplinaController {
                 disciplinas.stream().map(DisciplinaSummaryDTO::new).toList()
         );
     }
+
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDisciplina(@PathVariable Long id, @RequestBody @Valid UpdateDisciplinaDTO dto) {
