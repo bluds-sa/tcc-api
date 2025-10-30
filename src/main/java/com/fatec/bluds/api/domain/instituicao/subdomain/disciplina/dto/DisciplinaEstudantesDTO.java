@@ -1,14 +1,14 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto;
 
-import com.fatec.bluds.api.domain.usuario.subclasses.estudante.dto.EstudanteSummaryDTO;
+import com.fatec.bluds.api.domain.usuario.dto.Enums.UsuarioSummaryDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import java.util.ArrayList;
 import java.util.List;
 
 public record DisciplinaEstudantesDTO(
-        List<EstudanteSummaryDTO> estudantes
+        List<UsuarioSummaryDTO> estudantes
 ) {
     public DisciplinaEstudantesDTO(ArrayList<Estudante> listaEstudantes) {
-        this(listaEstudantes.stream().map(EstudanteSummaryDTO::new).toList());
+        this(listaEstudantes.stream().map(UsuarioSummaryDTO::new).toList());
     }
 }
