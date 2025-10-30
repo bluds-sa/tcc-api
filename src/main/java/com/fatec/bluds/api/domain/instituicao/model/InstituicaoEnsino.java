@@ -25,13 +25,17 @@ public class InstituicaoEnsino {
     @NotNull
     private String nome;
 
-    @Column
+    @Column(unique = true)
     @NotNull
     private String telefone;
 
-    @Column
+    @Column(unique = true)
     @NotNull
     private String email;
+
+    @Column(unique = true)
+    @NotNull
+    private String cnpj;
 
     @Embedded
     private Endereco endereco;

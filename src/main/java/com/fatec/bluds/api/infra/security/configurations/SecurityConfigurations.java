@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,7 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfigurations {
 
     @Autowired
@@ -36,9 +34,10 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/reset-password/forgot-password").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/reset-password/reset-password").permitAll()
-                        .requestMatchers("/gestor","/gestor/**").authenticated()
+                        .requestMatchers("/gestor","/gestor/**","/estudantes","/estudantes/**").authenticated()
+                        .requestMatchers("/instituicoes","/instituicoes/**").authenticated()
                         .requestMatchers("/h2-console/**").permitAll()
-                        .anyRequest().authenticated()) // Alterar para .authenticated depois
+                        .anyRequest().permitAll()) // Alterar para .authenticated depois
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
