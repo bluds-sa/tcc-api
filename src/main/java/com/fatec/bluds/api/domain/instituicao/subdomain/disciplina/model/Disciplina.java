@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model;
 
+import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.Arquivo;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.Postagem;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
@@ -8,6 +9,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
@@ -18,6 +20,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(of = "id")
 public class Disciplina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +33,12 @@ public class Disciplina {
     @Column
     @NotNull
     private String descricao;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "instituicao_id", nullable = false)
+    @NotNull
+    private InstituicaoEnsino instituicaoEnsino;
 
     @ManyToOne
     @JoinColumn(name = "educador_id", nullable = false)
