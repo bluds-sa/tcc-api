@@ -12,4 +12,6 @@ public interface DisciplinaService {
     Disciplina updateDisciplina(UpdateDisciplinaDTO dto);
     DisciplinaEstudantesDTO addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto);
     DisciplinaEstudantesDTO removeEstudanteFromDisciplina(DisciplinaByEstudanteDTO dto);
+    DisciplinaEstudantesDTO enrollByBulk(EstudantesByBulkDTO dto);
+    DisciplinaEstudantesDTO unenrollByBulk(EstudantesByBulkDTO dto);
 }
