@@ -8,6 +8,7 @@ public record InstituicaoDetailsDTO(
         String nome,
         String telefone,
         String email,
+        String cpnj,
         Endereco endereco
 ) {
     public InstituicaoDetailsDTO(InstituicaoEnsino instituicaoEnsino) {
@@ -16,6 +17,7 @@ public record InstituicaoDetailsDTO(
                 instituicaoEnsino.getNome(),
                 instituicaoEnsino.getTelefone(),
                 instituicaoEnsino.getEmail(),
+                instituicaoEnsino.getCnpj(), 
                 instituicaoEnsino.getEndereco()
         );
     }
