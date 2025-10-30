@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface DisciplinaService {
     Disciplina createDisciplina(CreateDisciplinaDTO dto);
+    Disciplina getDisciplinaById(Long id);
     List<Disciplina> getDisciplinasByEstudante(DisciplinaByEstudanteDTO dto);
     List<Disciplina> getDisciplinasByInstituicao(DisciplinaByInstituicaoDTO dto);
     Disciplina updateDisciplina(UpdateDisciplinaDTO dto);

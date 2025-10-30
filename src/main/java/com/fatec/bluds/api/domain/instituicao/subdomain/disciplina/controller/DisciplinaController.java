@@ -38,6 +38,11 @@ public class DisciplinaController {
         return ResponseEntity.created(uri).body(new DisciplinaSummaryDTO(disciplina));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getDisciplinaById(@PathVariable Long id) {
+        return ResponseEntity.ok(disciplinaService.getDisciplinaById(id));
+    }
+
     @GetMapping
     public ResponseEntity<Object> getDisciplinasByEstudante(@RequestBody @Valid DisciplinaByEstudanteDTO dto) {
         List<DisciplinaSummaryDTO> disciplinas = disciplinaService
@@ -58,5 +63,5 @@ public class DisciplinaController {
         return ResponseEntity.ok(disciplinas);
     }
 
-
+    
 }
