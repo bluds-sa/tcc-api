@@ -2,6 +2,7 @@ package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.controller;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.CreateDisciplinaDTO;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.DisciplinaByEstudanteDTO;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.DisciplinaByInstituicaoDTO;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.DisciplinaSummaryDTO;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.service.DisciplinaService;
@@ -38,5 +39,15 @@ public class DisciplinaController {
         return ResponseEntity.ok(disciplinas);
     }
 
-    
+    @GetMapping
+    public ResponseEntity<Object> getDisciplinasByInstituicao(@RequestBody @Valid DisciplinaByInstituicaoDTO dto) {
+        List<DisciplinaSummaryDTO> disciplinas = disciplinaService
+                .getDisciplinasByInstituicao(dto)
+                .stream().map(DisciplinaSummaryDTO::new)
+                .toList();
+
+        return ResponseEntity.ok(disciplinas);
+    }
+
+
 }
