@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.postagem;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import jakarta.persistence.*;

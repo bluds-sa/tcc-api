@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.tarefa;
 
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.postagem.Postagem;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.Postagem;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.tarefa.resposta.Resposta;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
