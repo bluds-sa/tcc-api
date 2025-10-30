@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.infra.exceptions;
 
+import com.fatec.bluds.api.infra.exceptions.disciplina.DisciplinaNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.instituicao.InstituicaoNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -30,5 +31,10 @@ public class CustomExceptionHandler {
     @ExceptionHandler(IllegalStateException.class)
     private ResponseEntity<String> handleIllegalStateException(IllegalStateException exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(DisciplinaNotFoundException.class)
+    private ResponseEntity<String> handleDisciplinaNotFoundException(DisciplinaNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }
