@@ -3,6 +3,8 @@ package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.controller;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.*;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.service.DisciplinaService;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.dto.EstudanteSummaryDTO;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -91,4 +93,20 @@ public class DisciplinaController {
 
         return ResponseEntity.ok(disciplinaSummary);
     }
+
+    @GetMapping("{id}/estudantes")
+    public ResponseEntity<Object> getEstudantesFromDisciplina(
+            @PathVariable
+            @NotNull(message = "ID da disciplina não pode ser nulo")
+            @Positive(message = "ID da disciplina deve ser um número positivo maior que zero")
+            Long id
+    ) {
+        List<Estudante> estudantes = disciplinaService.getEstudantesFromDisciplina(id);
+
+        return estudantes.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(
+                estudantes.stream().map(EstudanteSummaryDTO::new).toList()
+        );
+    }
+
+    
 }

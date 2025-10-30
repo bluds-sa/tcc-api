@@ -118,7 +118,11 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 
     @Override
     public List<Estudante> getEstudantesFromDisciplina(Long id) {
-        return List.of();
+        if (!disciplinaRepository.existsById(id)) {
+            throw new DisciplinaNotFoundException("Disciplina com o ID " + id + " não foi encontrada");
+        };
+
+        return disciplinaRepository.findEstudantesByDisciplinaId(id);
     }
 
     @Override
