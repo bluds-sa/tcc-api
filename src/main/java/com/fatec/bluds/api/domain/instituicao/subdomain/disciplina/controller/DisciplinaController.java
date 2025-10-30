@@ -61,10 +61,24 @@ public class DisciplinaController {
     public ResponseEntity<Object> getDisciplinasByInstituicao(
             @RequestParam
             @NotNull(message = "ID da Instituição de Ensino não pode ser nulo")
-            @Positive(message = "ID da Instituição de Ensino não pode ser negativo ou zero")
+            @Positive(message = "ID da Instituição de Ensino deve ser um número positivo maior que zero")
             Long instituicaoId
     ) {
         List<Disciplina> disciplinas = disciplinaService.getDisciplinasByInstituicao(instituicaoId);
+
+        return disciplinas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(
+                disciplinas.stream().map(DisciplinaSummaryDTO::new).toList()
+        );
+    }
+
+    @GetMapping("/educador")
+    public ResponseEntity<Object> getDisciplinasByEducador(
+        @RequestParam
+        @NotNull(message = "ID do Educador não pode ser nulo")
+        @Positive(message = "ID do Educador deve ser um número positivo maior que zero")
+        Long educadorId
+    ) {
+        List<Disciplina> disciplinas = disciplinaService.getDisciplinasByEducador(educadorId);
 
         return disciplinas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(
                 disciplinas.stream().map(DisciplinaSummaryDTO::new).toList()
