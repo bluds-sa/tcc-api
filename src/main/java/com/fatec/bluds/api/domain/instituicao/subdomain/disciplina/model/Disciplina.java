@@ -1,7 +1,7 @@
-package com.fatec.bluds.api.domain.disciplina.model;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model;
 
-import com.fatec.bluds.api.domain.disciplina.arquivo.Arquivo;
-import com.fatec.bluds.api.domain.disciplina.postagem.Postagem;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.arquivo.Arquivo;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.postagem.Postagem;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import jakarta.persistence.*;

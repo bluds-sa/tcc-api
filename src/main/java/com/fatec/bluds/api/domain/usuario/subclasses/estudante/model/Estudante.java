@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.usuario.subclasses.estudante.model;
 
-import com.fatec.bluds.api.domain.disciplina.model.Disciplina;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums.AnoEscolar;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums.Periodo;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
