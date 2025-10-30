@@ -11,4 +11,5 @@ public interface DisciplinaService {
     List<Disciplina> getDisciplinasByInstituicao(DisciplinaByInstituicaoDTO dto);
     Disciplina updateDisciplina(UpdateDisciplinaDTO dto);
     DisciplinaEstudantesDTO addEstudanteToDisciplina(DisciplinaByEstudanteDTO dto);
+    DisciplinaEstudantesDTO removeEstudanteFromDisciplina(DisciplinaByEstudanteDTO dto);
 }
