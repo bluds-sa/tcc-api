@@ -5,6 +5,8 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Discipl
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.service.DisciplinaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,7 +42,19 @@ public class DisciplinaController {
         return ResponseEntity.ok(disciplinaService.getDisciplinaById(id));
     }
 
+    @GetMapping
+    public ResponseEntity<Object> getDisciplinaByEstudante(
+            @RequestParam
+            @NotNull(message = "ID do Estudante não pode ser nulo")
+            @Positive(message = "ID do  Estudante não pode ser negativo")
+            Long estudanteId) {
 
+        List<Disciplina> disciplinas = disciplinaService.getDisciplinasByEstudante(estudanteId);
+
+        return disciplinas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(
+                disciplinas.stream().map(DisciplinaSummaryDTO::new).toList()
+        );
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDisciplina(@PathVariable Long id, @RequestBody @Valid UpdateDisciplinaDTO dto) {

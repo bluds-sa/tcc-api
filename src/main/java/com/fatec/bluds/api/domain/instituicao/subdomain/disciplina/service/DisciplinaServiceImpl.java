@@ -68,7 +68,7 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 
     @Override
     public List<Disciplina> getDisciplinasByEstudante(Long estudanteId) {
-        return List.of();
+        return disciplinaRepository.findByEstudanteId(estudanteId);
     }
 
     @Override
