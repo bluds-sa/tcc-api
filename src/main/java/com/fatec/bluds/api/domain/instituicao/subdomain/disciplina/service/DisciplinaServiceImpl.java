@@ -10,6 +10,7 @@ import com.fatec.bluds.api.domain.usuario.subclasses.educador.service.EducadorSe
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.service.EstudanteService;
 import com.fatec.bluds.api.infra.exceptions.disciplina.DisciplinaNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,9 +86,25 @@ public class DisciplinaServiceImpl implements DisciplinaService{
         return disciplinaRepository.findByInstituicaoEnsinoId(dto.instituicaoId());
     }
 
+    @Transactional
     @Override
     public Disciplina updateDisciplina(Long id, UpdateDisciplinaDTO dto) {
-        return null;
+        Disciplina disciplina = this.getDisciplinaById(id);
+
+        if (dto.nome() != null && !dto.nome().isBlank()) {
+            disciplina.setNome(dto.nome());
+        }
+
+        if (dto.descricao() != null && !dto.descricao().isBlank()) {
+            disciplina.setDescricao(dto.descricao());
+        }
+
+        if (dto.idEducadorResponsavel() != null && dto.idEducadorResponsavel() > 0) {
+            Educador educador = educadorService.findById(dto.idEducadorResponsavel());
+            disciplina.setEducador(educador);
+        }
+
+        return disciplinaRepository.save(disciplina);
     }
 
     @Override

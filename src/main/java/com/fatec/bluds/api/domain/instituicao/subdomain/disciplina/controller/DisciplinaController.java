@@ -1,9 +1,6 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.controller;
 
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.CreateDisciplinaDTO;
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.DisciplinaByEstudanteDTO;
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.DisciplinaByInstituicaoDTO;
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.DisciplinaSummaryDTO;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.dto.*;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.service.DisciplinaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -63,5 +60,10 @@ public class DisciplinaController {
         return ResponseEntity.ok(disciplinas);
     }
 
-    
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateDisciplina(@PathVariable Long id, @RequestBody @Valid UpdateDisciplinaDTO dto) {
+        DisciplinaSummaryDTO disciplinaSummary = new DisciplinaSummaryDTO(disciplinaService.updateDisciplina(id, dto));
+
+        return ResponseEntity.ok(disciplinaSummary);
+    }
 }
