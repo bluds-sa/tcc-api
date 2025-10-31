@@ -7,6 +7,7 @@ import com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums.AnoEscolar;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums.Periodo;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.repository.EstudanteRepository;
+import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -83,6 +84,12 @@ public class EstudanteService {
 
     public boolean existsById(Long id) {
         return repository.existsById(id);
+    }
+
+    public Estudante getEstudanteById(Long id) {
+        return repository.findById(id).orElseThrow(
+                () -> new UsuarioNotFoundException("Estudante com o ID " + id + " não encontrado")
+        );
     }
 
     /**
