@@ -144,7 +144,19 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 
     @Override
     public List<Estudante> removeEstudanteFromDisciplina(Long disciplinaId, Long estudanteId) {
-        return null;
+        Disciplina disciplina = this.getDisciplinaById(disciplinaId);
+        Estudante estudante = estudanteService.getEstudanteById(estudanteId);
+
+        if (!disciplina.getEstudantes().contains(estudante)) {
+            throw new IllegalArgumentException("O Estudante não está matriculado nesta disciplina");
+        }
+
+        disciplina.getEstudantes().remove(estudante);
+        estudante.getDisciplinas().remove(disciplina);
+
+        disciplinaRepository.save(disciplina);
+
+        return disciplina.getEstudantes().stream().toList();
     }
 
     @Override

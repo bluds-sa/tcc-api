@@ -124,5 +124,21 @@ public class DisciplinaController {
         return ResponseEntity.ok(estudantes.stream().map(EstudanteSummaryDTO::new).toList());
     }
 
-    
+    @DeleteMapping("/{id}/estudantes")
+    public ResponseEntity<Object> removeEstudanteToDisciplina(
+            @PathVariable
+            @NotNull(message = "ID da disciplina não pode ser nulo")
+            @Positive(message = "ID da disciplina deve ser um número positivo maior que zero")
+            Long id,
+            @RequestParam
+            @NotNull(message = "ID do Estudante não pode ser nulo")
+            @Positive(message = "ID do Estudante deve ser um número positivo maior que zero")
+            Long estudanteId
+    ) {
+        List<Estudante> estudantes = disciplinaService.removeEstudanteFromDisciplina(id, estudanteId);
+
+        return ResponseEntity.ok(estudantes.stream().map(EstudanteSummaryDTO::new).toList());
+    }
+
+
 }
