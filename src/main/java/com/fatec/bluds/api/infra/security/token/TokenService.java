@@ -26,6 +26,7 @@ public class TokenService {
                     .create()
                     .withIssuer("bluds-api")
                     .withSubject(usuario.getUsername())
+                    .withClaim("role", usuario.getRoles().name())
                     .withExpiresAt(generateExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException jwtCreationException) {
