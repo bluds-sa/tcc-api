@@ -3,6 +3,7 @@ package com.fatec.bluds.api.domain.instituicao.controller;
 import com.fatec.bluds.api.domain.instituicao.dto.*;
 import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.instituicao.service.InstituicaoService;
+import com.fatec.bluds.api.domain.usuario.dto.Enums.UsuarioSummaryDTO;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import com.fatec.bluds.api.domain.usuario.service.UsuarioService;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.model.Gestor;
@@ -116,13 +117,18 @@ public class InstituicaoController {
     @Operation(summary = "Lista os usuários membros de uma determinada Instituição de Ensino", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Dados listados com sucesso"),
+            @ApiResponse(responseCode = "204", description = "Nenhum usuário para listar"),
             @ApiResponse(responseCode = "404", description = "Instituição não encontrada")
     })
     @GetMapping("/{instituicaoId}/usuarios")
     public ResponseEntity<Object> getUsuariosFromInstituicao(@PathVariable Long instituicaoId) {
-        InstituicaoEnsino instituicaoEnsino = instituicaoService.getInstituicaoById(instituicaoId);
+        List<Usuario> membros = instituicaoService.getUsuariosFromInstituicao(instituicaoId);
 
-        return ResponseEntity.ok(new InstituicaoMembersDTO(instituicaoEnsino));
+        return membros.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(membros
+                .stream()
+                .map(UsuarioSummaryDTO::new)
+                .toList()
+        );
     }
 
     @Operation(summary = "Adiciona Usuário a uma Instituição de Ensino", method = "POST")
@@ -134,10 +140,13 @@ public class InstituicaoController {
     @PostMapping("/{instituicaoId}/usuarios/{usuarioId}")
     public ResponseEntity<Object> addUsuarioToInstituicao(@PathVariable Long instituicaoId, @PathVariable Long usuarioId) {
 
-        InstituicaoEnsino instituicao = instituicaoService
-                .addUsuarioToInstituicao(instituicaoId, usuarioId);
+        List<Usuario> membros = instituicaoService.addUsuarioToInstituicao(instituicaoId, usuarioId);
 
-        return ResponseEntity.ok(new InstituicaoMembersDTO(instituicao));
+        return membros.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(membros
+                .stream()
+                .map(UsuarioSummaryDTO::new)
+                .toList()
+        );
     }
 
     @Operation(summary = "Remove Usuário de uma Instituição de Ensino", method = "DELETE")
@@ -148,9 +157,12 @@ public class InstituicaoController {
     })
     @DeleteMapping("/{instituicaoId}/usuarios/{usuarioId}")
     public ResponseEntity<Object> removeUsuarioFromInstituicao(@PathVariable Long instituicaoId, @PathVariable Long usuarioId) {
-        InstituicaoEnsino instituicao = instituicaoService
+        List<Usuario> membros  = instituicaoService
                 .removeUsuarioFromInstituicao(instituicaoId, usuarioId);
 
-        return ResponseEntity.ok(new InstituicaoMembersDTO(instituicao));
+        return membros.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(membros
+                .stream()
+                .map(UsuarioSummaryDTO::new)
+                .toList());
     }
 }

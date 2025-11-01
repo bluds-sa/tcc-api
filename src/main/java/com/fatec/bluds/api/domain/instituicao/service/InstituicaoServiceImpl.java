@@ -89,7 +89,7 @@ public class InstituicaoServiceImpl implements InstituicaoService {
     }
 
     @Transactional
-    public InstituicaoEnsino addUsuarioToInstituicao(Long instituicaoId, Long usuarioId) {
+    public List<Usuario> addUsuarioToInstituicao(Long instituicaoId, Long usuarioId) {
         InstituicaoEnsino instituicao = this.getInstituicaoById(instituicaoId);
 
         Usuario usuario = usuarioRepository
@@ -102,14 +102,16 @@ public class InstituicaoServiceImpl implements InstituicaoService {
             throw new IllegalStateException("Usuário só pode estar associado a uma Instituição de Ensino");
         }
 
+        instituicao.getUsuarios().add(usuario);
+
         usuario.setInstituicaoEnsino(instituicao);
         usuarioRepository.save(usuario);
 
-        return instituicao;
+        return this.getUsuariosFromInstituicao(instituicao.getId());
     }
 
     @Transactional
-    public InstituicaoEnsino removeUsuarioFromInstituicao(Long instituicaoId, Long usuarioId) {
+    public List<Usuario> removeUsuarioFromInstituicao(Long instituicaoId, Long usuarioId) {
         InstituicaoEnsino instituicao = this.getInstituicaoById(instituicaoId);
 
         Usuario usuario = usuarioRepository
@@ -125,7 +127,7 @@ public class InstituicaoServiceImpl implements InstituicaoService {
         usuario.setInstituicaoEnsino(null);
         usuarioRepository.save(usuario);
 
-        return instituicao;
+        return this.getUsuariosFromInstituicao(instituicao.getId());
     }
 
     @Override
@@ -162,5 +164,14 @@ public class InstituicaoServiceImpl implements InstituicaoService {
         return instituicaoRepository.findByEmail(email).orElseThrow(
                 () -> new InstituicaoNotFoundException("Instituição de Ensino com o email " + email + " não encontrada")
         );
+    }
+
+    @Override
+    public List<Usuario> getUsuariosFromInstituicao(Long instituicaoId) {
+        if (instituicaoId == null || instituicaoId <= 0) {
+            throw new IllegalArgumentException("ID da Instituição inválido - ID não pode ser nulo ou menor que 1");
+        }
+
+        return usuarioRepository.findAllByInstituicaoId(instituicaoId);
     }
 }
