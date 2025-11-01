@@ -1,6 +1,7 @@
 package com.fatec.bluds.api.infra.exceptions;
 
 import com.fatec.bluds.api.infra.exceptions.disciplina.DisciplinaNotFoundException;
+import com.fatec.bluds.api.infra.exceptions.general.UnauthorizedActionException;
 import com.fatec.bluds.api.infra.exceptions.instituicao.InstituicaoNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -47,5 +48,10 @@ public class CustomExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     private ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Dados inválidos ou já existentes no banco de dados");
+    }
+
+    @ExceptionHandler(UnauthorizedActionException.class)
+    private ResponseEntity<String> handleUnauthorizedActionException(UnauthorizedActionException exception) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(exception.getMessage());
     }
 }

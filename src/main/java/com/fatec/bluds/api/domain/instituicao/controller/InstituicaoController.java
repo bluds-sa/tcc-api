@@ -3,8 +3,10 @@ package com.fatec.bluds.api.domain.instituicao.controller;
 import com.fatec.bluds.api.domain.instituicao.dto.*;
 import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.instituicao.service.InstituicaoService;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import com.fatec.bluds.api.domain.usuario.service.UsuarioService;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.model.Gestor;
+import com.fatec.bluds.api.infra.exceptions.general.UnauthorizedActionException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -39,7 +41,11 @@ public class InstituicaoController {
     @PostMapping
     public ResponseEntity<Object> createInstituicao(@RequestBody @Valid CreateInstituicaoDTO dto, UriComponentsBuilder uriBuilder) {
 
-        Gestor gestorAutenticado = (Gestor) usuarioService.getAuthenticatedUser();
+        Usuario usuarioAutenticado = usuarioService.getAuthenticatedUser();
+
+        if (!(usuarioAutenticado instanceof Gestor gestorAutenticado)) {
+            throw new UnauthorizedActionException("Apenas gestores podem criar instituições");
+        }
 
         InstituicaoEnsino instituicaoEnsino = instituicaoService.createInstituicao(dto, gestorAutenticado);
 
