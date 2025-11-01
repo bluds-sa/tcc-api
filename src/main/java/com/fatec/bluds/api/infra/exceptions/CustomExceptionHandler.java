@@ -37,4 +37,9 @@ public class CustomExceptionHandler {
     private ResponseEntity<String> handleDisciplinaNotFoundException(DisciplinaNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    private ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+    }
 }
