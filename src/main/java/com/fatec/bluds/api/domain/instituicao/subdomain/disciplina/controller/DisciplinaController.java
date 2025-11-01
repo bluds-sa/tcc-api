@@ -41,7 +41,7 @@ public class DisciplinaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getDisciplinaById(@PathVariable Long id) {
-        return ResponseEntity.ok(disciplinaService.getDisciplinaById(id));
+        return ResponseEntity.ok(new DisciplinaSummaryDTO(disciplinaService.getDisciplinaById(id)));
     }
 
     @GetMapping("/estudante")
