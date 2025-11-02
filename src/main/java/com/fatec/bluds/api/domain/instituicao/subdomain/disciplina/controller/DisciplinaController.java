@@ -5,6 +5,9 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Discipl
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.service.DisciplinaService;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.dto.EstudanteSummaryDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -25,6 +28,12 @@ public class DisciplinaController {
     @Autowired
     private DisciplinaService disciplinaService;
 
+    @Operation(summary = "Cria uma Disciplina", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Disciplina criada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Instituição de Ensino ou Educador não encontrados"),
+            @ApiResponse(responseCode = "409", description = "Dados inválidos ou conflitantes")
+    })
     @PostMapping
     @PreAuthorize("hasRole('GESTOR')")
     public ResponseEntity<Object> createDisciplina(@RequestBody @Valid CreateDisciplinaDTO dto, UriComponentsBuilder uriBuilder) {
@@ -39,11 +48,24 @@ public class DisciplinaController {
         return ResponseEntity.created(uri).body(new DisciplinaSummaryDTO(disciplina));
     }
 
+    @Operation(summary = "Obtém uma Disciplina através do seu ID", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Disciplina obtida com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Disciplina não encontrada")
+    })
+    @PostMapping
     @GetMapping("/{id}")
     public ResponseEntity<Object> getDisciplinaById(@PathVariable Long id) {
         return ResponseEntity.ok(new DisciplinaSummaryDTO(disciplinaService.getDisciplinaById(id)));
     }
 
+    @Operation(summary = "Obtém as Disciplinas nas quais um estudante está matriculado", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Disciplinas obtidas com sucesso"),
+            @ApiResponse(responseCode = "204", description = "O estudante não está matriculado em nenhuma disciplina"),
+            @ApiResponse(responseCode = "404", description = "Estudante não encontrado")
+    })
+    @PostMapping
     @GetMapping("/estudante")
     public ResponseEntity<Object> getDisciplinasByEstudante(
             @RequestParam
@@ -59,6 +81,12 @@ public class DisciplinaController {
         );
     }
 
+    @Operation(summary = "Obtém as Disciplinas cadastradas em uma determinada Instituição de Ensino", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Disciplinas obtidas com sucesso"),
+            @ApiResponse(responseCode = "204", description = "A Instituição de Ensino não tem nenhuma Disciplina cadastrada"),
+            @ApiResponse(responseCode = "404", description = "Instituição de Ensino não encontrada")
+    })
     @GetMapping("/instituicao")
     public ResponseEntity<Object> getDisciplinasByInstituicao(
             @RequestParam
@@ -73,6 +101,12 @@ public class DisciplinaController {
         );
     }
 
+    @Operation(summary = "Obtém as Disciplinas ministradas por um Educador", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Disciplinas obtidas com sucesso"),
+            @ApiResponse(responseCode = "204", description = "O Educador não ministra nenhuma Disciplina"),
+            @ApiResponse(responseCode = "204", description = "Educador não encontrado")
+    })
     @GetMapping("/educador")
     public ResponseEntity<Object> getDisciplinasByEducador(
         @RequestParam
@@ -87,13 +121,27 @@ public class DisciplinaController {
         );
     }
 
+
+    @Operation(summary = "Atualiza as informações de uma Disciplina", method = "PUT")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Disciplina atualizada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Disciplina ou Educador responsável não encontrados"),
+            @ApiResponse(responseCode = "409", description = "Dados inválidos ou conflitantes")
+    })
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('GESTOR')")
     public ResponseEntity<Object> updateDisciplina(@PathVariable Long id, @RequestBody @Valid UpdateDisciplinaDTO dto) {
         DisciplinaSummaryDTO disciplinaSummary = new DisciplinaSummaryDTO(disciplinaService.updateDisciplina(id, dto));
 
         return ResponseEntity.ok(disciplinaSummary);
     }
 
+    @Operation(summary = "Obtém os Estudantes matriculados em uma Instituição de Ensino", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Estudantes obtidos com sucesso"),
+            @ApiResponse(responseCode = "204", description = "Nenhum Estudante está matriculado nesta Disciplina"),
+            @ApiResponse(responseCode = "404", description = "Disciplina não encontrada")
+    })
     @GetMapping("/{id}/estudantes")
     public ResponseEntity<Object> getEstudantesFromDisciplina(
             @PathVariable
@@ -108,6 +156,11 @@ public class DisciplinaController {
         );
     }
 
+    @Operation(summary = "Adiciona um Estudante a uma Disciplina", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Estudante adicionado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Estudante ou Disciplina não encontrados")
+    })
     @PostMapping("/{id}/estudantes")
     public ResponseEntity<Object> addEstudanteToDisciplina(
             @PathVariable
@@ -124,6 +177,11 @@ public class DisciplinaController {
         return ResponseEntity.ok(estudantes.stream().map(EstudanteSummaryDTO::new).toList());
     }
 
+    @Operation(summary = "Adiciona um Estudante a uma Disciplina", method = "DELETE")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Estudante removido com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Estudante ou Disciplina não encontrados")
+    })
     @DeleteMapping("/{id}/estudantes")
     public ResponseEntity<Object> removeEstudanteToDisciplina(
             @PathVariable
