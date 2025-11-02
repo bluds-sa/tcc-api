@@ -53,7 +53,6 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "200", description = "Disciplina obtida com sucesso"),
             @ApiResponse(responseCode = "404", description = "Disciplina não encontrada")
     })
-    @PostMapping
     @GetMapping("/{id}")
     public ResponseEntity<Object> getDisciplinaById(@PathVariable Long id) {
         return ResponseEntity.ok(new DisciplinaSummaryDTO(disciplinaService.getDisciplinaById(id)));
@@ -65,7 +64,6 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "204", description = "O estudante não está matriculado em nenhuma disciplina"),
             @ApiResponse(responseCode = "404", description = "Estudante não encontrado")
     })
-    @PostMapping
     @GetMapping("/estudante")
     public ResponseEntity<Object> getDisciplinasByEstudante(
             @RequestParam
