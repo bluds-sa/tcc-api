@@ -27,6 +27,46 @@ public class EducadorService {
         // Busca simples
         return educadorRepository.findWithFormacoesById(id).map(mapper::toDTO);
     }
+    
+    public Educador findById(Long id) {
+        return educadorRepository.findById(id).orElseThrow(
+                () -> new UsuarioNotFoundException("Educador com o ID " + id + " não encontrado.")      
+        );
+    }
+
+    public boolean existsById(Long id) {
+        return educadorRepository.existsById(id);
+    }
+    
+    public Educador updateEducador(Long id, UpdateEducadorDTO dto) {
+        Educador educador = this.findById(id);
+
+        if (dto.nome() != null && !dto.nome().isBlank()) {
+            educador.setNome(dto.nome());
+        }
+
+        if (dto.telefone() != null && !dto.telefone().isBlank()) {
+            educador.setTelefone(dto.telefone());
+        }
+
+        if (dto.genero() != null) {
+            educador.setGenero(dto.genero());
+        }
+
+        if (dto.dataNascimento() != null) {
+            educador.setDataNascimento(dto.dataNascimento());
+        }
+
+        if (dto.matricula() != null && !dto.matricula().isBlank()) {
+            educador.setMatricula(dto.matricula());
+        }
+
+        if (dto.titulo() != null && !dto.titulo().isBlank()) {
+            educador.setTitulo(dto.matricula());
+        }
+
+        return educadorRepository.save(educador);
+    }
 
     @Transactional
     public EducadorResponseDTO adicionarFormacao(Long educadorId, FormacaoRequestDTO dto) {
