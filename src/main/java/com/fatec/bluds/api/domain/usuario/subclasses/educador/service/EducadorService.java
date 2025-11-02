@@ -33,10 +33,6 @@ public class EducadorService {
                 () -> new UsuarioNotFoundException("Educador com o ID " + id + " não encontrado.")      
         );
     }
-
-    public boolean existsById(Long id) {
-        return educadorRepository.existsById(id);
-    }
     
     public Educador updateEducador(Long id, UpdateEducadorDTO dto) {
         Educador educador = this.findById(id);
