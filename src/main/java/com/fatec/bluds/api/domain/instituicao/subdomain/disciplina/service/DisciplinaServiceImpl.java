@@ -160,12 +160,54 @@ public class DisciplinaServiceImpl implements DisciplinaService{
     }
 
     @Override
+    @Transactional
     public List<Estudante> enrollByBulk(EstudantesByBulkDTO dto) {
-        return null;
+        if (dto == null || dto.disciplinaId() == null || dto.estudanteIds() == null || dto.estudanteIds().isEmpty()) {
+            throw new IllegalArgumentException("Disciplina e lista de estudantes são obrigatórias");
+        }
+
+        // Obtém a disciplina
+        Disciplina disciplina = this.getDisciplinaById(dto.disciplinaId());
+
+        // Busca todos os estudantes válidos
+        List<Estudante> estudantes = dto.estudanteIds().stream()
+                .map(estudanteService::getEstudanteById)
+                .toList();
+
+        // Adiciona apenas os que ainda não estão matriculados
+        for (Estudante estudante : estudantes) {
+            if (!disciplina.getEstudantes().contains(estudante)) {
+                disciplina.getEstudantes().add(estudante);
+                estudante.getDisciplinas().add(disciplina);
+            }
+        }
+
+        disciplinaRepository.save(disciplina);
+
+        return disciplina.getEstudantes().stream().toList();
     }
 
     @Override
+    @Transactional
     public List<Estudante> unenrollByBulk(EstudantesByBulkDTO dto) {
-        return null;
+        if (dto == null || dto.disciplinaId() == null || dto.estudanteIds() == null || dto.estudanteIds().isEmpty()) {
+            throw new IllegalArgumentException("Disciplina e lista de estudantes são obrigatórias");
+        }
+
+        Disciplina disciplina = this.getDisciplinaById(dto.disciplinaId());
+
+        List<Estudante> estudantes = dto.estudanteIds().stream()
+                .map(estudanteService::getEstudanteById)
+                .toList();
+
+        // Remove todos os estudantes listados (mesmo que alguns não estejam matriculados)
+        for (Estudante estudante : estudantes) {
+            disciplina.getEstudantes().remove(estudante);
+            estudante.getDisciplinas().remove(disciplina);
+        }
+
+        disciplinaRepository.save(disciplina);
+
+        return disciplina.getEstudantes().stream().toList();
     }
 }

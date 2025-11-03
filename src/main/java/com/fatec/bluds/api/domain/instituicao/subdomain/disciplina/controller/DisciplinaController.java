@@ -175,7 +175,7 @@ public class DisciplinaController {
         return ResponseEntity.ok(estudantes.stream().map(EstudanteSummaryDTO::new).toList());
     }
 
-    @Operation(summary = "Adiciona um Estudante a uma Disciplina", method = "DELETE")
+    @Operation(summary = "Remove um Estudante de uma Disciplina", method = "DELETE")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Estudante removido com sucesso"),
             @ApiResponse(responseCode = "404", description = "Estudante ou Disciplina não encontrados")
@@ -192,6 +192,52 @@ public class DisciplinaController {
             Long estudanteId
     ) {
         List<Estudante> estudantes = disciplinaService.removeEstudanteFromDisciplina(id, estudanteId);
+
+        return ResponseEntity.ok(estudantes.stream().map(EstudanteSummaryDTO::new).toList());
+    }
+
+    @Operation(summary = "Adiciona múltiplos Estudantes a uma Disciplina", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Estudantes adicionados com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Disciplina ou algum Estudante não encontrado"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida")
+    })
+    @PostMapping("/{id}/estudantes/bulk")
+    public ResponseEntity<Object> addEstudantesToDisciplinaByBulk(
+            @PathVariable
+            @NotNull(message = "ID da disciplina não pode ser nulo")
+            @Positive(message = "ID da disciplina deve ser um número positivo maior que zero")
+            Long id,
+            @RequestBody
+            @Valid
+            EstudantesByBulkDTO dto
+    ) {
+        EstudantesByBulkDTO dtoEstudantes = new EstudantesByBulkDTO(id, dto.estudanteIds());
+
+        List<Estudante> estudantes = disciplinaService.enrollByBulk(dtoEstudantes);
+
+        return ResponseEntity.ok(estudantes.stream().map(EstudanteSummaryDTO::new).toList());
+    }
+
+    @Operation(summary = "Remove múltiplos Estudantes de uma Disciplina", method = "DELETE")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Estudantes removidos com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Disciplina ou algum Estudante não encontrado"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida")
+    })
+    @DeleteMapping("/{id}/estudantes/bulk")
+    public ResponseEntity<Object> removeEstudantesFromDisciplinaByBulk(
+            @PathVariable
+            @NotNull(message = "ID da disciplina não pode ser nulo")
+            @Positive(message = "ID da disciplina deve ser um número positivo maior que zero")
+            Long id,
+            @RequestBody
+            @Valid
+            EstudantesByBulkDTO dto
+    ) {
+        EstudantesByBulkDTO dtoEstudantes = new EstudantesByBulkDTO(id, dto.estudanteIds());
+
+        List<Estudante> estudantes = disciplinaService.unenrollByBulk(dtoEstudantes);
 
         return ResponseEntity.ok(estudantes.stream().map(EstudanteSummaryDTO::new).toList());
     }
