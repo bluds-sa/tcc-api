@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.model;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Arquivo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
