@@ -1,17 +1,16 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.model;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
-import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "arquivo")
-@Table(name = "arquivo")
+@Entity
+@Table(name = "arquivos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,20 +20,26 @@ public class Arquivo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private String nome;
+    @Column(nullable = false)
+    private String nomeOriginal;
 
-    @NotNull
+    @Column(nullable = false)
     private String caminho;
 
-    @NotNull
-    private LocalDateTime dataEnvio;
+    @Column(nullable = false)
+    private String tipoMime;
+
+    @Column(nullable = false)
+    private LocalDateTime dataEnvio = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "disciplina_id")
+    @JoinColumn(name = "enviado_por_id", nullable = false)
+    private Usuario enviadoPor;
+
+    @ManyToOne
+    @JoinColumn(name = "disciplina_id", nullable = false)
     private Disciplina disciplina;
 
-    @ManyToOne
-    @JoinColumn(name = "educador_id")
-    private Educador enviadoPor;
+    @Column(columnDefinition = "TEXT")
+    private String descricao;
 }

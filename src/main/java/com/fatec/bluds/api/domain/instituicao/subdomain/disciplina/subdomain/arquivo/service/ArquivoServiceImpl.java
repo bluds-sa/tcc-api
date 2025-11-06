@@ -1,77 +1,118 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.service;
 
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.model.Arquivo;
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.dto.ArquivoDTO;
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.repository.ArquivoRepository;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.repository.DisciplinaRepository;
-import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
-import com.fatec.bluds.api.domain.usuario.subclasses.educador.service.EducadorService;
-import jakarta.persistence.EntityNotFoundException;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.dto.ArquivoDTO;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.model.Arquivo;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.repository.ArquivoRepository;
+import com.fatec.bluds.api.domain.usuario.model.Usuario;
+import com.fatec.bluds.api.domain.usuario.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ArquivoServiceImpl implements ArquivoService {
 
     private final ArquivoRepository arquivoRepository;
     private final DisciplinaRepository disciplinaRepository;
-    private final EducadorService educadorService;
+    private final UsuarioRepository usuarioRepository;
+    private final Path raizUploads;
 
-    private static final String UPLOAD_DIR = "uploads/disciplinas/";
-
-    public ArquivoServiceImpl(ArquivoRepository arquivoRepository,
-                              DisciplinaRepository disciplinaRepository,
-                              EducadorService educadorService) {
+    public ArquivoServiceImpl(
+            ArquivoRepository arquivoRepository,
+            DisciplinaRepository disciplinaRepository,
+            UsuarioRepository usuarioRepository,
+            @Value("${file.upload-dir:uploads}") String uploadDir
+    ) {
         this.arquivoRepository = arquivoRepository;
         this.disciplinaRepository = disciplinaRepository;
-        this.educadorService = educadorService;
-    }
-
-    @Override
-    public Arquivo uploadArquivo(Long disciplinaId, Long educadorId, MultipartFile arquivoMultipart) {
-        Disciplina disciplina = disciplinaRepository.findById(disciplinaId)
-                .orElseThrow(() -> new EntityNotFoundException("Disciplina com ID " + disciplinaId + " não encontrada"));
-
-        Educador educador = educadorService.findById(educadorId);
+        this.usuarioRepository = usuarioRepository;
+        this.raizUploads = Paths.get(uploadDir).toAbsolutePath().normalize();
 
         try {
-            Path dirPath = Paths.get(UPLOAD_DIR + disciplinaId);
-            Files.createDirectories(dirPath);
-
-            Path filePath = dirPath.resolve(arquivoMultipart.getOriginalFilename());
-            Files.copy(arquivoMultipart.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-            Arquivo arquivo = new Arquivo();
-            arquivo.setNome(arquivoMultipart.getOriginalFilename());
-            arquivo.setCaminho(filePath.toString());
-            arquivo.setDataEnvio(LocalDateTime.now());
-            arquivo.setDisciplina(disciplina);
-            arquivo.setEnviadoPor(educador);
-
-            return arquivoRepository.save(arquivo);
-
+            Files.createDirectories(raizUploads);
         } catch (IOException e) {
-            throw new RuntimeException("Falha ao armazenar o arquivo: " + e.getMessage(), e);
+            throw new RuntimeException("Não foi possível criar o diretório de uploads", e);
         }
     }
 
     @Override
+    public ArquivoDTO upload(Long disciplinaId, MultipartFile arquivo, String descricao, Long usuarioId) throws IOException {
+        Disciplina disciplina = disciplinaRepository.findById(disciplinaId)
+                .orElseThrow(() -> new IllegalArgumentException("Disciplina não encontrada"));
+
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+
+        Path pastaDisciplina = raizUploads.resolve("disciplina_" + disciplinaId);
+        Files.createDirectories(pastaDisciplina);
+
+        Path caminhoArquivo = pastaDisciplina.resolve(arquivo.getOriginalFilename());
+        Files.copy(arquivo.getInputStream(), caminhoArquivo, StandardCopyOption.REPLACE_EXISTING);
+
+        Arquivo novo = new Arquivo();
+        novo.setNomeOriginal(arquivo.getOriginalFilename());
+        novo.setCaminho(caminhoArquivo.toString());
+        novo.setTipoMime(arquivo.getContentType());
+        novo.setDataEnvio(LocalDateTime.now());
+        novo.setEnviadoPor(usuario);
+        novo.setDisciplina(disciplina);
+        novo.setDescricao(descricao);
+
+        Arquivo salvo = arquivoRepository.save(novo);
+
+        return new ArquivoDTO(salvo);
+    }
+
+    @Override
+    public Resource download(Long arquivoId) throws MalformedURLException {
+        Arquivo arquivo = arquivoRepository.findById(arquivoId)
+                .orElseThrow(() -> new IllegalArgumentException("Arquivo não encontrado"));
+
+        Path caminho = Paths.get(arquivo.getCaminho());
+        Resource recurso = new UrlResource(caminho.toUri());
+
+        if (!recurso.exists() || !recurso.isReadable()) {
+            throw new RuntimeException("Não foi possível ler o arquivo: " + arquivo.getNomeOriginal());
+        }
+
+        return recurso;
+    }
+
+    @Override
     public List<ArquivoDTO> listarArquivos(Long disciplinaId) {
-        List<Arquivo> arquivos = arquivoRepository.findAllByDisciplinaId(disciplinaId);
-        return arquivos.stream()
-                .map(a -> new ArquivoDTO(
-                        a.getId(),
-                        a.getNome(),
-                        a.getCaminho(),
-                        a.getDataEnvio(),
-                        a.getEnviadoPor() != null ? a.getEnviadoPor().getNome() : null
-                ))
-                .toList();
+        return arquivoRepository.findByDisciplinaId(disciplinaId)
+                .stream().map(ArquivoDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deletar(Long arquivoId, Long usuarioId, boolean isEducador) {
+        Arquivo arquivo = arquivoRepository.findById(arquivoId)
+                .orElseThrow(() -> new IllegalArgumentException("Arquivo não encontrado"));
+
+        if (!isEducador && !arquivo.getEnviadoPor().getId().equals(usuarioId)) {
+            throw new SecurityException("Você não tem permissão para deletar este arquivo.");
+        }
+
+        try {
+            Files.deleteIfExists(Paths.get(arquivo.getCaminho()));
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao deletar arquivo físico.", e);
+        }
+
+        arquivoRepository.delete(arquivo);
     }
 }

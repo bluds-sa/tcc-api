@@ -1,21 +1,25 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.controller;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.dto.ArquivoDTO;
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.model.Arquivo;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.service.ArquivoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/disciplinas/{disciplinaId}/arquivos")
+@RequestMapping("/arquivos")
 public class ArquivoController {
 
     private final ArquivoService arquivoService;
@@ -30,26 +34,18 @@ public class ArquivoController {
             @ApiResponse(responseCode = "404", description = "Disciplina ou Educador não encontrados"),
             @ApiResponse(responseCode = "400", description = "Falha ao enviar o arquivo")
     })
-    @PostMapping
+    @PostMapping("/upload/{disciplinaId}")
     public ResponseEntity<ArquivoDTO> uploadArquivo(
             @PathVariable
             @NotNull(message = "ID da disciplina é obrigatório")
             @Positive(message = "ID da disciplina deve ser positivo")
             Long disciplinaId,
-            @RequestParam("educadorId")
-            @NotNull(message = "ID do educador é obrigatório")
-            @Positive(message = "ID do educador deve ser positivo")
-            Long educadorId,
-            @RequestParam("arquivo") MultipartFile arquivo
-    ) {
-        Arquivo novo = arquivoService.uploadArquivo(disciplinaId, educadorId, arquivo);
-        ArquivoDTO dto = new ArquivoDTO(
-                novo.getId(),
-                novo.getNome(),
-                novo.getCaminho(),
-                novo.getDataEnvio(),
-                novo.getEnviadoPor().getNome()
-        );
+            @RequestParam("arquivo") MultipartFile arquivo,
+            @RequestParam(value = "descricao", required = false) String descricao,
+            @RequestParam("usuarioId") Long usuarioId
+    ) throws IOException {
+
+        ArquivoDTO dto = arquivoService.upload(disciplinaId, arquivo, descricao, usuarioId);
         return ResponseEntity.status(201).body(dto);
     }
 
@@ -58,7 +54,7 @@ public class ArquivoController {
             @ApiResponse(responseCode = "200", description = "Arquivos listados com sucesso"),
             @ApiResponse(responseCode = "204", description = "Nenhum arquivo encontrado")
     })
-    @GetMapping
+    @GetMapping("/disciplina/{disciplinaId}")
     public ResponseEntity<List<ArquivoDTO>> listarArquivos(
             @PathVariable
             @NotNull @Positive Long disciplinaId
@@ -66,5 +62,31 @@ public class ArquivoController {
         List<ArquivoDTO> arquivos = arquivoService.listarArquivos(disciplinaId);
         if (arquivos.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(arquivos);
+    }
+
+    @Operation(summary = "Baixa um arquivo pelo ID", method = "GET")
+    @GetMapping("/download/{arquivoId}")
+    public ResponseEntity<Resource> downloadArquivo(
+            @PathVariable Long arquivoId
+    ) throws MalformedURLException {
+        Resource recurso = arquivoService.download(arquivoId);
+
+        // Força o download
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + recurso.getFilename() + "\"")
+                .body(recurso);
+    }
+
+    @Operation(summary = "Deleta um arquivo (restrições: estudantes só podem deletar os próprios arquivos)")
+    @DeleteMapping("/{arquivoId}")
+    public ResponseEntity<Void> deletarArquivo(
+            @PathVariable Long arquivoId,
+            @RequestParam Long usuarioId,
+            @RequestParam(defaultValue = "false") boolean isEducador
+    ) {
+        arquivoService.deletar(arquivoId, usuarioId, isEducador);
+        return ResponseEntity.noContent().build();
     }
 }
