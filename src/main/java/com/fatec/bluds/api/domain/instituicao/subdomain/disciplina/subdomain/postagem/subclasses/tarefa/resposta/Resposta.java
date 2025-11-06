@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.tarefa.resposta;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.resposta;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.tarefa.Tarefa;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
