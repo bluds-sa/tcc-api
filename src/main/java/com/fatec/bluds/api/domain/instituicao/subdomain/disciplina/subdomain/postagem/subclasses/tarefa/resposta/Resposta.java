@@ -1,6 +1,6 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.resposta;
 
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.Tarefa;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.model.Tarefa;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
