@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.model;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
 import jakarta.persistence.*;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_postagem", discriminatorType = DiscriminatorType.STRING)
-public class Postagem {
+public abstract class Postagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
