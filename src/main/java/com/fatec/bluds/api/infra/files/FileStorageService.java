@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.service;
+package com.fatec.bluds.api.infra.files;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

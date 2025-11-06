@@ -6,14 +6,16 @@ public record DisciplinaSummaryDTO(
         Long id,
         String nome,
         String descricao,
-        String educadorResponsavel
+        String educadorResponsavel,
+        String instituicao
 ) {
     public DisciplinaSummaryDTO(Disciplina disciplina) {
         this(
                 disciplina.getId(),
                 disciplina.getNome(),
                 disciplina.getDescricao(),
-                disciplina.getEducador().getNome()
+                disciplina.getEducador().getNome(),
+                disciplina.getInstituicaoEnsino().getNome()
         );
     }
 }
