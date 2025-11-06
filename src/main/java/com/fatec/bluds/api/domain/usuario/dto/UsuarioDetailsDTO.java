@@ -8,6 +8,7 @@ import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import java.time.LocalDate;
 
 public record UsuarioDetailsDTO(
+        Long id,
         String nome,
         String email,
         String telefone,
@@ -18,6 +19,7 @@ public record UsuarioDetailsDTO(
 ) {
      public UsuarioDetailsDTO(Usuario usuario) {
         this(
+                usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getTelefone(),
