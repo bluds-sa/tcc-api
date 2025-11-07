@@ -3,8 +3,17 @@ package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.po
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.model.Postagem;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "tarefa")
 @DiscriminatorValue("TAREFA")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Publicacao extends Postagem {
+    
 }
