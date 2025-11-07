@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario.model;
 
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import jakarta.persistence.*;
