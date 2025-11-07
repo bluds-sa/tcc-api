@@ -1,6 +1,7 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.model;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Disciplina;
+import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,10 @@ public abstract class Postagem {
     @ManyToOne
     @JoinColumn(name = "disciplina_id")
     private Disciplina disciplina;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "educador_id", nullable = false)
+    private Educador autor;
 
     @PrePersist
     protected void onCreate() {
