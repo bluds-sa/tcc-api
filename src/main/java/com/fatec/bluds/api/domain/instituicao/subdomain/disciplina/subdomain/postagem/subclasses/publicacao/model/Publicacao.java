@@ -8,12 +8,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "tarefa")
-@DiscriminatorValue("TAREFA")
+@Entity(name = "publicacao")
+@DiscriminatorValue("PUBLICACAO")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Publicacao extends Postagem {
-    
+
 }

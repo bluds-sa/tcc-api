@@ -7,6 +7,10 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -14,6 +18,10 @@ import java.util.Set;
 
 @Entity(name = "tarefa")
 @DiscriminatorValue("TAREFA")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Tarefa extends Postagem {
     private LocalDateTime dataExpiracao;
 
