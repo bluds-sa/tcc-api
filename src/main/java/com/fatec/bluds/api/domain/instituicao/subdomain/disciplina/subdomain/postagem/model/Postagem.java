@@ -37,4 +37,9 @@ public abstract class Postagem {
     @ManyToOne
     @JoinColumn(name = "disciplina_id")
     private Disciplina disciplina;
+
+    @PrePersist
+    protected void onCreate() {
+        dataEnvio = LocalDateTime.now();
+    }
 }
