@@ -8,6 +8,7 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.pos
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.repository.PublicacaoRepository;
 import com.fatec.bluds.api.infra.exceptions.general.UnauthorizedActionException;
 import com.fatec.bluds.api.infra.exceptions.postagem.PostagemNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +55,7 @@ public class PublicacaoServiceImpl implements PublicacaoService {
         return publicacaoRepository.findByDisciplinaId(disciplinaId);
     }
 
+    @Transactional
     @Override
     public Publicacao updatePublicacao(Long publicacaoId, UpdatePublicacaoDTO dto) {
         Publicacao publicacao = this.getPublicacaoById(publicacaoId);
@@ -73,6 +75,7 @@ public class PublicacaoServiceImpl implements PublicacaoService {
         return publicacaoRepository.save(publicacao);
     }
 
+    @Transactional
     @Override
     public void removePublicacao(Long id) {
         Publicacao publicacao = this.getPublicacaoById(id);
