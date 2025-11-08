@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Módulo Tarefas", description = "Responsável por operações relacionadas a Tarefas dentro de uma Disciplina")
 public class TarefaController {
 
-    @Autowired
     private final TarefaService tarefaService;
 
     public TarefaController(TarefaService tarefaService) {

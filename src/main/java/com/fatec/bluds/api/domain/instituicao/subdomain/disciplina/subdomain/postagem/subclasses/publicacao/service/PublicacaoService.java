@@ -10,7 +10,7 @@ public interface PublicacaoService {
     Publicacao createPublicacao(CreatePublicacaoDTO dto);
     Publicacao getPublicacaoById(Long id);
     List<Publicacao> getPublicacoesByDisciplina(Long disciplinaId);
-    Publicacao updatePublicacao(UpdatePublicacaoDTO dto);
+    Publicacao updatePublicacao(Long publicacaoId, UpdatePublicacaoDTO dto);
     void removePublicacao(Long id);
     
 }

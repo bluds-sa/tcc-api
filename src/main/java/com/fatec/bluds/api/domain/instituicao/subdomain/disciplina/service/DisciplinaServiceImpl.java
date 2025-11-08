@@ -21,16 +21,12 @@ import java.util.List;
 @Service
 public class DisciplinaServiceImpl implements DisciplinaService{
 
-    @Autowired
     private final DisciplinaRepository disciplinaRepository;
 
-    @Autowired
     private final EducadorService educadorService;
 
-    @Autowired
     private final EstudanteService estudanteService;
 
-    @Autowired
     private final InstituicaoService instituicaoService;
 
     public DisciplinaServiceImpl(DisciplinaRepository disciplinaRepository,

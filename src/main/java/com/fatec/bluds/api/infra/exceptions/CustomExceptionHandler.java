@@ -3,6 +3,7 @@ package com.fatec.bluds.api.infra.exceptions;
 import com.fatec.bluds.api.infra.exceptions.disciplina.DisciplinaNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.general.UnauthorizedActionException;
 import com.fatec.bluds.api.infra.exceptions.instituicao.InstituicaoNotFoundException;
+import com.fatec.bluds.api.infra.exceptions.postagem.PostagemNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -53,5 +54,10 @@ public class CustomExceptionHandler {
     @ExceptionHandler(UnauthorizedActionException.class)
     private ResponseEntity<String> handleUnauthorizedActionException(UnauthorizedActionException exception) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(PostagemNotFoundException.class)
+    private ResponseEntity<String> handlePostagemNotFoundException(PostagemNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }
