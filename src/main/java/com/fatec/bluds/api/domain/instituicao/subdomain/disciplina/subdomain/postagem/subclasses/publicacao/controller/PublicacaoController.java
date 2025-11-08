@@ -71,6 +71,11 @@ public class PublicacaoController {
         );
     }
 
+    @Operation(description = "Obtém uma Publicação através de seu ID", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Publicação obtida com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Publicação não encontrada")
+    })
     @GetMapping("/{publicacaoId}")
     public ResponseEntity<Object> getPublicacao(@PathVariable Long publicacaoId) {
         Publicacao publicacao = publicacaoService.getPublicacaoById(publicacaoId);
