@@ -25,6 +25,8 @@ public class Resposta {
 
     private Double nota;
 
+    private String comentario;
+
     @NotNull
     private String caminhoAnexo;
 
