@@ -45,6 +45,12 @@ public class PublicacaoController {
         return ResponseEntity.ok().body(new PublicacaoSummaryDTO(publicacao));
     }
 
+    @Operation(summary = "Busca as Publicações em uma Disciplina", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Publicações listadas com sucesso"),
+            @ApiResponse(responseCode = "204", description = "Não há Publicações cadastradas nesta Disciplina"),
+            @ApiResponse(responseCode = "404", description = "Disciplina não encontrada"),
+    })
     @GetMapping("/disciplina")
     public ResponseEntity<Object> getPublicacoes(
             @RequestParam
