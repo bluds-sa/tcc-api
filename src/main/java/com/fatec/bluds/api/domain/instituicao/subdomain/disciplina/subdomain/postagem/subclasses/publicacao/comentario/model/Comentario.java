@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario.model;
 
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.model.Publicacao;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -42,4 +43,8 @@ public class Comentario {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario autor;
+
+    @ManyToOne
+    @JoinColumn(name = "publicacao_id")
+    private Publicacao publicacao;
 }
