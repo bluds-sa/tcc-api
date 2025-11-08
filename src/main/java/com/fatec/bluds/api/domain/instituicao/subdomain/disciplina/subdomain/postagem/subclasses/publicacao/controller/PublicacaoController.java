@@ -3,8 +3,6 @@ package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.po
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.service.PublicacaoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +18,5 @@ public class PublicacaoController {
         this.publicacaoService = publicacaoService;
     }
 
-    
+
 }
