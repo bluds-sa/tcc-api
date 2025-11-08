@@ -1,6 +1,6 @@
-package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.tarefa.resposta;
+package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.resposta.model;
 
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.tarefa.Tarefa;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.model.Tarefa;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -24,6 +24,8 @@ public class Resposta {
     private LocalDateTime dataUpload;
 
     private Double nota;
+
+    private String comentario;
 
     @NotNull
     private String caminhoAnexo;
