@@ -16,6 +16,7 @@ import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -32,17 +33,22 @@ public class PublicacaoController {
 
     @Operation(summary = "Cria uma Publicação", method = "POST")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Publicação criada com sucesso"),
+            @ApiResponse(responseCode = "201", description = "Publicação criada com sucesso"),
             @ApiResponse(responseCode = "403", description = "O Educador que está realizando a Publicação não é o responsável pela Disciplina"),
             @ApiResponse(responseCode = "404", description = "Disciplina não encontrada"),
             @ApiResponse(responseCode = "409", description = "Dados inválidos ou conflitantes")
     })
     @PreAuthorize("hasRole('EDUCADOR')")
     @PostMapping
-    public ResponseEntity<Object> createPublicacao(@RequestBody @Valid CreatePublicacaoDTO dto) {
+    public ResponseEntity<Object> createPublicacao(@RequestBody @Valid CreatePublicacaoDTO dto, UriComponentsBuilder uriBuilder) {
         Publicacao publicacao = publicacaoService.createPublicacao(dto);
 
-        return ResponseEntity.ok().body(new PublicacaoSummaryDTO(publicacao));
+        var uri = uriBuilder
+                .path("/publicacoes/{id}")
+                .buildAndExpand(publicacao.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(new PublicacaoSummaryDTO(publicacao));
     }
 
     @Operation(summary = "Busca as Publicações em uma Disciplina", method = "GET")
