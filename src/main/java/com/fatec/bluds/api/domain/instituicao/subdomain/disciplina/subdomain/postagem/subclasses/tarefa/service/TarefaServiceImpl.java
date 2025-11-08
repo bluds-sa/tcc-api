@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class TarefaServiceImpl implements TarefaService {
 
-    @Autowired
     private final TarefaRepository tarefaRepository;
 
     public TarefaServiceImpl(TarefaRepository tarefaRepository) {

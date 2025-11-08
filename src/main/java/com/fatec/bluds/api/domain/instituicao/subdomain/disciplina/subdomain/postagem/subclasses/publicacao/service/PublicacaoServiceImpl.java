@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class PublicacaoServiceImpl implements PublicacaoService {
 
-    @Autowired
     private final PublicacaoRepository publicacaoRepository;
 
     public PublicacaoServiceImpl(PublicacaoRepository publicacaoRepository) {

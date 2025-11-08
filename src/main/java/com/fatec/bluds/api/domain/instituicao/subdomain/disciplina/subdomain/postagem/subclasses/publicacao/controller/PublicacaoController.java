@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Módulo Publicações", description = "Responsável por operações relacionadas a Publicações dentro de uma Disciplina")
 public class PublicacaoController {
 
-    @Autowired
     private final PublicacaoService publicacaoService;
 
     public PublicacaoController(PublicacaoService publicacaoService) {
