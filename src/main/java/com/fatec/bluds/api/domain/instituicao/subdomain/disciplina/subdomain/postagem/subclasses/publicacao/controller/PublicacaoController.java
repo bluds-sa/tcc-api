@@ -6,6 +6,9 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.pos
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.dto.UpdatePublicacaoDTO;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.model.Publicacao;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.service.PublicacaoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -27,6 +30,13 @@ public class PublicacaoController {
         this.publicacaoService = publicacaoService;
     }
 
+    @Operation(summary = "Cria uma Publicação", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Publicação criada com sucesso"),
+            @ApiResponse(responseCode = "403", description = "O Educador que está realizando a Publicação não é o responsável pela Disciplina"),
+            @ApiResponse(responseCode = "404", description = "Disciplina não encontrada"),
+            @ApiResponse(responseCode = "409", description = "Dados inválidos ou conflitantes")
+    })
     @PreAuthorize("hasRole('EDUCADOR')")
     @PostMapping
     public ResponseEntity<Object> createPublicacao(@RequestBody @Valid CreatePublicacaoDTO dto) {
