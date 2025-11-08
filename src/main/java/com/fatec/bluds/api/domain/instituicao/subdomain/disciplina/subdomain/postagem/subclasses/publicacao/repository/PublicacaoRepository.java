@@ -2,7 +2,9 @@ package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.po
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.model.Publicacao;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PublicacaoRepository extends JpaRepository<Publicacao, Long> {
-    
+
 }
