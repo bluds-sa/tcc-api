@@ -7,9 +7,10 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.pos
 import java.util.List;
 
 public interface PublicacaoService {
-    public Publicacao createPublicacao(CreatePublicacaoDTO dto);
-    public Publicacao getPublicacaoById(Long id);
-    public List<Publicacao> getPublicacoesByDisciplina(Long disciplinaId);
-    public Publicacao updatePublicacao(UpdatePublicacaoDTO dto);
-    public void removePublicacao(Long id);
+    Publicacao createPublicacao(CreatePublicacaoDTO dto);
+    Publicacao getPublicacaoById(Long id);
+    List<Publicacao> getPublicacoesByDisciplina(Long disciplinaId);
+    Publicacao updatePublicacao(UpdatePublicacaoDTO dto);
+    void removePublicacao(Long id);
+    
 }
