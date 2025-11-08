@@ -21,7 +21,6 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(of = "id")
 public class Comentario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
