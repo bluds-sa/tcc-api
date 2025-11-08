@@ -57,7 +57,7 @@ public class PublicacaoController {
     }
 
     @PreAuthorize("hasRole('EDUCADOR')")
-    @PutMapping
+    @PutMapping("/{publicacaoId}")
     public ResponseEntity<Object> updatePublicacao(@PathVariable Long publicacaoId, @RequestBody UpdatePublicacaoDTO dto) {
         Publicacao publicacao = publicacaoService.updatePublicacao(publicacaoId, dto);
 
