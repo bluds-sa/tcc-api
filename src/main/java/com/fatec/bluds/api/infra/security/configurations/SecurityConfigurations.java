@@ -38,6 +38,8 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.PUT, "/reset-password/reset-password").permitAll()
                         .requestMatchers("/gestor","/gestor/**","/estudantes","/estudantes/**").authenticated()
                         .requestMatchers("/instituicoes","/instituicoes/**").authenticated()
+                        .requestMatchers("/disciplinas","/disciplinas/**").authenticated()
+                        .requestMatchers("/publicacoes","/publicacoes/**").authenticated()
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().permitAll()) // Alterar para .authenticated depois
                 .headers(headers -> headers
