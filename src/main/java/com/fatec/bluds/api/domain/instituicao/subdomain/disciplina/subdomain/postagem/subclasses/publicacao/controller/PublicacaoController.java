@@ -83,6 +83,12 @@ public class PublicacaoController {
         return ResponseEntity.ok().body(new PublicacaoDetailsDTO(publicacao));
     }
 
+    @Operation(summary = "Atualiza as informações de uma Publicação", method = "PUT")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Publicação atualizada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Disciplina não encontrada"),
+            @ApiResponse(responseCode = "409", description = "Dados inválidos ou conflitantes")
+    })
     @PreAuthorize("hasRole('EDUCADOR')")
     @PutMapping("/{publicacaoId}")
     public ResponseEntity<Object> updatePublicacao(@PathVariable Long publicacaoId, @RequestBody UpdatePublicacaoDTO dto) {
@@ -91,6 +97,11 @@ public class PublicacaoController {
         return ResponseEntity.ok().body(new PublicacaoDetailsDTO(publicacao));
     }
 
+    @Operation(summary = "Deleta uma Publicação a partir do seu ID", method = "DELETE")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Publicação deletada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Disciplina não encontrada"),
+    })
     @PreAuthorize("hasRole('EDUCADOR')")
     @DeleteMapping("/{publicacaoId}")
     public ResponseEntity<Object> deletePublicacao(@PathVariable Long publicacaoId) {
