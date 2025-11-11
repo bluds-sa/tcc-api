@@ -6,10 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,7 +16,8 @@ import java.util.List;
 @Table(name = "comentario")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(of = "id")
 public class Comentario {
     @Id
@@ -34,7 +32,7 @@ public class Comentario {
     @JoinColumn(name = "comentario_pai_id")
     private Comentario comentarioPai;
 
-    @OneToMany(mappedBy = "comentarioPai", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "comentarioPai", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Comentario> respostas = new ArrayList<>();
 
     @NotNull
@@ -47,4 +45,9 @@ public class Comentario {
     @ManyToOne
     @JoinColumn(name = "publicacao_id")
     private Publicacao publicacao;
+
+    @PrePersist
+    protected void onCreate() {
+        dataCriacao = LocalDateTime.now();
+    }
 }
