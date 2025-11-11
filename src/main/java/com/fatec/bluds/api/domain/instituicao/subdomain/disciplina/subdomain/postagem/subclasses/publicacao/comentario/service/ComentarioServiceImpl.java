@@ -7,6 +7,8 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.pos
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ComentarioServiceImpl implements ComentarioService {
 
@@ -24,6 +26,16 @@ public class ComentarioServiceImpl implements ComentarioService {
     @Override
     public Comentario responderComentario(Long comentarioId, CreateComentarioDTO dto) {
         return null;
+    }
+
+    @Override
+    public Comentario getComentarioById(Long comentarioId) {
+        return null;
+    }
+
+    @Override
+    public List<Comentario> listarComentariosDePublicacao(Long publicacaoId) {
+        return List.of();
     }
 
     @Override
