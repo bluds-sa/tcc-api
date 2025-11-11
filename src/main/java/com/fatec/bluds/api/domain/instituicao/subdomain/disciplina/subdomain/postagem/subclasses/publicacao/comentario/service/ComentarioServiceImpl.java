@@ -19,12 +19,12 @@ public class ComentarioServiceImpl implements ComentarioService {
     }
 
     @Override
-    public Comentario responderPublicacao(Long publicacaoId, CreateComentarioDTO dto) {
+    public List<Comentario> responderPublicacao(Long publicacaoId, CreateComentarioDTO dto) {
         return null;
     }
 
     @Override
-    public Comentario responderComentario(Long comentarioId, CreateComentarioDTO dto) {
+    public List<Comentario> responderComentario(Long comentarioId, CreateComentarioDTO dto) {
         return null;
     }
 
