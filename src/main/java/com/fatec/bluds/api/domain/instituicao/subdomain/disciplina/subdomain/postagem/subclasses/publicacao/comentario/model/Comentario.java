@@ -32,7 +32,7 @@ public class Comentario {
     @JoinColumn(name = "comentario_pai_id")
     private Comentario comentarioPai;
 
-    @OneToMany(mappedBy = "comentarioPai", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "comentarioPai", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Comentario> respostas = new ArrayList<>();
 
     @NotNull
