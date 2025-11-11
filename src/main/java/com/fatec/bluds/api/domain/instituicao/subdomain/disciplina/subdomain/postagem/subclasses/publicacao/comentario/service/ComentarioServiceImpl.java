@@ -18,8 +18,10 @@ public class ComentarioServiceImpl implements ComentarioService {
     private final PublicacaoService publicacaoService;
     private final UsuarioService usuarioService;
 
-    public ComentarioServiceImpl(ComentarioRepository repository) {
+    public ComentarioServiceImpl(ComentarioRepository repository, PublicacaoService publicacaoService, UsuarioService usuarioService) {
         this.repository = repository;
+        this.publicacaoService = publicacaoService;
+        this.usuarioService = usuarioService;
     }
 
     @Override
