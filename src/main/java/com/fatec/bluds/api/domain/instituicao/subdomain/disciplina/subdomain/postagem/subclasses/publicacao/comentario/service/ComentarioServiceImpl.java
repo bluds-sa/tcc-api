@@ -30,7 +30,7 @@ public class ComentarioServiceImpl implements ComentarioService {
     }
 
     @Override
-    public List<Comentario> responderPublicacao(Long publicacaoId, CreateComentarioDTO dto) {
+    public Comentario responderPublicacao(Long publicacaoId, CreateComentarioDTO dto) {
         Publicacao publicacao = publicacaoService.getPublicacaoById(publicacaoId);
         Usuario usuario = usuarioService.getAuthenticatedUser();
 
@@ -39,14 +39,12 @@ public class ComentarioServiceImpl implements ComentarioService {
         comentario.setConteudo(dto.conteudo());
         comentario.setAutor(usuario);
 
-        repository.save(comentario);
-
-        return this.listarComentariosDePublicacao(publicacaoId);
+        return repository.save(comentario);
     }
 
     @Override
     @Transactional
-    public List<Comentario> responderComentario(Long comentarioId, CreateComentarioDTO dto) {
+    public Comentario responderComentario(Long comentarioId, CreateComentarioDTO dto) {
         Comentario comentarioPai = this.getComentarioById(comentarioId);
         Comentario comentarioNovo = new Comentario();
 
@@ -58,9 +56,8 @@ public class ComentarioServiceImpl implements ComentarioService {
         comentarioPai.getRespostas().add(comentarioNovo);
 
         repository.save(comentarioNovo);
-        repository.save(comentarioPai);
 
-        return this.listarComentariosDePublicacao(comentarioPai.getPublicacao().getId());
+        return repository.save(comentarioPai);
     }
 
     @Override

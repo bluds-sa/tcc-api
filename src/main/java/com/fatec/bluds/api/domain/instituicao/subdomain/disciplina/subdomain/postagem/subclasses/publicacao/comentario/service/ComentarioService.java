@@ -7,8 +7,8 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.pos
 import java.util.List;
 
 public interface ComentarioService {
-    List<Comentario> responderPublicacao(Long publicacaoId, CreateComentarioDTO dto);
-    List<Comentario> responderComentario(Long comentarioId, CreateComentarioDTO dto);
+    Comentario responderPublicacao(Long publicacaoId, CreateComentarioDTO dto);
+    Comentario responderComentario(Long comentarioId, CreateComentarioDTO dto);
     Comentario getComentarioById(Long comentarioId);
     List<Comentario> listarComentariosDePublicacao(Long publicacaoId);
     Comentario atualizarComentario(Long comentarioId, UpdateComentarioDTO dto);
