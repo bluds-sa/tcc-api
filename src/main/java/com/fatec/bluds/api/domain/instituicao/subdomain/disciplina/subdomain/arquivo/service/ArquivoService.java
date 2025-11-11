@@ -17,4 +17,7 @@ public interface ArquivoService {
     List<ArquivoDTO> listarArquivos(Long disciplinaId);
 
     void deletar(Long arquivoId, Long usuarioId, boolean isEducador);
+
+    String salvar(MultipartFile arquivo, String subpasta);
+
 }

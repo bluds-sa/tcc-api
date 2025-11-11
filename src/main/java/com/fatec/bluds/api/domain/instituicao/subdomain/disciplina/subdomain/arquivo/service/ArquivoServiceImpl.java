@@ -115,4 +115,20 @@ public class ArquivoServiceImpl implements ArquivoService {
 
         arquivoRepository.delete(arquivo);
     }
+
+    @Override
+    public String salvar(MultipartFile arquivo, String subpasta) {
+        try {
+            Path pastaDestino = raizUploads.resolve(subpasta);
+            Files.createDirectories(pastaDestino);
+
+            Path caminhoArquivo = pastaDestino.resolve(arquivo.getOriginalFilename());
+            Files.copy(arquivo.getInputStream(), caminhoArquivo, StandardCopyOption.REPLACE_EXISTING);
+
+            return caminhoArquivo.toString(); // retorna o caminho absoluto salvo
+        } catch (IOException e) {
+            throw new RuntimeException("Falha ao salvar arquivo: " + arquivo.getOriginalFilename(), e);
+        }
+    }
+
 }
