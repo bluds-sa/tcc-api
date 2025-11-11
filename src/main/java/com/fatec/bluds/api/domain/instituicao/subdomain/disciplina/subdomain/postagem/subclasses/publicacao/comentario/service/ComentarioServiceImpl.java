@@ -69,7 +69,7 @@ public class ComentarioServiceImpl implements ComentarioService {
 
     @Override
     public List<Comentario> listarComentariosDePublicacao(Long publicacaoId) {
-        return repository.findByPublicacaoIdAndComentarioPaiIsNull(publicacaoId);
+        return repository.findRootComentariosWithRespostasByPublicacaoIdAndComentarioPaiIsNull(publicacaoId);
     }
 
     @Transactional
