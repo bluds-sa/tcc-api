@@ -5,9 +5,13 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.pos
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario.model.Comentario;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 
+import java.util.List;
+
 public interface ComentarioService {
     Comentario responderPublicacao(Long publicacaoId, CreateComentarioDTO dto);
     Comentario responderComentario(Long comentarioId, CreateComentarioDTO dto);
+    Comentario getComentarioById(Long comentarioId);
+    List<Comentario> listarComentariosDePublicacao(Long publicacaoId);
     Comentario atualizarComentario(Long comentarioId, UpdateComentarioDTO dto);
     void removerComentario(Usuario usuario, Long comentarioId);
 }
