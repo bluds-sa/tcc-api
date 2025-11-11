@@ -47,4 +47,9 @@ public class Comentario {
     @ManyToOne
     @JoinColumn(name = "publicacao_id")
     private Publicacao publicacao;
+
+    @PrePersist
+    protected void onCreate() {
+        dataCriacao = LocalDateTime.now();
+    }
 }

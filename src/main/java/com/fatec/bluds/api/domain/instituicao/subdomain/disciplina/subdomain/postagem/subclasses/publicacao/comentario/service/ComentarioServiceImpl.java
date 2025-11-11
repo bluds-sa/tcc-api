@@ -4,7 +4,9 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.pos
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario.dto.UpdateComentarioDTO;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario.model.Comentario;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario.repository.ComentarioRepository;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.service.PublicacaoService;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
+import com.fatec.bluds.api.domain.usuario.service.UsuarioService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
 public class ComentarioServiceImpl implements ComentarioService {
 
     private final ComentarioRepository repository;
+    private final PublicacaoService publicacaoService;
+    private final UsuarioService usuarioService;
 
     public ComentarioServiceImpl(ComentarioRepository repository) {
         this.repository = repository;
@@ -44,7 +48,7 @@ public class ComentarioServiceImpl implements ComentarioService {
     }
 
     @Override
-    public void removerComentario(Usuario usuario, Long comentarioId) {
+    public void removerComentario(Long comentarioId) {
 
     }
 }
