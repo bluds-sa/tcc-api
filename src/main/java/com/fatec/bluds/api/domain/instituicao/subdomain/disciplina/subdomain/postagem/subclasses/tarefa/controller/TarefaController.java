@@ -1,7 +1,9 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.controller;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.dto.CreateTarefaDTO;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.dto.SummaryTarefaDTO;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.dto.UpdateTarefaDTO;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.dto.TarefaDetailsDTO;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.model.Tarefa;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.service.TarefaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,40 +31,43 @@ public class TarefaController {
     @Operation(summary = "Cria uma nova tarefa")
     @PostMapping
     @PreAuthorize("hasRole('EDUCADOR') or hasRole('GESTOR')")
-    public ResponseEntity<Tarefa> createTarefa(
+    public ResponseEntity<SummaryTarefaDTO> createTarefa(
             @RequestBody @Valid CreateTarefaDTO dto,
             UriComponentsBuilder uriBuilder
     ) {
-        Tarefa tarefa = tarefaService.createTarefa(dto);
-        URI uri = uriBuilder.path("/tarefas/{id}").buildAndExpand(tarefa.getId()).toUri();
-        return ResponseEntity.created(uri).body(tarefa);
+        var tarefa = tarefaService.createTarefa(dto);
+        var uri = uriBuilder.path("/tarefas/{id}").buildAndExpand(tarefa.getId()).toUri();
+        return ResponseEntity.created(uri).body(new SummaryTarefaDTO(tarefa));
     }
 
     @Operation(summary = "Busca uma tarefa pelo ID")
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('EDUCADOR') or hasRole('GESTOR') or hasRole('ESTUDANTE')")
-    public ResponseEntity<Tarefa> getTarefaById(@PathVariable Long id) {
-        Tarefa tarefa = tarefaService.getTarefaById(id);
-        return ResponseEntity.ok(tarefa);
+    public ResponseEntity<TarefaDetailsDTO> getTarefaById(@PathVariable Long id) {
+        var tarefa = tarefaService.getTarefaById(id);
+        return ResponseEntity.ok(new TarefaDetailsDTO(tarefa));
     }
 
     @Operation(summary = "Lista todas as tarefas de uma disciplina")
     @GetMapping("/disciplina/{disciplinaId}")
     @PreAuthorize("hasRole('EDUCADOR') or hasRole('GESTOR') or hasRole('ESTUDANTE')")
-    public ResponseEntity<List<Tarefa>> getTarefasByDisciplina(@PathVariable Long disciplinaId) {
-        List<Tarefa> tarefas = tarefaService.getTarefasByDisciplina(disciplinaId);
+    public ResponseEntity<List<SummaryTarefaDTO>> getTarefasByDisciplina(@PathVariable Long disciplinaId) {
+        var tarefas = tarefaService.getTarefasByDisciplina(disciplinaId)
+                .stream()
+                .map(SummaryTarefaDTO::new)
+                .toList();
         return ResponseEntity.ok(tarefas);
     }
 
     @Operation(summary = "Atualiza uma tarefa existente")
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('EDUCADOR') or hasRole('GESTOR')")
-    public ResponseEntity<Tarefa> updateTarefa(
+    public ResponseEntity<SummaryTarefaDTO> updateTarefa(
             @PathVariable Long id,
             @RequestBody @Valid UpdateTarefaDTO dto
     ) {
-        Tarefa updated = tarefaService.updateTarefa(id, dto);
-        return ResponseEntity.ok(updated);
+        var updated = tarefaService.updateTarefa(id, dto);
+        return ResponseEntity.ok(new SummaryTarefaDTO(updated));
     }
 
     @Operation(summary = "Remove uma tarefa existente")
