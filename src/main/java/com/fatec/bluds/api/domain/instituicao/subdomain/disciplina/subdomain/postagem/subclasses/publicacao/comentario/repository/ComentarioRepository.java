@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ComentarioRepository extends JpaRepository<Comentario, Long> {
-    List<Comentario> findByPublicacaoId(Long publicacaoId);
+    List<Comentario> findByPublicacaoIdAndComentarioPaiIsNull(Long publicacaoId);
 }
