@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public record ComentarioSummaryDTO(
-        Long idPublicacao ,
         Long id,
         String conteudo,
         UsuarioSummaryDTO autor,
@@ -16,7 +15,6 @@ public record ComentarioSummaryDTO(
 ) {
     public ComentarioSummaryDTO(Comentario comentario) {
         this(
-                comentario.getPublicacao().getId(),
                 comentario.getId(),
                 comentario.getConteudo(),
                 new UsuarioSummaryDTO(comentario.getAutor()),
