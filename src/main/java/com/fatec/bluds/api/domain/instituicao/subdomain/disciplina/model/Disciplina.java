@@ -1,8 +1,7 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model;
 
 import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.Arquivo;
-import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.Postagem;
+import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.model.Arquivo;
 import com.fatec.bluds.api.domain.usuario.subclasses.educador.model.Educador;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import jakarta.persistence.*;
@@ -49,7 +48,4 @@ public class Disciplina {
 
     @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Arquivo> arquivos = new HashSet<>();
-
-    @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Postagem> postagens = new HashSet<>();
 }
