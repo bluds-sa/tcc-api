@@ -46,7 +46,7 @@ public class RespostaController {
     // --- Avaliar resposta (professor) ---
     @Operation(summary = "Avalia uma resposta enviada por um estudante")
     @PatchMapping("/{id}/avaliar")
-    @PreAuthorize("hasRole('PROFESSOR')")
+    @PreAuthorize("hasRole('EDUCADOR')")
     public ResponseEntity<RespostaDTO> avaliarResposta(
             @PathVariable Long id,
             @RequestBody AvaliarRespostaDTO dto
