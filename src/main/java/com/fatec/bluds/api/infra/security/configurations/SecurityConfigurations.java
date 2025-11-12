@@ -45,7 +45,7 @@ public class SecurityConfigurations {
                         .requestMatchers("/comentarios", "/comentarios/**").authenticated()
                         .requestMatchers("/tarefas", "/tarefas/**").authenticated()
                         .requestMatchers("/respostas", "/respostas/**").authenticated()
-                        .requestMatchers("/swagger-ui", "/swagger-ui/**").permitAll()
+                        .requestMatchers("/swagger-ui", "/swagger-ui/**", "/v3/api-docs*/**").permitAll()
                         .requestMatchers("/h2-console/**").denyAll()
                         .anyRequest().denyAll())
                 .headers(headers -> headers
