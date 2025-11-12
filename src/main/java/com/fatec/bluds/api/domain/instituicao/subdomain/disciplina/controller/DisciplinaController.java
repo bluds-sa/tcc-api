@@ -30,7 +30,7 @@ public class DisciplinaController {
 
     @Operation(summary = "Cria uma Disciplina", method = "POST")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Disciplina criada com sucesso"),
+            @ApiResponse(responseCode = "201", description = "Disciplina criada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Instituição de Ensino ou Educador não encontrados"),
             @ApiResponse(responseCode = "409", description = "Dados inválidos ou conflitantes")
     })
