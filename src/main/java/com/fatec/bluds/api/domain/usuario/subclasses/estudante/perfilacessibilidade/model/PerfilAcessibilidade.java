@@ -1,4 +1,4 @@
-package com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilidade;
+package com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilidade.model;
 
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilidade.enums.TipoDeficiencia;
 import jakarta.persistence.*;
