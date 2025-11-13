@@ -40,8 +40,14 @@ public class SecurityConfigurations {
                         .requestMatchers("/instituicoes","/instituicoes/**").authenticated()
                         .requestMatchers("/disciplinas","/disciplinas/**").authenticated()
                         .requestMatchers("/publicacoes","/publicacoes/**").authenticated()
-                        .requestMatchers("/h2-console/**").permitAll()
-                        .anyRequest().permitAll()) // Alterar para .authenticated depois
+                        .requestMatchers("/arquivos", "/arquivos/**").authenticated()
+                        .requestMatchers("/publicacoes", "/publicacoes/**").authenticated()
+                        .requestMatchers("/comentarios", "/comentarios/**").authenticated()
+                        .requestMatchers("/tarefas", "/tarefas/**").authenticated()
+                        .requestMatchers("/respostas", "/respostas/**").authenticated()
+                        .requestMatchers("/swagger-ui", "/swagger-ui/**", "/v3/api-docs*/**").permitAll()
+                        .requestMatchers("/h2-console/**").denyAll()
+                        .anyRequest().denyAll())
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
