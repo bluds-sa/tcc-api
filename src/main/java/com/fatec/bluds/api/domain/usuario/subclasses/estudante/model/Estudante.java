@@ -4,6 +4,7 @@ import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.model.Discipl
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums.AnoEscolar;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.enums.Periodo;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilidade.model.PerfilAcessibilidade;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -40,4 +41,7 @@ public class Estudante extends Usuario {
             inverseJoinColumns = @JoinColumn(name = "disciplina_id")
     )
     private Set<Disciplina> disciplinas = new HashSet<>();
+
+    @OneToOne(mappedBy = "estudante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PerfilAcessibilidade perfilAcessibilidade;
 }
