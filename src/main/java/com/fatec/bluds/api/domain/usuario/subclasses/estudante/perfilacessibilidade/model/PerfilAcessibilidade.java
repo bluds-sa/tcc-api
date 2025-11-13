@@ -1,5 +1,6 @@
 package com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilidade.model;
 
+import com.fatec.bluds.api.domain.usuario.subclasses.estudante.model.Estudante;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilidade.enums.TipoDeficiencia;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -33,5 +34,10 @@ public class PerfilAcessibilidade {
     @Column
     private int tamanhoFonte;
 
+    @Column
     private boolean talkBack;
+
+    @OneToOne
+    @JoinColumn(name = "estudante_id", nullable = false, unique = true)
+    private Estudante estudante;
 }
