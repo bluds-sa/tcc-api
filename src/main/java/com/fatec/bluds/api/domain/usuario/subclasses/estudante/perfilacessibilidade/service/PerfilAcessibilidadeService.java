@@ -4,13 +4,10 @@ import com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilid
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilidade.dto.UpdatePerfilAcessibilidadeDTO;
 import com.fatec.bluds.api.domain.usuario.subclasses.estudante.perfilacessibilidade.model.PerfilAcessibilidade;
 
-import java.util.List;
-
 public interface PerfilAcessibilidadeService {
-    PerfilAcessibilidade createPerfilAcessibilidade(CreatePerfilAcessibilidadeDTO dto);
+    PerfilAcessibilidade createPerfilAcessibilidade(Long estudanteId, CreatePerfilAcessibilidadeDTO dto);
     PerfilAcessibilidade getById(Long id);
     PerfilAcessibilidade getByEstudante(Long estudanteId);
-    List<PerfilAcessibilidade> listarPefisDaInstituicao(Long instituicaoId);
-    PerfilAcessibilidade updatePerfilAcessibilidade(Long estudanteId, UpdatePerfilAcessibilidadeDTO dto);
+    PerfilAcessibilidade updatePerfilAcessibilidade(Long perfilId, UpdatePerfilAcessibilidadeDTO dto);
     void removePerfilAcessibilidade(Long id);
 }

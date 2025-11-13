@@ -4,6 +4,7 @@ import com.fatec.bluds.api.infra.exceptions.comentario.ComentarioNotFoundExcepti
 import com.fatec.bluds.api.infra.exceptions.disciplina.DisciplinaNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.general.UnauthorizedActionException;
 import com.fatec.bluds.api.infra.exceptions.instituicao.InstituicaoNotFoundException;
+import com.fatec.bluds.api.infra.exceptions.perfilacessibilidade.PerfilAcessibilidadeNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.postagem.PostagemNotFoundException;
 import com.fatec.bluds.api.infra.exceptions.usuario.UsuarioNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -64,6 +65,11 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(ComentarioNotFoundException.class)
     private ResponseEntity<String> handleComentarioNotFoundException(ComentarioNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(PerfilAcessibilidadeNotFoundException.class)
+    private ResponseEntity<String> handlePerfilAcessibilidadeNotFoundException(PerfilAcessibilidadeNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }
