@@ -56,25 +56,20 @@ public class PerfilAcessibilidadeServiceImpl implements PerfilAcessibilidadeServ
     public PerfilAcessibilidade updatePerfilAcessibilidade(Long perfilId, UpdatePerfilAcessibilidadeDTO dto) {
         PerfilAcessibilidade perfil = this.getById(perfilId);
 
-        Optional.of(dto.tipoDeficiencia())
-                .filter(Objects::nonNull)
+        Optional.ofNullable(dto.tipoDeficiencia())
                 .ifPresent(perfil::setTipoDeficiencia);
 
-        Optional.of(dto.usaLeitorDeTela())
-                .filter(Objects::nonNull)
+        Optional.ofNullable(dto.usaLeitorDeTela())
                 .ifPresent(perfil::setUsaLeitorDeTela);
 
-        Optional.of(dto.modoAltoContraste())
-                .filter(Objects::nonNull)
+        Optional.ofNullable(dto.modoAltoContraste())
                 .ifPresent(perfil::setModoAltoContraste);
 
-        Optional.of(dto.tamanhoFonte())
-                .filter(Objects::nonNull)
+        Optional.ofNullable(dto.tamanhoFonte())
                 .filter(tamanhoFonte -> tamanhoFonte > 0)
                 .ifPresent(perfil::setTamanhoFonte);
 
-        Optional.of(dto.talkBack())
-                .filter(Objects::nonNull)
+        Optional.ofNullable(dto.talkBack())
                 .ifPresent(perfil::setTalkBack);
 
         return repository.save(perfil);
