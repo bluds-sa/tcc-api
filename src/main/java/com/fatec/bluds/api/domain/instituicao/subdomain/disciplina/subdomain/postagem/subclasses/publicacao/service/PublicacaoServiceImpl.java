@@ -70,7 +70,7 @@ public class PublicacaoServiceImpl implements PublicacaoService {
 
         Optional.ofNullable(dto.caminhoAnexo())
                 .filter(caminho -> !caminho.isBlank())
-                .ifPresent(publicacao::setConteudo);
+                .ifPresent(publicacao::setCaminhoAnexo);
 
         return publicacaoRepository.save(publicacao);
     }
