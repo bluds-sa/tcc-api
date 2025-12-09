@@ -8,7 +8,7 @@ public record InstituicaoDetailsDTO(
         String nome,
         String telefone,
         String email,
-        String cpnj,
+        String cnpj,
         Endereco endereco
 ) {
     public InstituicaoDetailsDTO(InstituicaoEnsino instituicaoEnsino) {
