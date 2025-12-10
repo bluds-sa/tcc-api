@@ -2,8 +2,11 @@ package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.po
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.arquivo.dto.ArquivoDTO;
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.tarefa.resposta.model.Resposta;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.time.LocalDateTime;
 
+@Schema
 public record RespostaDTO(
         Long id,
         String estudanteNome,

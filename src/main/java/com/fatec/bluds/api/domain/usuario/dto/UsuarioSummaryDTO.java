@@ -1,10 +1,9 @@
-package com.fatec.bluds.api.domain.usuario.dto.Enums;
+package com.fatec.bluds.api.domain.usuario.dto;
 
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
-import com.fatec.bluds.api.domain.usuario.roles.Roles;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-import javax.management.relation.Role;
-
+@Schema
 public record UsuarioSummaryDTO(
         Long id,
         String nome,

@@ -1,7 +1,7 @@
 package com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario.dto;
 
 import com.fatec.bluds.api.domain.instituicao.subdomain.disciplina.subdomain.postagem.subclasses.publicacao.comentario.model.Comentario;
-import com.fatec.bluds.api.domain.usuario.dto.Enums.UsuarioSummaryDTO;
+import com.fatec.bluds.api.domain.usuario.dto.UsuarioSummaryDTO;
 
 import java.time.LocalDateTime;
 

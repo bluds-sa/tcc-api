@@ -3,7 +3,7 @@ package com.fatec.bluds.api.domain.instituicao.controller;
 import com.fatec.bluds.api.domain.instituicao.dto.*;
 import com.fatec.bluds.api.domain.instituicao.model.InstituicaoEnsino;
 import com.fatec.bluds.api.domain.instituicao.service.InstituicaoService;
-import com.fatec.bluds.api.domain.usuario.dto.Enums.UsuarioSummaryDTO;
+import com.fatec.bluds.api.domain.usuario.dto.UsuarioSummaryDTO;
 import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import com.fatec.bluds.api.domain.usuario.service.UsuarioService;
 import com.fatec.bluds.api.domain.usuario.subclasses.gestor.model.Gestor;
