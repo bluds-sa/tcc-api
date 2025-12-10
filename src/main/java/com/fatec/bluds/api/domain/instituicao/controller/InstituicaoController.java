@@ -40,7 +40,7 @@ public class InstituicaoController {
     })
     @PreAuthorize("hasRole('GESTOR')")
     @PostMapping
-    public ResponseEntity<Object> createInstituicao(@RequestBody @Valid CreateInstituicaoDTO dto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<InstituicaoDetailsDTO> createInstituicao(@RequestBody @Valid CreateInstituicaoDTO dto, UriComponentsBuilder uriBuilder) {
 
         Usuario usuarioAutenticado = usuarioService.getAuthenticatedUser();
 
@@ -64,7 +64,7 @@ public class InstituicaoController {
             @ApiResponse(responseCode = "404", description = "Instituição de Ensino não encontrada")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getInstituicaoById(@PathVariable Long id) {
+    public ResponseEntity<InstituicaoDetailsDTO> getInstituicaoById(@PathVariable Long id) {
         InstituicaoEnsino instituicao = instituicaoService.getInstituicaoById(id);
 
         return ResponseEntity.ok(new InstituicaoDetailsDTO(instituicao));
@@ -76,14 +76,14 @@ public class InstituicaoController {
             @ApiResponse(responseCode = "404", description = "Instituição de Ensino não encontrada")
     })
     @GetMapping("/getByCNPJ")
-    public ResponseEntity<Object> getInstituicaoByCnpj(@RequestBody @Valid InstituicaoCnpjDTO dto) {
+    public ResponseEntity<InstituicaoDetailsDTO> getInstituicaoByCnpj(@RequestBody @Valid InstituicaoCnpjDTO dto) {
         InstituicaoEnsino instituicao = instituicaoService.getInstituicaoByCnpj(dto.cnpj());
 
         return ResponseEntity.ok(new InstituicaoDetailsDTO(instituicao));
     }
 
     @GetMapping("/getByEmail")
-    public ResponseEntity<Object> getInstituicaoByEmail(@RequestBody @Valid InstituicaoEmailDTO dto) {
+    public ResponseEntity<InstituicaoDetailsDTO> getInstituicaoByEmail(@RequestBody @Valid InstituicaoEmailDTO dto) {
         InstituicaoEnsino instituicao = instituicaoService.getInstituicaoByEmail(dto.email());
 
         return ResponseEntity.ok(new InstituicaoDetailsDTO(instituicao));
@@ -108,7 +108,7 @@ public class InstituicaoController {
     })
     @PreAuthorize("hasRole('GESTOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateInstituicao(@RequestBody @Valid UpdateInstituicaoDTO dto, @PathVariable Long id) {
+    public ResponseEntity<InstituicaoDetailsDTO> updateInstituicao(@RequestBody @Valid UpdateInstituicaoDTO dto, @PathVariable Long id) {
         InstituicaoEnsino instituicao = instituicaoService.updateInstituicao(id, dto);
 
         return ResponseEntity.ok().body(new InstituicaoDetailsDTO(instituicao));
@@ -121,7 +121,7 @@ public class InstituicaoController {
             @ApiResponse(responseCode = "404", description = "Instituição não encontrada")
     })
     @GetMapping("/{instituicaoId}/usuarios")
-    public ResponseEntity<Object> getUsuariosFromInstituicao(@PathVariable Long instituicaoId) {
+    public ResponseEntity<List<UsuarioSummaryDTO>> getUsuariosFromInstituicao(@PathVariable Long instituicaoId) {
         List<Usuario> membros = instituicaoService.getUsuariosFromInstituicao(instituicaoId);
 
         return membros.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(membros
@@ -138,7 +138,7 @@ public class InstituicaoController {
             @ApiResponse(responseCode = "409", description = "Usuário já vinculado a uma Instituição de Ensino")
     })
     @PostMapping("/{instituicaoId}/usuarios/{usuarioId}")
-    public ResponseEntity<Object> addUsuarioToInstituicao(@PathVariable Long instituicaoId, @PathVariable Long usuarioId) {
+    public ResponseEntity<List<UsuarioSummaryDTO>> addUsuarioToInstituicao(@PathVariable Long instituicaoId, @PathVariable Long usuarioId) {
 
         List<Usuario> membros = instituicaoService.addUsuarioToInstituicao(instituicaoId, usuarioId);
 
@@ -156,7 +156,7 @@ public class InstituicaoController {
             @ApiResponse(responseCode = "409", description = "Usuário não está associado a Instituição de Ensino")
     })
     @DeleteMapping("/{instituicaoId}/usuarios/{usuarioId}")
-    public ResponseEntity<Object> removeUsuarioFromInstituicao(@PathVariable Long instituicaoId, @PathVariable Long usuarioId) {
+    public ResponseEntity<List<UsuarioSummaryDTO>> removeUsuarioFromInstituicao(@PathVariable Long instituicaoId, @PathVariable Long usuarioId) {
         List<Usuario> membros  = instituicaoService
                 .removeUsuarioFromInstituicao(instituicaoId, usuarioId);
 
