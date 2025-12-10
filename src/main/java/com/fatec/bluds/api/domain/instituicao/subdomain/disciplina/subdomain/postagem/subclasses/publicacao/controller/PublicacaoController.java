@@ -40,7 +40,7 @@ public class PublicacaoController {
     })
     @PreAuthorize("hasRole('EDUCADOR')")
     @PostMapping
-    public ResponseEntity<Object> createPublicacao(@RequestBody @Valid CreatePublicacaoDTO dto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<PublicacaoSummaryDTO> createPublicacao(@RequestBody @Valid CreatePublicacaoDTO dto, UriComponentsBuilder uriBuilder) {
         Publicacao publicacao = publicacaoService.createPublicacao(dto);
 
         var uri = uriBuilder
@@ -58,7 +58,7 @@ public class PublicacaoController {
             @ApiResponse(responseCode = "404", description = "Disciplina não encontrada"),
     })
     @GetMapping("/disciplina")
-    public ResponseEntity<Object> getPublicacoes(
+    public ResponseEntity<List<PublicacaoDetailsDTO>> getPublicacoes(
             @RequestParam
             @NotNull(message = "ID da Disciplina não pode ser nulo")
             @Positive(message = "ID da Disciplina não pode ser negativo ou zero")
@@ -77,7 +77,7 @@ public class PublicacaoController {
             @ApiResponse(responseCode = "404", description = "Publicação não encontrada")
     })
     @GetMapping("/{publicacaoId}")
-    public ResponseEntity<Object> getPublicacao(@PathVariable Long publicacaoId) {
+    public ResponseEntity<PublicacaoDetailsDTO> getPublicacao(@PathVariable Long publicacaoId) {
         Publicacao publicacao = publicacaoService.getPublicacaoById(publicacaoId);
 
         return ResponseEntity.ok().body(new PublicacaoDetailsDTO(publicacao));
@@ -91,7 +91,7 @@ public class PublicacaoController {
     })
     @PreAuthorize("hasRole('EDUCADOR')")
     @PutMapping("/{publicacaoId}")
-    public ResponseEntity<Object> updatePublicacao(@PathVariable Long publicacaoId, @RequestBody UpdatePublicacaoDTO dto) {
+    public ResponseEntity<PublicacaoDetailsDTO> updatePublicacao(@PathVariable Long publicacaoId, @RequestBody UpdatePublicacaoDTO dto) {
         Publicacao publicacao = publicacaoService.updatePublicacao(publicacaoId, dto);
 
         return ResponseEntity.ok().body(new PublicacaoDetailsDTO(publicacao));
