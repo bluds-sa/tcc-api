@@ -36,7 +36,7 @@ public class ComentarioController {
             @ApiResponse(responseCode = "409", description = "Dados inválidos ou conflitantes")
     })
     @PostMapping("/responder/publicacao")
-    public ResponseEntity<Object> responderPublicacao(
+    public ResponseEntity<ComentarioSummaryDTO> responderPublicacao(
             @RequestParam
             @NotNull
             @Positive
@@ -63,7 +63,7 @@ public class ComentarioController {
             @ApiResponse(responseCode = "409", description = "Dados inválidos ou conflitantes")
     })
     @PostMapping("/responder/comentario")
-    public ResponseEntity<Object> responderComentario(
+    public ResponseEntity<ComentarioSummaryDTO> responderComentario(
             @RequestParam
             @NotNull
             @Positive
@@ -83,7 +83,7 @@ public class ComentarioController {
             @ApiResponse(responseCode = "404", description = "Comentário não encontrado")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getComentarioById(@PathVariable Long id) {
+    public ResponseEntity<ComentarioSummaryDTO> getComentarioById(@PathVariable Long id) {
         Comentario comentario = service.getComentarioById(id);
 
         return ResponseEntity.ok(new ComentarioSummaryDTO(comentario));
@@ -96,7 +96,7 @@ public class ComentarioController {
             @ApiResponse(responseCode = "404", description = "Publicação não encontrada")
     })
     @GetMapping("/publicacao")
-    public ResponseEntity<Object> obterComentariosDaPublicacao(
+    public ResponseEntity<List<ComentarioSummaryDTO>> obterComentariosDaPublicacao(
             @RequestParam
             @NotNull
             @Positive
@@ -115,7 +115,7 @@ public class ComentarioController {
             @ApiResponse(responseCode = "404", description = "Comentário não encontrado")
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Object> atualizarComentario(@PathVariable Long id, @RequestBody UpdateComentarioDTO dto) {
+    public ResponseEntity<ComentarioSummaryDTO> atualizarComentario(@PathVariable Long id, @RequestBody UpdateComentarioDTO dto) {
         Comentario comentario = service.atualizarComentario(id, dto);
 
         return ResponseEntity.ok(new ComentarioSummaryDTO(comentario));
