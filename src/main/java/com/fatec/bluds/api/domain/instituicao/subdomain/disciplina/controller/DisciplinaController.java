@@ -36,7 +36,7 @@ public class DisciplinaController {
     })
     @PostMapping
     @PreAuthorize("hasRole('GESTOR')")
-    public ResponseEntity<Object> createDisciplina(@RequestBody @Valid CreateDisciplinaDTO dto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DisciplinaSummaryDTO> createDisciplina(@RequestBody @Valid CreateDisciplinaDTO dto, UriComponentsBuilder uriBuilder) {
 
         Disciplina disciplina = disciplinaService.createDisciplina(dto);
 
@@ -54,7 +54,7 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "404", description = "Disciplina não encontrada")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getDisciplinaById(@PathVariable Long id) {
+    public ResponseEntity<DisciplinaSummaryDTO> getDisciplinaById(@PathVariable Long id) {
         return ResponseEntity.ok(new DisciplinaSummaryDTO(disciplinaService.getDisciplinaById(id)));
     }
 
@@ -65,7 +65,7 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "404", description = "Estudante não encontrado")
     })
     @GetMapping("/estudante")
-    public ResponseEntity<Object> getDisciplinasByEstudante(
+    public ResponseEntity<List<DisciplinaSummaryDTO>> getDisciplinasByEstudante(
             @RequestParam
             @NotNull(message = "ID do Estudante não pode ser nulo")
             @Positive(message = "ID do  Estudante não pode ser negativo ou zero")
@@ -86,7 +86,7 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "404", description = "Instituição de Ensino não encontrada")
     })
     @GetMapping("/instituicao")
-    public ResponseEntity<Object> getDisciplinasByInstituicao(
+    public ResponseEntity<List<DisciplinaSummaryDTO>> getDisciplinasByInstituicao(
             @RequestParam
             @NotNull(message = "ID da Instituição de Ensino não pode ser nulo")
             @Positive(message = "ID da Instituição de Ensino deve ser um número positivo maior que zero")
@@ -106,7 +106,7 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "204", description = "Educador não encontrado")
     })
     @GetMapping("/educador")
-    public ResponseEntity<Object> getDisciplinasByEducador(
+    public ResponseEntity<List<DisciplinaSummaryDTO>> getDisciplinasByEducador(
         @RequestParam
         @NotNull(message = "ID do Educador não pode ser nulo")
         @Positive(message = "ID do Educador deve ser um número positivo maior que zero")
@@ -128,7 +128,7 @@ public class DisciplinaController {
     })
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('GESTOR')")
-    public ResponseEntity<Object> updateDisciplina(@PathVariable Long id, @RequestBody @Valid UpdateDisciplinaDTO dto) {
+    public ResponseEntity<DisciplinaSummaryDTO> updateDisciplina(@PathVariable Long id, @RequestBody @Valid UpdateDisciplinaDTO dto) {
         DisciplinaSummaryDTO disciplinaSummary = new DisciplinaSummaryDTO(disciplinaService.updateDisciplina(id, dto));
 
         return ResponseEntity.ok(disciplinaSummary);
@@ -141,7 +141,7 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "404", description = "Disciplina não encontrada")
     })
     @GetMapping("/{id}/estudantes")
-    public ResponseEntity<Object> getEstudantesFromDisciplina(
+    public ResponseEntity<List<EstudanteSummaryDTO>> getEstudantesFromDisciplina(
             @PathVariable
             @NotNull(message = "ID da disciplina não pode ser nulo")
             @Positive(message = "ID da disciplina deve ser um número positivo maior que zero")
@@ -160,7 +160,7 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "404", description = "Estudante ou Disciplina não encontrados")
     })
     @PostMapping("/{id}/estudantes")
-    public ResponseEntity<Object> addEstudanteToDisciplina(
+    public ResponseEntity<List<EstudanteSummaryDTO>> addEstudanteToDisciplina(
             @PathVariable
             @NotNull(message = "ID da disciplina não pode ser nulo")
             @Positive(message = "ID da disciplina deve ser um número positivo maior que zero")
@@ -181,7 +181,7 @@ public class DisciplinaController {
             @ApiResponse(responseCode = "404", description = "Estudante ou Disciplina não encontrados")
     })
     @DeleteMapping("/{id}/estudantes")
-    public ResponseEntity<Object> removeEstudanteToDisciplina(
+    public ResponseEntity<List<EstudanteSummaryDTO>> removeEstudanteToDisciplina(
             @PathVariable
             @NotNull(message = "ID da disciplina não pode ser nulo")
             @Positive(message = "ID da disciplina deve ser um número positivo maior que zero")
