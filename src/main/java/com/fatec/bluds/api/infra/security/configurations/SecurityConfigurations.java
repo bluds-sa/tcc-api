@@ -53,6 +53,7 @@ public class SecurityConfigurations {
                         .requestMatchers("/tarefas", "/tarefas/**").authenticated()
                         .requestMatchers("/respostas", "/respostas/**").authenticated()
                         .requestMatchers("/acessibilidade", "/acessibilidade/**").authenticated()
+                        .requestMatchers("/usuarios", "/usuarios/**").authenticated()
                         .requestMatchers("/swagger-ui", "/swagger-ui/**", "/v3/api-docs*/**").permitAll()
                         .requestMatchers("/h2-console/**").denyAll()
                         .anyRequest().denyAll())
