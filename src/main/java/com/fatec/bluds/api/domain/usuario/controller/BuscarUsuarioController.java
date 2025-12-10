@@ -5,12 +5,14 @@ import com.fatec.bluds.api.domain.usuario.model.Usuario;
 import com.fatec.bluds.api.domain.usuario.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/usuarios")
+@Tag(name = "Busca de Usuários", description = "Responsável por operações relacionadas a buscas de usuários")
 public class BuscarUsuarioController {
 
     @Autowired
