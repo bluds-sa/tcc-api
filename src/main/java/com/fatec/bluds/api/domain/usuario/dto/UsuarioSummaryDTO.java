@@ -7,12 +7,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public record UsuarioSummaryDTO(
         Long id,
         String nome,
+        String email,
         String funcao
 ) {
     public UsuarioSummaryDTO(Usuario usuario) {
         this(
                 usuario.getId(),
                 usuario.getNome(),
+                usuario.getEmail(),
                 usuario.getRoles().obterNome()
         );
     }
