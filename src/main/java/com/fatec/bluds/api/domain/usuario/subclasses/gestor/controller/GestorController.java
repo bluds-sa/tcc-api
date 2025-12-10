@@ -29,7 +29,7 @@ public class GestorController {
             @ApiResponse(responseCode = "404",  description = "Não foi possível obter o Gestor com o ID especificado")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getGestorById(@PathVariable Long id) {
+    public ResponseEntity<GestorDetailsDTO> getGestorById(@PathVariable Long id) {
         Gestor gestor = service.getGestorById(id);
 
         return ResponseEntity.ok(new GestorDetailsDTO(gestor));
@@ -42,7 +42,7 @@ public class GestorController {
             @ApiResponse(responseCode = "404",  description = "Não foi possível obter o Gestor com o ID especificado")
     })
     @GetMapping
-    public ResponseEntity<Object> getGestorByEmail(@RequestBody @Valid GestorGetByEmailDTO dto) {
+    public ResponseEntity<GestorDetailsDTO> getGestorByEmail(@RequestBody @Valid GestorGetByEmailDTO dto) {
         Gestor gestor = service.getGestorByEmail(dto);
 
         return ResponseEntity.ok(new GestorDetailsDTO(gestor));
@@ -55,7 +55,7 @@ public class GestorController {
             @ApiResponse(responseCode = "404",  description = "Não foi possível obter o Gestor com o ID especificado")
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateGestor(@RequestBody @Valid UpdateGestorDTO dto, @PathVariable Long id) {
+    public ResponseEntity<GestorDetailsDTO> updateGestor(@RequestBody @Valid UpdateGestorDTO dto, @PathVariable Long id) {
 
         Gestor gestor = service.getGestorById(id);
 
