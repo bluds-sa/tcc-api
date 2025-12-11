@@ -79,7 +79,6 @@ public class TarefaServiceImpl implements TarefaService {
     @Transactional
     public void removeTarefa(Long id) {
         Tarefa tarefa = getTarefaById(id);
-        tarefa.getRespostas().clear();
         tarefaRepository.delete(tarefa);
     }
 }

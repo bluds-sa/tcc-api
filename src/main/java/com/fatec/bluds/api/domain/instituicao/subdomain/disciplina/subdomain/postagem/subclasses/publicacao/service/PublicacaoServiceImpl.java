@@ -79,8 +79,7 @@ public class PublicacaoServiceImpl implements PublicacaoService {
     @Override
     public void removePublicacao(Long id) {
         Publicacao publicacao = this.getPublicacaoById(id);
-        publicacao.getComentarios().clear();
-
+        
         publicacaoRepository.delete(publicacao);
     }
 }

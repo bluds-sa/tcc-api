@@ -10,7 +10,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "tarefa")
@@ -30,7 +32,7 @@ public class Tarefa extends Postagem {
     private Double valorTotal;
 
     @OneToMany(mappedBy = "tarefa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<Resposta> respostas = new HashSet<>();
+    private List<Resposta> respostas = new ArrayList<>();
 
     private Boolean permitirArquivoResposta = true;
 
