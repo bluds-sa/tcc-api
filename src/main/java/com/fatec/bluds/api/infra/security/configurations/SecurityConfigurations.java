@@ -43,7 +43,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/reset-password/forgot-password").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/reset-password/reset-password").permitAll()
-                        .requestMatchers("/gestor","/gestor/**","/estudantes","/estudantes/**").authenticated()
+                        .requestMatchers("/gestor","/gestor/**","/estudantes","/estudantes/**", "/educadores","/educadores/**").authenticated()
                         .requestMatchers("/instituicoes","/instituicoes/**").authenticated()
                         .requestMatchers("/disciplinas","/disciplinas/**").authenticated()
                         .requestMatchers("/publicacoes","/publicacoes/**").authenticated()
