@@ -9,7 +9,8 @@ public record DisciplinaSummaryDTO(
         String nome,
         String descricao,
         String educadorResponsavel,
-        String instituicao
+        String instituicao,
+        Integer alunos
 ) {
     public DisciplinaSummaryDTO(Disciplina disciplina) {
         this(
@@ -17,7 +18,8 @@ public record DisciplinaSummaryDTO(
                 disciplina.getNome(),
                 disciplina.getDescricao(),
                 disciplina.getEducador().getNome(),
-                disciplina.getInstituicaoEnsino().getNome()
+                disciplina.getInstituicaoEnsino().getNome(),
+                disciplina.getEstudantes().size()
         );
     }
 }
